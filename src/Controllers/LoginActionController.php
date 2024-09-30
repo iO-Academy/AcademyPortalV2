@@ -2,8 +2,10 @@
 
 namespace Portal\Controllers;
 
+use Exception;
 use Portal\Models\UsersModel;
 use Portal\Services\AuthService;
+use Portal\ValueObjects\EmailAddress;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
@@ -23,7 +25,12 @@ class LoginActionController
 
         $body = $request->getParsedBody();
 
-        $email = $body['userEmail'];
+        try {
+            $email = new EmailAddress($body['email']);
+        } catch (Exception $e) {
+            return $response->withHeader('Location', "./?email_error={$e->getMessage()}")->withStatus(301);
+        }
+
         $password = $body['password'];
 
         $user = $this->usersModel->getByEmail($email);

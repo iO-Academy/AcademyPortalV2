@@ -7,6 +7,7 @@ namespace Portal\Models;
 
 
 use PDO;
+use Portal\ValueObjects\EmailAddress;
 
 class UsersModel
 {
@@ -17,7 +18,7 @@ class UsersModel
         $this->db = $db;
     }
 
-    public function getByEmail(string $email): array|false
+    public function getByEmail(EmailAddress $email): array|false
     {
         $query = $this->db->prepare('SELECT `id`, `email`, `password` FROM `users` WHERE `email` = :email');
         $query->execute(['email' => $email]);
