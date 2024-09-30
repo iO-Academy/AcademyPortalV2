@@ -18,7 +18,7 @@ return function (ContainerBuilder $containerBuilder) {
                 'level' => Logger::DEBUG,
             ],
             'db' => [
-                'host' => 'mysql:host=127.0.0.1;',
+                'host' => 'mysql:host=DB;',
                 'name' => 'dbname=academyportal',
                 'user' => 'root',
                 'password' => 'password',
