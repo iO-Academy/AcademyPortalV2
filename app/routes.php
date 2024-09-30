@@ -13,4 +13,5 @@ return function (App $app) {
     $app->post('/login', \Portal\Controllers\LoginActionController::class);
 
     $app->get('/admin', \Portal\Controllers\AdminPageController::class);
+    $app->get('/admin/applicants', \Portal\Controllers\ApplicantsPageController::class);
 };

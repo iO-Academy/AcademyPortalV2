@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+    require 'partials/layout/head.phtml';
+    ?>
+    <title>Applicants</title>
+</head>
+<body>
+<?php require 'partials/layout/header.phtml'; ?>
+<?php require 'partials/layout/nav.phtml'; ?>
+<main>
+    <div class="container">
+
+        <?php if (count($applicants) === 0): ?>
+            No applicants found
+        <?php else: ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Application Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($applicants as $applicant): ?>
+                <tr>
+                    <td><?php echo $applicant->getName(); ?></td>
+                    <td><?php echo $applicant->getEmail(); ?></td>
+                    <td><?php echo $applicant->getApplicationDate(); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php endif; ?>
+
+    </div>
+</main>
+</body>
+</html>
