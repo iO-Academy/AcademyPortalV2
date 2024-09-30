@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace App\Controllers;
+namespace Portal\Controllers;
 
 
 use App\Models\CoursesModel;
