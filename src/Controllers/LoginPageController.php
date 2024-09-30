@@ -19,7 +19,7 @@ class LoginPageController
     public function __invoke(Request $request, Response $response): Response
     {
         if (AuthService::isLoggedIn()) {
-            // TODO: redirect to admin page
+            return $response->withHeader('Location', "./admin")->withStatus(301);
         }
 
         return $this->renderer->render($response, 'login.phtml');
