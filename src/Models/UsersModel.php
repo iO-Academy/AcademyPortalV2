@@ -7,6 +7,7 @@ namespace Portal\Models;
 
 
 use PDO;
+use Portal\Entities\UserEntity;
 use Portal\ValueObjects\EmailAddress;
 
 class UsersModel
@@ -18,9 +19,10 @@ class UsersModel
         $this->db = $db;
     }
 
-    public function getByEmail(EmailAddress $email): array|false
+    public function getByEmail(EmailAddress $email): UserEntity|false
     {
         $query = $this->db->prepare('SELECT `id`, `email`, `password` FROM `users` WHERE `email` = :email');
+        $query->setFetchMode(PDO::FETCH_CLASS, UserEntity::class);
         $query->execute(['email' => $email]);
         return $query->fetch();
     }

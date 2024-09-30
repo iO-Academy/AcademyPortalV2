@@ -6,6 +6,10 @@ class AuthService
 {
     public static function isLoggedIn(): bool
     {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
             return true;
         }

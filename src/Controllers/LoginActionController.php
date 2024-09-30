@@ -39,7 +39,7 @@ class LoginActionController
             return $response->withHeader('Location', "./?error=$errorMessage")->withStatus(301);
         }
 
-        if (!password_verify($password, $user['password'])) {
+        if (!password_verify($password, $user->getPassword())) {
             return $response->withHeader('Location', "./?error=$errorMessage")->withStatus(301);
         }
 
