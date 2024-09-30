@@ -11,4 +11,6 @@ return function (App $app) {
 
     $app->get('/', \Portal\Controllers\LoginPageController::class);
     $app->post('/login', \Portal\Controllers\LoginActionController::class);
+
+    $app->get('/admin', \Portal\Controllers\AdminPageController::class);
 };
