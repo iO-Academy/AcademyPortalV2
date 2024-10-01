@@ -1,32 +1,50 @@
-# This config was automatically generated from your source code
-# Stacks detected: deps:node:.,deps:php:.
 version: 2.1
-orbs:
-  php: circleci/php@1
 jobs:
-  test-php:
-    # Install php packages and run tests
+  build:
+    working_directory: /var/www/html
     docker:
-      - image: cimg/php:8.2.7-node
+      - image: php:8.2-apache
+        environment:
+          APP_ENV: test
     steps:
+      - run:
+          name: Install system packages
+          command: apt-get update && apt-get -y install git
+      - run:
+          name: Marking root as safe
+          command: git config --global --add safe.directory /var/www/html
+      - run:
+          name: Install PHP extensions
+          command: docker-php-ext-install pdo
       - checkout
-      - php/install-packages
       - run:
-          name: run tests
-          command: ./vendor/bin/phpunit
-  deploy:
-    # This is an example deploy job, not actually used by the workflow
-    docker:
-      - image: cimg/base:stable
-    steps:
-      # Replace this with steps to deploy to users
+          name: Install Composer
+          command: |
+            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+            php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer invalid'; unlink('composer-setup.php'); } echo PHP_EOL;"
+            php composer-setup.php
+            php -r "unlink('composer-setup.php');"
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
-workflows:
-  build-and-test:
-    jobs:
-      - test-php
-    # - deploy:
-    #     requires:
-    #       - test-php
+          name: Display PHP information
+          command: |
+            php -v
+            php composer.phar --version
+      - restore_cache:
+          keys:
+            - v1-deps-{{ checksum "composer.lock" }}
+      - run:
+          name: Install project dependencies
+          command: php composer.phar install
+      - save_cache:
+          key: v1-deps-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      - run:
+          name: Setup Autoloader
+          command: php composer.phar dump-autoload
+      - run:
+          name: Run CS Tests
+          command: vendor/bin/phpcs --standard=PSR12 src templates tests
+      - run:
+          name: Run Unit tests
+          command: vendor/bin/phpunit
