@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace Portal\Factories;
-
 
 use Psr\Container\ContainerInterface;
 use Slim\Views\PhpRenderer;

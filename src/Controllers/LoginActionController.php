@@ -47,5 +47,4 @@ class LoginActionController
 
         return $response->withHeader('Location', "./admin")->withStatus(301);
     }
-
 }

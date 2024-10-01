@@ -28,5 +28,4 @@ class AuthService
             session_start();
         }
     }
-
 }
