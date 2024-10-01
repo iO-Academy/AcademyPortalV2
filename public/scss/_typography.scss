@@ -1,0 +1,12 @@
+* {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: $light-blue;
+  &:hover {
+    color: $black;
+  }
+}
+

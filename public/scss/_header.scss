@@ -1,0 +1,33 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+
+    a {
+      text-align: center;
+      padding: 5px;
+
+      &:hover {
+        background-color: $light-grey;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .logo {
+    width: 300px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
