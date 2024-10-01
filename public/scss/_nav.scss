@@ -1,0 +1,23 @@
+nav {
+  display: flex;
+
+  &.container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  a {
+    border: 1px solid $light-grey;
+    padding: 6px 12px;
+    color: $black;
+
+    &:hover {
+      background-color: $light-grey;
+    }
+    &:first-child {
+      border-right: none;
+    }
+    &:last-child {
+      border-left: none;
+    }
+  }
+}

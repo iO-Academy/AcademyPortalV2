@@ -3,7 +3,7 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $small) {
     flex-direction: column-reverse;
   }
 
