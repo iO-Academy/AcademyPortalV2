@@ -1,6 +1,7 @@
 {
-    "name": "slim/slim-skeleton",
-    "description": "A Slim Framework skeleton application for rapid development",
+    "name": "ioacademy/academy-portal",
+    "description": "An applicant management portal",
+    "version": "1.0.0",
     "keywords": [
         "microframework",
         "rest",
