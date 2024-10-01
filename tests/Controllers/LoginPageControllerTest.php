@@ -3,7 +3,6 @@
 namespace Tests\Controllers;
 
 use Portal\Controllers\LoginPageController;
-use Portal\Models\UsersModel;
 use Slim\Views\PhpRenderer;
 use Tests\TestCase;
 
