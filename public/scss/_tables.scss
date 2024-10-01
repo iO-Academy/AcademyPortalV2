@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+  border: 1px solid $light-grey;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid $light-grey;
+    padding: 8px;
+  }
+
+  thead {
+    text-align: left;
+  }
+}
