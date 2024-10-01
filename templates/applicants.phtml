@@ -35,6 +35,16 @@
         </table>
         <?php endif; ?>
 
+        <div class="pagination">
+            <a href="?page=<?= $previousPage; ?>" class="<?php if ($previousPage === 0) echo 'disabled' ?>">Previous</a>
+            <?php
+            for ($i = 1; $i <= $pageCount; $i++) {
+                echo "<a href='?page=$i'>$i</a>";
+            }
+            ?>
+            <a href="?page=<?= $nextPage; ?>" class="<?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
+        </div>
+
     </div>
 </main>
 </body>

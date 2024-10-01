@@ -25,8 +25,19 @@ class ApplicantsPageController
             return $response->withHeader('Location', './')->withStatus(301);
         }
 
-        $applicants = $this->applicantsModel->getAll();
+        $data = $request->getQueryParams();
 
-        return $this->renderer->render($response, 'applicants.phtml', ['applicants' => $applicants]);
+        $page = $data['page'] ?? 1;
+
+        $applicants = $this->applicantsModel->getAll($page);
+        $applicantsTotalCount = $this->applicantsModel->getCount();
+
+        return $this->renderer->render($response, 'applicants.phtml', [
+            'applicants' => $applicants,
+            'currentPage' => $page,
+            'previousPage' => $page - 1,
+            'nextPage' => $page + 1,
+            'pageCount' => ceil($applicantsTotalCount / 20)
+        ]);
     }
 }
