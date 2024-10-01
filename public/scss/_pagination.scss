@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+  margin-top: 30px;
+  a {
+    padding: 5px;
+    border: 1px solid $light-grey;
+    border-left: none;
+    color: $dark-grey;
+    &.prev {
+      border: 1px solid $light-grey;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      cursor: default;
+      color: $light-grey;
+    }
+
+    &.active {
+      background-color: $io-green;
+    }
+  }
+}

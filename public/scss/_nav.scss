@@ -7,17 +7,16 @@ nav {
   }
   a {
     border: 1px solid $light-grey;
+    border-left: none;
     padding: 6px 12px;
     color: $black;
 
     &:hover {
       background-color: $light-grey;
     }
+
     &:first-child {
-      border-right: none;
-    }
-    &:last-child {
-      border-left: none;
+      border: 1px solid $light-grey;
     }
   }
 }

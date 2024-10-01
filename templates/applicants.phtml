@@ -36,13 +36,17 @@
         <?php endif; ?>
 
         <div class="pagination">
-            <a href="?page=<?= $previousPage; ?>" class="<?php if ($previousPage === 0) echo 'disabled' ?>">Previous</a>
+            <a href="?page=<?= $previousPage; ?>" class="prev <?php if ($previousPage === 0) echo 'disabled' ?>">Previous</a>
             <?php
             for ($i = 1; $i <= $pageCount; $i++) {
-                echo "<a href='?page=$i'>$i</a>";
+                if ($i == $currentPage) {
+                    echo "<a href='?page=$i' class='active'>$i</a>";
+                } else {
+                    echo "<a href='?page=$i'>$i</a>";
+                }
             }
             ?>
-            <a href="?page=<?= $nextPage; ?>" class="<?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
+            <a href="?page=<?= $nextPage; ?>" class="next <?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
         </div>
 
     </div>
