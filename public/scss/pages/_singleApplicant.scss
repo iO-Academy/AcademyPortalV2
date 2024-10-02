@@ -1,0 +1,17 @@
+.single-applicant {
+  .applicant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .details {
+    h2 {
+      color: $io-purple;
+    }
+    p {
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -8,6 +8,21 @@ class ApplicantEntity
     private string $name;
     private string $email;
     private string $application_date;
+    private ?ApplicationEntity $application;
+
+    public function __construct(
+        int $id,
+        string $name,
+        string $email,
+        string $application_date,
+        ?ApplicationEntity $application = null
+    ) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->email = $email;
+        $this->application_date = $application_date;
+        $this->application = $application;
+    }
 
     public function getId(): int
     {
@@ -27,5 +42,10 @@ class ApplicantEntity
     public function getApplicationDate(): string
     {
         return $this->application_date;
+    }
+
+    public function getApplication(): ?ApplicationEntity
+    {
+        return $this->application;
     }
 }
