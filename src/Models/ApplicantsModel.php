@@ -5,6 +5,7 @@ namespace Portal\Models;
 use PDO;
 use Portal\Entities\ApplicantEntity;
 use Portal\Entities\ApplicationEntity;
+use Portal\Hydrators\ApplicationHydrator;
 use Portal\ValueObjects\EmailAddress;
 
 class ApplicantsModel
@@ -92,23 +93,7 @@ class ApplicantsModel
             return false;
         }
 
-        $applicationEntity = new ApplicationEntity(
-            $data['application_id'],
-            $data['why'],
-            $data['experience'],
-            $data['diversitech'],
-            $data['circumstance'],
-            $data['funding'],
-            $data['cohort'],
-            $data['dob'],
-            $data['phone'],
-            $data['address'],
-            $data['hear_about'],
-            (bool) $data['age_confirmation'],
-            (bool) $data['newsletter'],
-            (bool) $data['eligible'],
-            (bool) $data['terms']
-        );
+        $applicationEntity = ApplicationHydrator::hydrateSingle($data);
 
         return new ApplicantEntity(
             $data['id'],
