@@ -5,6 +5,7 @@ namespace Portal\Models;
 use PDO;
 use Portal\Entities\ApplicantEntity;
 use Portal\Entities\ApplicationEntity;
+use Portal\ValueObjects\EmailAddress;
 
 class ApplicantsModel
 {
@@ -33,7 +34,7 @@ class ApplicantsModel
             $applicants[] = new ApplicantEntity(
                 $applicant['id'],
                 $applicant['name'],
-                $applicant['email'],
+                new EmailAddress($applicant['email']),
                 $applicant['application_date']
             );
         }
@@ -112,7 +113,7 @@ class ApplicantsModel
         return new ApplicantEntity(
             $data['id'],
             $data['name'],
-            $data['email'],
+            new EmailAddress($data['email']),
             $data['application_date'],
             $applicationEntity
         );

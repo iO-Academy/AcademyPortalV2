@@ -20,8 +20,17 @@ class UsersModel
     public function getByEmail(EmailAddress $email): UserEntity|false
     {
         $query = $this->db->prepare('SELECT `id`, `email`, `password` FROM `users` WHERE `email` = :email');
-        $query->setFetchMode(PDO::FETCH_CLASS, UserEntity::class);
         $query->execute(['email' => $email]);
-        return $query->fetch();
+        $data = $query->fetch();
+
+        if (!$data) {
+            return false;
+        }
+
+        return new UserEntity(
+            $data['id'],
+            new EmailAddress($data['email']),
+            $data['password']
+        );
     }
 }

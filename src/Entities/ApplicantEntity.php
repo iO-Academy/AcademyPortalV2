@@ -2,18 +2,20 @@
 
 namespace Portal\Entities;
 
+use Portal\ValueObjects\EmailAddress;
+
 class ApplicantEntity
 {
     private int $id;
     private string $name;
-    private string $email;
+    private EmailAddress $email;
     private string $application_date;
     private ?ApplicationEntity $application;
 
     public function __construct(
         int $id,
         string $name,
-        string $email,
+        EmailAddress $email,
         string $application_date,
         ?ApplicationEntity $application = null
     ) {
@@ -34,7 +36,7 @@ class ApplicantEntity
         return $this->name;
     }
 
-    public function getEmail(): string
+    public function getEmail(): EmailAddress
     {
         return $this->email;
     }

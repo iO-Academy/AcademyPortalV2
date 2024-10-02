@@ -2,18 +2,27 @@
 
 namespace Portal\Entities;
 
+use Portal\ValueObjects\EmailAddress;
+
 class UserEntity
 {
     private int $id;
-    private string $email;
+    private EmailAddress $email;
     private string $password;
+
+    public function __construct(int $id, EmailAddress $email, string $password)
+    {
+        $this->id = $id;
+        $this->email = $email;
+        $this->password = $password;
+    }
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function getEmail(): string
+    public function getEmail(): EmailAddress
     {
         return $this->email;
     }
