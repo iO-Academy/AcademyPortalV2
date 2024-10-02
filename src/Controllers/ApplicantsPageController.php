@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\PhpRenderer;
 
-class ApplicantsPageController
+class ApplicantsPageController extends Controller
 {
     private PhpRenderer $renderer;
     private ApplicantsModel $applicantsModel;
@@ -24,7 +24,7 @@ class ApplicantsPageController
     public function __invoke(Request $request, Response $response): Response
     {
         if (!$this->authService->isLoggedIn()) {
-            return $response->withHeader('Location', './')->withStatus(301);
+            return $this->redirect($response, '/');
         }
 
         $data = $request->getQueryParams();

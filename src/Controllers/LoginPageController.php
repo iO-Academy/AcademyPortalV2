@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\PhpRenderer;
 
-class LoginPageController
+class LoginPageController extends Controller
 {
     private PhpRenderer $renderer;
     private AuthService $authService;
@@ -21,7 +21,7 @@ class LoginPageController
     public function __invoke(Request $request, Response $response): Response
     {
         if ($this->authService->isLoggedIn()) {
-            return $response->withHeader('Location', "./admin")->withStatus(301);
+            return $this->redirect($response, '/admin');
         }
 
         $query = $request->getQueryParams();
