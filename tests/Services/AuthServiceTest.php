@@ -5,6 +5,7 @@ namespace Tests\Services;
 use Portal\Entities\UserEntity;
 use Portal\Models\UsersModel;
 use Portal\Services\AuthService;
+use Portal\Services\SessionManager;
 use Portal\ValueObjects\EmailAddress;
 use Tests\TestCase;
 
@@ -20,7 +21,9 @@ class AuthServiceTest extends TestCase
         $usersModel = $this->createMock(UsersModel::class);
         $usersModel->method('getByEmail')->willReturn($user);
 
-        $authService = new AuthService($usersModel);
+        $sessionManager = $this->createMock(SessionManager::class);
+
+        $authService = new AuthService($usersModel, $sessionManager);
         $case = $authService->authenticate(new EmailAddress('test@test.com'), 'password');
         $this->assertInstanceOf(UserEntity::class, $case);
     }
@@ -35,7 +38,9 @@ class AuthServiceTest extends TestCase
         $usersModel = $this->createMock(UsersModel::class);
         $usersModel->method('getByEmail')->willReturn($user);
 
-        $authService = new AuthService($usersModel);
+        $sessionManager = $this->createMock(SessionManager::class);
+
+        $authService = new AuthService($usersModel, $sessionManager);
         $case = $authService->authenticate(new EmailAddress('test@test.com'), 'test');
         $this->assertNull($case);
     }
@@ -45,8 +50,45 @@ class AuthServiceTest extends TestCase
         $usersModel = $this->createMock(UsersModel::class);
         $usersModel->method('getByEmail')->willReturn(false);
 
-        $authService = new AuthService($usersModel);
+        $sessionManager = $this->createMock(SessionManager::class);
+
+        $authService = new AuthService($usersModel, $sessionManager);
         $case = $authService->authenticate(new EmailAddress('test@test.com'), 'test');
         $this->assertNull($case);
+    }
+
+    public function testIsLoggedInWhenLoggedIn(): void
+    {
+        $usersModel = $this->createMock(UsersModel::class);
+        $sessionManager = $this->createMock(SessionManager::class);
+        $sessionManager->method('get')->willReturn(true);
+
+        $authService = new AuthService($usersModel, $sessionManager);
+        $case = $authService->isLoggedIn();
+        $this->assertTrue($case);
+    }
+
+    public function testIsLoggedInWhenLoggedOut(): void
+    {
+        $usersModel = $this->createMock(UsersModel::class);
+        $sessionManager = $this->createMock(SessionManager::class);
+        $sessionManager->method('get')->willReturn(false);
+
+        $authService = new AuthService($usersModel, $sessionManager);
+        $case = $authService->isLoggedIn();
+        $this->assertFalse($case);
+    }
+
+    public function testLoginSetsSessionVariables(): void
+    {
+        $user = $this->createMock(UserEntity::class);
+        $user->method('getId')->willReturn(1);
+
+        $usersModel = $this->createMock(UsersModel::class);
+        $sessionManager = $this->createMock(SessionManager::class);
+        $sessionManager->expects($this->exactly(2))->method('set');
+
+        $authService = new AuthService($usersModel, $sessionManager);
+        $authService->login($user);
     }
 }

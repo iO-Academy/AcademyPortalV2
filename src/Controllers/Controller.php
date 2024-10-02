@@ -4,6 +4,9 @@ namespace Portal\Controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * Controllers can extend this class to access some helpful redirection methods
+ */
 class Controller
 {
     protected function redirect(Response $response, string $url): Response

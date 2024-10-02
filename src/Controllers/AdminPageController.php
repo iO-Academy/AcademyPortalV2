@@ -21,7 +21,7 @@ class AdminPageController
     public function __invoke(Request $request, Response $response): Response
     {
         if (!$this->authService->isLoggedIn()) {
-            return $response->withHeader('Location', './')->withStatus(301);
+            return $response->withHeader('Location', '/')->withStatus(301);
         }
 
         return $this->renderer->render($response, 'admin.phtml');

@@ -9,10 +9,12 @@ use Portal\ValueObjects\EmailAddress;
 class AuthService
 {
     private UsersModel $usersModel;
+    private SessionManager $sessionManager;
 
-    public function __construct(UsersModel $usersModel)
+    public function __construct(UsersModel $usersModel, SessionManager $sessionManager)
     {
         $this->usersModel = $usersModel;
+        $this->sessionManager = $sessionManager;
     }
 
     public function authenticate(EmailAddress $email, string $password): ?UserEntity
@@ -28,27 +30,12 @@ class AuthService
 
     public function isLoggedIn(): bool
     {
-        $this->startSession();
-
-        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
-            return true;
-        }
-
-        return false;
+        return $this->sessionManager->get('loggedIn') === true;
     }
 
     public function login(UserEntity $user): void
     {
-        $this->startSession();
-
-        $_SESSION['loggedIn'] = true;
-        $_SESSION['uid'] = $user->getId();
-    }
-
-    private function startSession(): void
-    {
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
-        }
+        $this->sessionManager->set('loggedIn', true);
+        $this->sessionManager->set('uid', $user->getId());
     }
 }
