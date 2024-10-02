@@ -6,6 +6,7 @@ namespace Portal\Models;
 
 use PDO;
 use Portal\Entities\UserEntity;
+use Portal\Hydrators\UserHydrator;
 use Portal\ValueObjects\EmailAddress;
 
 class UsersModel
@@ -27,10 +28,6 @@ class UsersModel
             return false;
         }
 
-        return new UserEntity(
-            $data['id'],
-            new EmailAddress($data['email']),
-            $data['password']
-        );
+        return UserHydrator::hydrateSingle($data);
     }
 }
