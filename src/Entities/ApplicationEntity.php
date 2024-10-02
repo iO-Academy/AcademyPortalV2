@@ -87,7 +87,7 @@ class ApplicationEntity
         return $this->experience;
     }
 
-    public function isDiversitech(): bool
+    public function getDiversitech(): bool
     {
         return $this->diversitech;
     }

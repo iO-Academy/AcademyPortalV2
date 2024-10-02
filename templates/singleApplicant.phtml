@@ -35,6 +35,7 @@
             <p><span>Application reason:</span><br /> <?= $applicant->getApplication()->getWhy() ?></p>
             <p><span>Code experience:</span><br /> <?= $applicant->getApplication()->getExperience() ?></p>
             <p><span>Heard about us:</span> <?= $applicant->getApplication()->getHearAbout() ?></p>
+            <p><span>Diversitech:</span> <?= $applicant->getApplication()->getDiversitech() ? 'Yes' : 'No' ?></p>
             <p><span>Over 18:</span> <?= $applicant->getApplication()->getAgeConfirmation() ? 'Yes' : 'No' ?></p>
             <p><span>Newsletter signup:</span> <?= $applicant->getApplication()->getNewsletter() ? 'Yes' : 'No' ?></p>
             <p><span>Eligible to study in the UK:</span> <?= $applicant->getApplication()->getEligible() ? 'Yes' : 'No' ?></p>
