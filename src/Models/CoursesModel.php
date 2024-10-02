@@ -19,7 +19,7 @@ class CoursesModel
      */
     public function getAll(): array
     {
-        $query = $this->db->prepare("SELECT `id`, `name`, `short_name` AS 'shortName' FROM `courses`;");
+        $query = $this->db->prepare("SELECT `id`, `name`, `short_name` AS 'shortName', `remote` FROM `courses`;");
         $query->setFetchMode(PDO::FETCH_CLASS, CourseEntity::class);
         $query->execute();
 

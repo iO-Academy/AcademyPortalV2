@@ -26,13 +26,15 @@
                 <tr>
                     <th>Name</th>
                     <th>Abbreviation</th>
+                    <th>Remote</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($courses as $course): ?>
                     <tr>
                         <td><?= $course->getName(); ?></td>
-                        <td><?php echo $course->getShortName(); ?></td>
+                        <td><?= $course->getShortName(); ?></td>
+                        <td><?= $course->getRemote() ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-xmark"></i>'  ?></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>

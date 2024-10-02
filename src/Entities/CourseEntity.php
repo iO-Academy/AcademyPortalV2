@@ -7,6 +7,7 @@ class CourseEntity
     private int $id;
     private string $name;
     private string $shortName;
+    private bool $remote;
 
     public function getId(): int
     {
@@ -21,5 +22,10 @@ class CourseEntity
     public function getShortName(): string
     {
         return $this->shortName;
+    }
+
+    public function getRemote(): bool
+    {
+        return $this->remote;
     }
 }
