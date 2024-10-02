@@ -5,6 +5,7 @@ namespace Portal\Models;
 use PDO;
 use Portal\Entities\ApplicantEntity;
 use Portal\Entities\ApplicationEntity;
+use Portal\Hydrators\ApplicantHydrator;
 use Portal\Hydrators\ApplicationHydrator;
 use Portal\ValueObjects\EmailAddress;
 
@@ -32,12 +33,7 @@ class ApplicantsModel
         $applicants = [];
 
         foreach ($data as $applicant) {
-            $applicants[] = new ApplicantEntity(
-                $applicant['id'],
-                $applicant['name'],
-                new EmailAddress($applicant['email']),
-                $applicant['application_date']
-            );
+            $applicants[] = ApplicantHydrator::hydrateSingle($applicant);
         }
 
         return $applicants;
@@ -95,12 +91,6 @@ class ApplicantsModel
 
         $applicationEntity = ApplicationHydrator::hydrateSingle($data);
 
-        return new ApplicantEntity(
-            $data['id'],
-            $data['name'],
-            new EmailAddress($data['email']),
-            $data['application_date'],
-            $applicationEntity
-        );
+        return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
 }
