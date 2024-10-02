@@ -1,0 +1,44 @@
+<?php
+/**
+ * @var $courses \Portal\Entities\CourseEntity[]
+
+ */
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+    require 'partials/layout/head.phtml';
+    ?>
+    <title>Courses</title>
+</head>
+<body>
+<?php require 'partials/layout/header.phtml'; ?>
+<?php require 'partials/layout/nav.phtml'; ?>
+<main>
+    <div class="container">
+        <h1>Courses</h1>
+        <?php if (count($courses) === 0): ?>
+            No courses
+        <?php else: ?>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Abbreviation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($courses as $course): ?>
+                    <tr>
+                        <td><?= $course->getName(); ?></td>
+                        <td><?php echo $course->getShortName(); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</main>
+</body>
+</html>

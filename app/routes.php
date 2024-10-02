@@ -15,4 +15,5 @@ return function (App $app) {
     $app->get('/admin', \Portal\Controllers\AdminPageController::class);
     $app->get('/admin/applicants', \Portal\Controllers\ApplicantsPageController::class);
     $app->get('/admin/applicants/{id}', \Portal\Controllers\SingleApplicantPageController::class);
+    $app->get('/admin/courses', \Portal\Controllers\CoursesPageController::class);
 };
