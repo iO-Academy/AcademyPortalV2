@@ -44,6 +44,11 @@ class ApplicantEntity
         return $this->application_date;
     }
 
+    public function getFormattedApplicationDate(): string
+    {
+        return date("jS F, Y", strtotime($this->application_date));
+    }
+
     public function getApplication(): ?ApplicationEntity
     {
         return $this->application;
