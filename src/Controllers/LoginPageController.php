@@ -22,6 +22,14 @@ class LoginPageController
             return $response->withHeader('Location', "./admin")->withStatus(301);
         }
 
-        return $this->renderer->render($response, 'login.phtml');
+        $query = $request->getQueryParams();
+
+        $data = [
+            'email_error' => $query['email_error'] ?? null,
+            'error' => $query['error'] ?? null
+        ];
+
+
+        return $this->renderer->render($response, 'login.phtml', $data);
     }
 }
