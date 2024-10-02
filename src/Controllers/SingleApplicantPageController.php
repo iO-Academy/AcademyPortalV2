@@ -12,16 +12,18 @@ class SingleApplicantPageController
 {
     private PhpRenderer $renderer;
     private ApplicantsModel $applicantsModel;
+    private AuthService $authService;
 
-    public function __construct(PhpRenderer $renderer, ApplicantsModel $applicantsModel)
+    public function __construct(PhpRenderer $renderer, ApplicantsModel $applicantsModel, AuthService $authService)
     {
         $this->renderer = $renderer;
         $this->applicantsModel = $applicantsModel;
+        $this->authService = $authService;
     }
 
     public function __invoke(Request $request, Response $response, array $args): Response
     {
-        if (!AuthService::isLoggedIn()) {
+        if (!$this->authService->isLoggedIn()) {
             return $response->withHeader('Location', './')->withStatus(301);
         }
 

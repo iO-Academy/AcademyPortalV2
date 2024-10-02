@@ -10,16 +10,17 @@ use Slim\Views\PhpRenderer;
 class AdminPageController
 {
     private PhpRenderer $renderer;
+    private AuthService $authService;
 
-    public function __construct(PhpRenderer $renderer)
+    public function __construct(PhpRenderer $renderer, AuthService $authService)
     {
         $this->renderer = $renderer;
+        $this->authService = $authService;
     }
-
 
     public function __invoke(Request $request, Response $response): Response
     {
-        if (!AuthService::isLoggedIn()) {
+        if (!$this->authService->isLoggedIn()) {
             return $response->withHeader('Location', './')->withStatus(301);
         }
 

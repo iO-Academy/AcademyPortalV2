@@ -2,11 +2,33 @@
 
 namespace Portal\Services;
 
+use Portal\Entities\UserEntity;
+use Portal\Models\UsersModel;
+use Portal\ValueObjects\EmailAddress;
+
 class AuthService
 {
-    public static function isLoggedIn(): bool
+    private UsersModel $usersModel;
+
+    public function __construct(UsersModel $usersModel)
     {
-        self::startSession();
+        $this->usersModel = $usersModel;
+    }
+
+    public function authenticate(EmailAddress $email, string $password): ?UserEntity
+    {
+        $user = $this->usersModel->getByEmail($email);
+
+        if ($user && password_verify($password, $user->getPassword())) {
+            return $user;
+        }
+
+        return null;
+    }
+
+    public function isLoggedIn(): bool
+    {
+        $this->startSession();
 
         if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
             return true;
@@ -15,14 +37,15 @@ class AuthService
         return false;
     }
 
-    public static function login(): void
+    public function login(UserEntity $user): void
     {
-        self::startSession();
+        $this->startSession();
 
         $_SESSION['loggedIn'] = true;
+        $_SESSION['uid'] = $user->getId();
     }
 
-    private static function startSession(): void
+    private function startSession(): void
     {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
