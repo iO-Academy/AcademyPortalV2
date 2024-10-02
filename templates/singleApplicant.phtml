@@ -2,6 +2,8 @@
 /**
  * @var $applicant \Portal\Entities\ApplicantEntity
  */
+
+$application = $applicant->getApplication();
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,23 +27,22 @@
             <h2>Personal Information</h2>
             <p><span>Name:</span> <?= $applicant->getName() ?></p>
             <p><span>Email:</span> <?= $applicant->getEmail() ?></p>
-            <p><span>Phone:</span> <?= $applicant->getApplication()->getPhone() ?></p>
+            <p><span>Phone:</span> <?= $application->getPhone() ?></p>
         </section>
 
         <section class="details">
             <h2>Application Info</h2>
-            <p><span>Cohort:</span> <?= $applicant->getApplication()->getCohort() ?></p>
-            <p><span>Background info:</span> <?= $applicant->getApplication()->getCircumstance() ?></p>
-            <p><span>Application reason:</span><br /> <?= $applicant->getApplication()->getWhy() ?></p>
-            <p><span>Code experience:</span><br /> <?= $applicant->getApplication()->getExperience() ?></p>
-            <p><span>Heard about us:</span> <?= $applicant->getApplication()->getHearAbout() ?></p>
-            <p><span>Diversitech:</span> <?= $applicant->getApplication()->getDiversitech() ? 'Yes' : 'No' ?></p>
-            <p><span>Over 18:</span> <?= $applicant->getApplication()->getAgeConfirmation() ? 'Yes' : 'No' ?></p>
-            <p><span>Newsletter signup:</span> <?= $applicant->getApplication()->getNewsletter() ? 'Yes' : 'No' ?></p>
-            <p><span>Eligible to study in the UK:</span> <?= $applicant->getApplication()->getEligible() ? 'Yes' : 'No' ?></p>
-            <p><span>Agreed to terms:</span> <?= $applicant->getApplication()->getTerms() ? 'Yes' : 'No' ?></p>
+            <p><span>Cohort:</span> <?= $application->getCohort() ?></p>
+            <p><span>Background info:</span> <?= $application->getCircumstance() ?></p>
+            <p><span>Application reason:</span><br /> <?= $application->getWhy() ?></p>
+            <p><span>Code experience:</span><br /> <?= $application->getExperience() ?></p>
+            <p><span>Heard about us:</span> <?= $application->getHearAbout() ?></p>
+            <p><span>Diversitech:</span> <?= $application->getDiversitech() ? 'Yes' : 'No' ?></p>
+            <p><span>Over 18:</span> <?= $application->getAgeConfirmation() ? 'Yes' : 'No' ?></p>
+            <p><span>Newsletter signup:</span> <?= $application->getNewsletter() ? 'Yes' : 'No' ?></p>
+            <p><span>Eligible to study in the UK:</span> <?= $application->getEligible() ? 'Yes' : 'No' ?></p>
+            <p><span>Agreed to terms:</span> <?= $application->getTerms() ? 'Yes' : 'No' ?></p>
         </section>
-
     </div>
 </main>
 </body>
