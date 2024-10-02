@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\PhpRenderer;
 
-class ViewApplicantPageController
+class SingleApplicantPageController
 {
     private PhpRenderer $renderer;
     private ApplicantsModel $applicantsModel;
