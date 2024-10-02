@@ -19,4 +19,10 @@ class UserHydratorTest extends TestCase
         $case = UserHydrator::hydrateSingle($data);
         $this->assertInstanceOf(UserEntity::class, $case);
     }
+
+    public function testHydrateSingleMissingData(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        UserHydrator::hydrateSingle([]);
+    }
 }
