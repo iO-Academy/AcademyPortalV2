@@ -9,6 +9,14 @@ class CourseEntity
     private string $shortName;
     private bool $remote;
 
+    public function __construct(int $id, string $name, string $shortName, bool $remote)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->shortName = $shortName;
+        $this->remote = $remote;
+    }
+
     public function getId(): int
     {
         return $this->id;
