@@ -4,10 +4,8 @@ namespace Portal\Models;
 
 use PDO;
 use Portal\Entities\ApplicantEntity;
-use Portal\Entities\ApplicationEntity;
 use Portal\Hydrators\ApplicantHydrator;
 use Portal\Hydrators\ApplicationHydrator;
-use Portal\ValueObjects\EmailAddress;
 
 class ApplicantsModel
 {
@@ -87,6 +85,11 @@ class ApplicantsModel
 
         if (!$data) {
             return false;
+        }
+
+        // Handle an applicant without any application form data
+        if (!$data['application_id']) {
+            return ApplicantHydrator::hydrateSingle($data);
         }
 
         $applicationEntity = ApplicationHydrator::hydrateSingle($data);

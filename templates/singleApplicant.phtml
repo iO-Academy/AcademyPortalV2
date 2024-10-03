@@ -27,21 +27,31 @@ $application = $applicant->getApplication();
             <h2>Personal Information</h2>
             <p><span>Name:</span> <?= $applicant->getName() ?></p>
             <p><span>Email:</span> <?= $applicant->getEmail() ?></p>
-            <p><span>Phone:</span> <?= $application->getPhone() ?></p>
+            <p><span>Phone:</span>
+                <?php if ($application): ?>
+                    <?= $application->getPhone() ?>
+                <?php else: ?>
+                    No phone number found
+                <?php endif; ?>
+            </p>
         </section>
 
         <section class="details">
             <h2>Application Info</h2>
-            <p><span>Cohort:</span> <?= $application->getCohort() ?></p>
-            <p><span>Background info:</span> <?= $application->getCircumstance() ?></p>
-            <p><span>Application reason:</span><br /> <?= $application->getWhy() ?></p>
-            <p><span>Code experience:</span><br /> <?= $application->getExperience() ?></p>
-            <p><span>Heard about us:</span> <?= $application->getHearAbout() ?></p>
-            <p><span>Diversitech:</span> <?= $application->getDiversitech() ? 'Yes' : 'No' ?></p>
-            <p><span>Over 18:</span> <?= $application->getAgeConfirmation() ? 'Yes' : 'No' ?></p>
-            <p><span>Newsletter signup:</span> <?= $application->getNewsletter() ? 'Yes' : 'No' ?></p>
-            <p><span>Eligible to study in the UK:</span> <?= $application->getEligible() ? 'Yes' : 'No' ?></p>
-            <p><span>Agreed to terms:</span> <?= $application->getTerms() ? 'Yes' : 'No' ?></p>
+            <?php if ($application): ?>
+                <p><span>Cohort:</span> <?= $application->getCohort() ?></p>
+                <p><span>Background info:</span> <?= $application->getCircumstance() ?></p>
+                <p><span>Application reason:</span><br /> <?= $application->getWhy() ?></p>
+                <p><span>Code experience:</span><br /> <?= $application->getExperience() ?></p>
+                <p><span>Heard about us:</span> <?= $application->getHearAbout() ?></p>
+                <p><span>Diversitech:</span> <?= $application->getDiversitech() ? 'Yes' : 'No' ?></p>
+                <p><span>Over 18:</span> <?= $application->getAgeConfirmation() ? 'Yes' : 'No' ?></p>
+                <p><span>Newsletter signup:</span> <?= $application->getNewsletter() ? 'Yes' : 'No' ?></p>
+                <p><span>Eligible to study in the UK:</span> <?= $application->getEligible() ? 'Yes' : 'No' ?></p>
+                <p><span>Agreed to terms:</span> <?= $application->getTerms() ? 'Yes' : 'No' ?></p>
+            <?php else: ?>
+                <p>No application data found</p>
+            <?php endif; ?>
         </section>
     </div>
 </main>
