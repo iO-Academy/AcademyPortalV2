@@ -22,6 +22,9 @@ class ApplicantHydrator
         );
     }
 
+    /**
+     * Ensures the correct data is passed into the hydrator
+     */
     private static function validate(array $data): void
     {
         $requiredFields = ['id', 'name', 'email', 'application_date'];

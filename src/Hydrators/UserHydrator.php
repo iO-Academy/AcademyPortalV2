@@ -19,6 +19,9 @@ class UserHydrator
         );
     }
 
+    /**
+     * Ensures the correct data is passed into the hydrator
+     */
     private static function validate(array $data): void
     {
         $requiredFields = ['id', 'email', 'password'];

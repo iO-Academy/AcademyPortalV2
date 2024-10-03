@@ -30,8 +30,7 @@ class CohortsModel
                                         `courses`.`remote`
                                         FROM `cohorts`
                                             LEFT JOIN `courses`
-                                            ON `cohorts`.`course_id` = `courses`.`id`;
-                                        ");
+                                            ON `cohorts`.`course_id` = `courses`.`id`;");
 
         $query->execute();
         $data = $query->fetchAll();

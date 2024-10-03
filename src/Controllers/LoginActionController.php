@@ -32,10 +32,8 @@ class LoginActionController extends Controller
 
         $user = $this->authService->authenticate($email, $body['password']);
 
-        $errorMessage = "Email or password is incorrect";
-
         if (!$user) {
-            return $this->redirectWithError($response, '/', $errorMessage);
+            return $this->redirectWithError($response, '/', "Email or password is incorrect");
         }
 
         $this->authService->login($user);
