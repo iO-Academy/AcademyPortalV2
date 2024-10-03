@@ -2,7 +2,7 @@
 
 namespace Portal\Entities;
 
-class CourseEntity
+class Course
 {
     private int $id;
     private string $name;

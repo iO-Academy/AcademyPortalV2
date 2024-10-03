@@ -2,7 +2,7 @@
 
 namespace Tests\Hydrators;
 
-use Portal\Entities\CourseEntity;
+use Portal\Entities\Course;
 use Portal\Hydrators\CourseHydrator;
 use Tests\TestCase;
 
@@ -18,7 +18,7 @@ class CourseHydratorTest extends TestCase
         ];
 
         $case = CourseHydrator::hydrateSingle($data);
-        $this->assertInstanceOf(CourseEntity::class, $case);
+        $this->assertInstanceOf(Course::class, $case);
     }
 
     public function testHydrateSingleInvalidData(): void

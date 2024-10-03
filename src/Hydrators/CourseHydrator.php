@@ -3,14 +3,14 @@
 namespace Portal\Hydrators;
 
 use InvalidArgumentException;
-use Portal\Entities\CourseEntity;
+use Portal\Entities\Course;
 
 class CourseHydrator
 {
-    public static function hydrateSingle(array $data): CourseEntity
+    public static function hydrateSingle(array $data): Course
     {
         self::validate($data);
-        return new CourseEntity(
+        return new Course(
             $data['id'],
             $data['name'],
             $data['short_name'],

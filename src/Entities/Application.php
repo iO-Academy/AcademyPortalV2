@@ -2,7 +2,7 @@
 
 namespace Portal\Entities;
 
-class ApplicationEntity
+class Application
 {
     private int $id;
     private string $why;

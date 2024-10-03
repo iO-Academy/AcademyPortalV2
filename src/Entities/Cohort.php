@@ -2,13 +2,13 @@
 
 namespace Portal\Entities;
 
-class CohortEntity
+class Cohort
 {
     private int $id;
     private string $date;
-    private CourseEntity $course;
+    private Course $course;
 
-    public function __construct(int $id, string $date, CourseEntity $course)
+    public function __construct(int $id, string $date, Course $course)
     {
         $this->id = $id;
         $this->date = $date;
@@ -25,7 +25,7 @@ class CohortEntity
         return $this->date;
     }
 
-    public function getCourse(): CourseEntity
+    public function getCourse(): Course
     {
         return $this->course;
     }

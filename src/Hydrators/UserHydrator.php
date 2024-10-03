@@ -3,16 +3,16 @@
 namespace Portal\Hydrators;
 
 use InvalidArgumentException;
-use Portal\Entities\UserEntity;
+use Portal\Entities\User;
 use Portal\ValueObjects\EmailAddress;
 
 class UserHydrator
 {
-    public static function hydrateSingle(array $data): UserEntity
+    public static function hydrateSingle(array $data): User
     {
         self::validate($data);
 
-        return new UserEntity(
+        return new User(
             $data['id'],
             new EmailAddress($data['email']),
             $data['password']

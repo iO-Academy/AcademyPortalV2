@@ -2,7 +2,7 @@
 
 namespace Portal\Services;
 
-use Portal\Entities\UserEntity;
+use Portal\Entities\User;
 use Portal\Models\UsersModel;
 use Portal\ValueObjects\EmailAddress;
 
@@ -17,7 +17,7 @@ class AuthService
         $this->sessionManager = $sessionManager;
     }
 
-    public function authenticate(EmailAddress $email, string $password): ?UserEntity
+    public function authenticate(EmailAddress $email, string $password): ?User
     {
         $user = $this->usersModel->getByEmail($email);
 
@@ -33,7 +33,7 @@ class AuthService
         return $this->sessionManager->get('loggedIn') === true;
     }
 
-    public function login(UserEntity $user): void
+    public function login(User $user): void
     {
         $this->sessionManager->set('loggedIn', true);
         $this->sessionManager->set('uid', $user->getId());

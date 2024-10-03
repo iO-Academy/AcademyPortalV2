@@ -3,7 +3,7 @@
 namespace Portal\Models;
 
 use PDO;
-use Portal\Entities\CohortEntity;
+use Portal\Entities\Cohort;
 use Portal\Hydrators\CohortHydrator;
 use Portal\Hydrators\CourseHydrator;
 
@@ -17,7 +17,7 @@ class CohortsModel
     }
 
     /**
-     * @return CohortEntity[]
+     * @return Cohort[]
      */
     public function getAll(): array
     {

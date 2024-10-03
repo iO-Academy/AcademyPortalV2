@@ -4,7 +4,7 @@ namespace Portal\Entities;
 
 use Portal\ValueObjects\EmailAddress;
 
-class UserEntity
+class User
 {
     private int $id;
     private EmailAddress $email;

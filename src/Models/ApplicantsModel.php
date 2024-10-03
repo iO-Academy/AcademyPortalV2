@@ -3,7 +3,7 @@
 namespace Portal\Models;
 
 use PDO;
-use Portal\Entities\ApplicantEntity;
+use Portal\Entities\Applicant;
 use Portal\Hydrators\ApplicantHydrator;
 use Portal\Hydrators\ApplicationHydrator;
 
@@ -44,7 +44,7 @@ class ApplicantsModel
         return $query->fetch()['count'];
     }
 
-    public function getById(int $id): ApplicantEntity|false
+    public function getById(int $id): Applicant|false
     {
         $query = $this->db->prepare("SELECT 
                                             `applicants`.`id`,

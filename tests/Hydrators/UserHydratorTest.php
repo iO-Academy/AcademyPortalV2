@@ -2,7 +2,7 @@
 
 namespace Tests\Hydrators;
 
-use Portal\Entities\UserEntity;
+use Portal\Entities\User;
 use Portal\Hydrators\UserHydrator;
 use Tests\TestCase;
 
@@ -17,7 +17,7 @@ class UserHydratorTest extends TestCase
         ];
 
         $case = UserHydrator::hydrateSingle($data);
-        $this->assertInstanceOf(UserEntity::class, $case);
+        $this->assertInstanceOf(User::class, $case);
     }
 
     public function testHydrateSingleMissingData(): void

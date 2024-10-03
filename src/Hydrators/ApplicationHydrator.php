@@ -3,15 +3,15 @@
 namespace Portal\Hydrators;
 
 use InvalidArgumentException;
-use Portal\Entities\ApplicationEntity;
+use Portal\Entities\Application;
 
 class ApplicationHydrator
 {
-    public static function hydrateSingle(array $data): ApplicationEntity
+    public static function hydrateSingle(array $data): Application
     {
         self::validate($data);
 
-        return new ApplicationEntity(
+        return new Application(
             $data['application_id'],
             $data['why'],
             $data['experience'],

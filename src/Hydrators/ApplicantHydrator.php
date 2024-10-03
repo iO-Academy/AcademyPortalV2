@@ -3,17 +3,17 @@
 namespace Portal\Hydrators;
 
 use InvalidArgumentException;
-use Portal\Entities\ApplicantEntity;
-use Portal\Entities\ApplicationEntity;
+use Portal\Entities\Applicant;
+use Portal\Entities\Application;
 use Portal\ValueObjects\EmailAddress;
 
 class ApplicantHydrator
 {
-    public static function hydrateSingle(array $data, ?ApplicationEntity $applicationEntity = null): ApplicantEntity
+    public static function hydrateSingle(array $data, ?Application $applicationEntity = null): Applicant
     {
         self::validate($data);
 
-        return new ApplicantEntity(
+        return new Applicant(
             $data['id'],
             $data['name'],
             new EmailAddress($data['email']),

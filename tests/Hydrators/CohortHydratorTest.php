@@ -2,8 +2,8 @@
 
 namespace Tests\Hydrators;
 
-use Portal\Entities\CohortEntity;
-use Portal\Entities\CourseEntity;
+use Portal\Entities\Cohort;
+use Portal\Entities\Course;
 use Portal\Hydrators\CohortHydrator;
 use Tests\TestCase;
 
@@ -16,15 +16,15 @@ class CohortHydratorTest extends TestCase
             'date' => '2024-01-01'
         ];
 
-        $course = $this->createMock(CourseEntity::class);
+        $course = $this->createMock(Course::class);
 
         $case = CohortHydrator::hydrateSingle($data, $course);
-        $this->assertInstanceOf(CohortEntity::class, $case);
+        $this->assertInstanceOf(Cohort::class, $case);
     }
 
     public function testHydrateSingleInvalidData(): void
     {
-        $course = $this->createMock(CourseEntity::class);
+        $course = $this->createMock(Course::class);
         $this->expectException(\InvalidArgumentException::class);
         CohortHydrator::hydrateSingle([], $course);
     }

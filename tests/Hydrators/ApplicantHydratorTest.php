@@ -3,7 +3,7 @@
 namespace Tests\Hydrators;
 
 use InvalidArgumentException;
-use Portal\Entities\ApplicantEntity;
+use Portal\Entities\Applicant;
 use Portal\Hydrators\ApplicantHydrator;
 use Tests\TestCase;
 
@@ -19,7 +19,7 @@ class ApplicantHydratorTest extends TestCase
         ];
 
         $case = ApplicantHydrator::hydrateSingle($data);
-        $this->assertInstanceOf(ApplicantEntity::class, $case);
+        $this->assertInstanceOf(Applicant::class, $case);
     }
 
     public function testHydrateSingleMissingData(): void

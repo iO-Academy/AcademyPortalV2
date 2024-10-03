@@ -3,7 +3,7 @@
 namespace Portal\Models;
 
 use PDO;
-use Portal\Entities\CourseEntity;
+use Portal\Entities\Course;
 use Portal\Hydrators\CourseHydrator;
 
 class CoursesModel
@@ -16,7 +16,7 @@ class CoursesModel
     }
 
     /**
-     * @return CourseEntity[]
+     * @return Course[]
      */
     public function getAll(): array
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Portal\Models;
 
 use PDO;
-use Portal\Entities\UserEntity;
+use Portal\Entities\User;
 use Portal\Hydrators\UserHydrator;
 use Portal\ValueObjects\EmailAddress;
 
@@ -18,7 +18,7 @@ class UsersModel
         $this->db = $db;
     }
 
-    public function getByEmail(EmailAddress $email): UserEntity|false
+    public function getByEmail(EmailAddress $email): User|false
     {
         $query = $this->db->prepare('SELECT `id`, `email`, `password` FROM `users` WHERE `email` = :email');
         $query->execute(['email' => $email]);

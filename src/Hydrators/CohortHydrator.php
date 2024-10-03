@@ -3,16 +3,16 @@
 namespace Portal\Hydrators;
 
 use InvalidArgumentException;
-use Portal\Entities\CohortEntity;
-use Portal\Entities\CourseEntity;
+use Portal\Entities\Cohort;
+use Portal\Entities\Course;
 
 class CohortHydrator
 {
-    public static function hydrateSingle(array $data, CourseEntity $courseEntity): CohortEntity
+    public static function hydrateSingle(array $data, Course $courseEntity): Cohort
     {
         self::validate($data);
 
-        return new CohortEntity(
+        return new Cohort(
             $data['id'],
             $data['date'],
             $courseEntity
