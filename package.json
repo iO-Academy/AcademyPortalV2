@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "sass": "^1.79.4"
-  },
-  "scripts": {
-    "dev": "./node_modules/sass/sass.js --watch public/scss/styles.scss public/css/style.css"
-  }
-}

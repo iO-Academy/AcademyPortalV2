@@ -4,7 +4,6 @@
 /vendor/
 /logs/*
 !/logs/README.md
-/public/css/*
 .phpunit.result.cache
 .phpunit.cache
 phpunit.xml.bak
