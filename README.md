@@ -8,7 +8,6 @@ This skeleton application was built for Composer. This makes setting up a new Sl
 
 Create a new directory with your project name, e.g:
 
-
 ```bash
 mkdir academyProject
 ```
@@ -16,8 +15,10 @@ mkdir academyProject
 Once inside the new directory, clone this repo:
 
 ```bash
-git clone git@github.com:Mayden-Academy/slim4-skeleton.git .
+git clone git@github.com:iO-Academy/AcademyPortalV2.git .
 ```
+
+Create a database called academyportal and import the SQL dump found in db/
 
 One cloned, you must install the slim components by running:
 
@@ -35,4 +36,4 @@ Run this command in the application directory to run the test suite
 composer test
 ```
 
-That's it! Now go build something cool.
+That's it!
