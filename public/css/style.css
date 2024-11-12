@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .container {
@@ -10,10 +11,6 @@
 
 .error-text {
   color: #FF0000;
-}
-
-* {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
 a {
@@ -29,27 +26,27 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-@media screen and (max-width: 768px) {
-  header {
-    flex-direction: column-reverse;
-  }
-}
+
 header .icons {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
 }
+
 header .icons a {
   text-align: center;
   padding: 5px;
 }
+
 header .icons a:hover {
   background-color: #dddddd;
   border-radius: 5px;
 }
+
 header .logo {
   width: 300px;
 }
+
 header .logo img {
   max-width: 100%;
 }
@@ -57,19 +54,23 @@ header .logo img {
 nav {
   display: flex;
 }
+
 nav.container {
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
 nav a {
   border: 1px solid #dddddd;
   border-left: none;
   padding: 6px 12px;
   color: #000000;
 }
+
 nav a:hover {
   background-color: #dddddd;
 }
+
 nav a:first-child {
   border: 1px solid #dddddd;
 }
@@ -79,10 +80,12 @@ table {
   border: 1px solid #dddddd;
   border-collapse: collapse;
 }
+
 table th, table td {
   border: 1px solid #dddddd;
   padding: 8px;
 }
+
 table thead {
   text-align: left;
 }
@@ -91,20 +94,24 @@ table thead {
   display: flex;
   margin-top: 30px;
 }
+
 .pagination a {
   padding: 5px;
   border: 1px solid #dddddd;
   border-left: none;
   color: #333333;
 }
+
 .pagination a.prev {
   border: 1px solid #dddddd;
 }
+
 .pagination a.disabled {
   pointer-events: none;
   cursor: default;
   color: #dddddd;
 }
+
 .pagination a.active {
   background-color: #5FFFB4;
 }
@@ -116,6 +123,7 @@ table thead {
   border-radius: 4px;
   font-size: 15px;
 }
+
 .btn:hover {
   background-color: rgb(0, 248, 131.75);
 }
@@ -125,9 +133,11 @@ table thead {
   justify-content: space-between;
   align-items: center;
 }
+
 .single-applicant .details h2 {
   color: #743DFB;
 }
+
 .single-applicant .details p span {
   font-weight: bold;
 }
@@ -135,6 +145,7 @@ table thead {
 .login {
   margin-top: 10px;
 }
+
 .login section {
   width: 100%;
   max-width: 500px;
@@ -143,15 +154,18 @@ table thead {
   border-radius: 10px;
   background-color: #dddddd;
 }
+
 .login section form label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
+
 .login section form input[type=email], .login section form input[type=password] {
   width: 100%;
   margin-bottom: 15px;
 }
+
 .login section form .invalid-login {
   margin-top: 10px;
 }
@@ -161,18 +175,25 @@ table thead {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
 }
-@media screen and (max-width: 768px) {
-  .admin .links {
-    grid-template-columns: 1fr;
-  }
-}
+
 .admin .links a {
   padding: 50px 20px;
   border: 2px solid #337ab7;
   border-radius: 5px;
   text-align: center;
 }
+
 .admin .links a:hover {
   background-color: #dddddd;
   color: #337ab7;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column-reverse;
+  }
+
+  .admin .links {
+    grid-template-columns: 1fr;
+  }
 }
