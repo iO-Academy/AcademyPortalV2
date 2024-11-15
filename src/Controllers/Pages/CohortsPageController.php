@@ -1,12 +1,13 @@
 <?php
 
-namespace Portal\Controllers;
+namespace Portal\Controllers\Pages;
 
+use Portal\Controllers\Controller;
 use Portal\Models\CohortsModel;
 use Portal\Services\AuthService;
-use Slim\Views\PhpRenderer;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Views\PhpRenderer;
 
 class CohortsPageController extends Controller
 {

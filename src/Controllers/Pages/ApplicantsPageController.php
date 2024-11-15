@@ -1,11 +1,12 @@
 <?php
 
-namespace Portal\Controllers;
+namespace Portal\Controllers\Pages;
 
+use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
 use Portal\Services\AuthService;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 
 class ApplicantsPageController extends Controller

@@ -1,19 +1,20 @@
 <?php
 
-namespace Tests\Controllers;
+namespace Tests\Controllers\Pages;
 
-use Portal\Controllers\AdminPageController;
+use Portal\Controllers\Pages\LoginPageController;
 use Portal\Services\AuthService;
 use Slim\Views\PhpRenderer;
 use Tests\TestCase;
 
-class AdminPageControllerTest extends TestCase
+class LoginPageControllerTest extends TestCase
 {
     public function testConstruct(): void
     {
         $renderer = $this->createMock(PhpRenderer::class);
         $authService = $this->createMock(AuthService::class);
-        $case = new AdminPageController($renderer, $authService);
-        $this->assertInstanceOf(AdminPageController::class, $case);
+
+        $case = new LoginPageController($renderer, $authService);
+        $this->assertInstanceOf(LoginPageController::class, $case);
     }
 }

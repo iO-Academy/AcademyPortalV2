@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Controllers;
+namespace Tests\Controllers\FormActions;
 
-use Portal\Controllers\LoginActionController;
+use Portal\Controllers\FormActions\LoginActionController;
 use Portal\Models\UsersModel;
 use Portal\Services\AuthService;
 use Tests\TestCase;

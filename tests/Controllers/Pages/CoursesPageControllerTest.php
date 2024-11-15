@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Controllers;
+namespace Tests\Controllers\Pages;
 
-use Portal\Controllers\CoursesPageController;
+use Portal\Controllers\Pages\CoursesPageController;
 use Portal\Models\CoursesModel;
 use Portal\Services\AuthService;
 use Slim\Views\PhpRenderer;

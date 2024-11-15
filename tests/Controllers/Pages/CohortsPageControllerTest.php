@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Controllers;
+namespace Tests\Controllers\Pages;
 
-use Portal\Controllers\CohortsPageController;
+use Portal\Controllers\Pages\CohortsPageController;
 use Portal\Models\CohortsModel;
 use Portal\Services\AuthService;
 use Slim\Views\PhpRenderer;

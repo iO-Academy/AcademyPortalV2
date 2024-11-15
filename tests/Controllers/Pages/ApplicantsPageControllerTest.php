@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Controllers;
+namespace Tests\Controllers\Pages;
 
-use Portal\Controllers\SingleApplicantPageController;
+use Portal\Controllers\Pages\ApplicantsPageController;
 use Portal\Models\ApplicantsModel;
 use Portal\Services\AuthService;
 use Slim\Views\PhpRenderer;
 use Tests\TestCase;
 
-class SingleApplicantPageControllerTest extends TestCase
+class ApplicantsPageControllerTest extends TestCase
 {
     public function testConstruct(): void
     {
@@ -16,7 +16,7 @@ class SingleApplicantPageControllerTest extends TestCase
         $model = $this->createMock(ApplicantsModel::class);
         $authService = $this->createMock(AuthService::class);
 
-        $case = new SingleApplicantPageController($renderer, $model, $authService);
-        $this->assertInstanceOf(SingleApplicantPageController::class, $case);
+        $case = new ApplicantsPageController($renderer, $model, $authService);
+        $this->assertInstanceOf(ApplicantsPageController::class, $case);
     }
 }

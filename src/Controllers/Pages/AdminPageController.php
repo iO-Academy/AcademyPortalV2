@@ -1,10 +1,11 @@
 <?php
 
-namespace Portal\Controllers;
+namespace Portal\Controllers\Pages;
 
+use Portal\Controllers\Controller;
 use Portal\Services\AuthService;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 
 class AdminPageController extends Controller
