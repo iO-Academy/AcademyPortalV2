@@ -75,6 +75,21 @@ nav a:first-child {
   border: 1px solid #dddddd;
 }
 
+.titleLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form .form-group {
+  margin-bottom: 10px;
+}
+
+form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
 table {
   width: 100%;
   border: 1px solid #dddddd;

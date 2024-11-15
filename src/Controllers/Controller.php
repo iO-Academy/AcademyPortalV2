@@ -10,7 +10,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  */
 abstract class Controller
 {
-
     abstract public function __invoke(Request $request, Response $response): Response;
 
     protected function redirect(Response $response, string $url): Response

@@ -1,0 +1,50 @@
+<?php
+/**
+ * @var $error ?string
+ */
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+    require 'partials/layout/head.phtml';
+    ?>
+    <title>Courses</title>
+</head>
+<body>
+<?php require 'partials/layout/header.phtml'; ?>
+<?php require 'partials/layout/nav.phtml'; ?>
+<main>
+    <div class="container">
+        <h1>Add Course</h1>
+        <form method="post" action="/admin/courses/add">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Full-Stack Track" required />
+            </div>
+
+            <div class="form-group">
+                <label for="shortName">Short Name</label>
+                <input id="shortName" name="shortName" type="text" placeholder="FST" required />
+            </div>
+
+            <div class="form-group">
+                <label for="remote">Remote</label>
+                <input id="remote" name="remote" type="checkbox" value="1" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" name="submitted" value="Add" class="btn" />
+            </div>
+        </form>
+
+        <?php
+        if ($error) {
+            echo "<div class='error-text invalid-login'>$error</div>";
+        }
+        ?>
+    </div>
+</main>
+</body>
+</html>

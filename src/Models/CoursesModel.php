@@ -33,4 +33,16 @@ class CoursesModel
 
         return $courses;
     }
+
+    public function create(string $name, string $shortName, int $remote): bool
+    {
+        $query = $this->db->prepare("INSERT INTO `courses` (`name`, `short_name`, `remote`) 
+            VALUES (:name, :shortName, :remote);");
+
+        return $query->execute([
+            'name' => $name,
+            'shortName' => $shortName,
+            'remote' => $remote
+        ]);
+    }
 }

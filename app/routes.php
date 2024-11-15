@@ -14,5 +14,7 @@ return function (App $app) {
     $app->get('/admin/applicants', \Portal\Controllers\Pages\ApplicantsPageController::class);
     $app->get('/admin/applicants/{id}', \Portal\Controllers\Pages\SingleApplicantPageController::class);
     $app->get('/admin/courses', \Portal\Controllers\Pages\CoursesPageController::class);
+    $app->get('/admin/courses/add', \Portal\Controllers\Pages\AddCoursePageController::class);
+    $app->post('/admin/courses/add', \Portal\Controllers\FormActions\AddCourseActionController::class);
     $app->get('/admin/cohorts', \Portal\Controllers\Pages\CohortsPageController::class);
 };
