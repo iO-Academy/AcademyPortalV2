@@ -44,6 +44,12 @@ class ApplicantsModel
         return $query->fetch()['count'];
     }
 
+    public function editApplicant($args){
+        $query = $this->db->prepare(";");
+        $query->execute();
+        return $query->fetch()['count'];
+    }
+
     public function getById(int $id): Applicant|false
     {
         $query = $this->db->prepare("SELECT 
