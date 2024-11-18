@@ -20,7 +20,11 @@
 <?php require 'partials/layout/nav.phtml'; ?>
 <main>
     <div class="container">
-        <h1>Applicants</h1>
+        <div class="applicant-container">
+            <h1>Applicants</h1>
+            <button>Add applicant</button>
+        </div>
+
         <?php if (count($applicants) === 0): ?>
             No applicants found
         <?php else: ?>
