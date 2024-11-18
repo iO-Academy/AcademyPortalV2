@@ -9,6 +9,20 @@
   margin: 0 auto;
 }
 
+.applicant-header-container{
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applicant-header-container a {
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 6px 12px;
+  color: #000000;
+}
+
 .error-text {
   color: #FF0000;
 }
@@ -68,6 +82,10 @@ nav a {
 }
 
 nav a:hover {
+  background-color: #dddddd;
+}
+
+.applicant-header-container a:hover {
   background-color: #dddddd;
 }
 
