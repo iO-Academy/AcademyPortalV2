@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use App\Controllers\CoursesAPIController;
 use Slim\App;
 
 return function (App $app) {
@@ -17,4 +16,5 @@ return function (App $app) {
     $app->get('/admin/courses/add', \Portal\Controllers\Pages\AddCoursePageController::class);
     $app->post('/admin/courses/add', \Portal\Controllers\FormActions\AddCourseActionController::class);
     $app->get('/admin/cohorts', \Portal\Controllers\Pages\CohortsPageController::class);
+    $app->post('/admin/applicants/add', \Portal\Controllers\Pages\AddApplicantController::class);
 };
