@@ -40,4 +40,14 @@ class StringValidatorTest extends TestCase
         $this->expectExceptionMessage('Test: Length invalid');
         StringValidator::validateLength('test', 10, 5, 'Test');
     }
+
+    public function testValidatePostcode_Success (): void
+    {
+        $string = 'ba1 0de';
+        $case = StringValidator::validatePostcode($string);
+        $this->assertTrue($case);
+    }
+
+
+
 }
