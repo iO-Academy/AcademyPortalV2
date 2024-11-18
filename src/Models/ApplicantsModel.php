@@ -96,4 +96,6 @@ class ApplicantsModel
 
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
+    public function addApplicants()
+    {}
 }
