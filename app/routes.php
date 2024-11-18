@@ -17,4 +17,5 @@ return function (App $app) {
     $app->get('/admin/courses/add', \Portal\Controllers\Pages\AddCoursePageController::class);
     $app->post('/admin/courses/add', \Portal\Controllers\FormActions\AddCourseActionController::class);
     $app->get('/admin/cohorts', \Portal\Controllers\Pages\CohortsPageController::class);
+
 };
