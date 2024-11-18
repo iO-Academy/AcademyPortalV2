@@ -26,6 +26,6 @@ class StringValidator
 
     public static function  validatePostCode ($string)
     {
-        return preg_match('^([ A-Za-z]{1,2}[0-9]{1,2}[ A-Za-z]?)\s?([0-9][A-Za-z]{2}?)$', $string);
+        return preg_match('/^([ A-Za-z]{1,2}[0-9]{1,2}[ A-Za-z]?)\s?([0-9][A-Za-z]{2}?)$/', $string);
     }
 }
