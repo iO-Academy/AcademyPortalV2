@@ -9,14 +9,14 @@
   margin: 0 auto;
 }
 
-.applicant-container{
+.applicant-header-container{
   width: 250px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.applicant-container button {
+.applicant-header-container button {
   width: 70px;
   height: 40px;
 }
