@@ -9,7 +9,6 @@ return function (App $app) {
 
     $app->get('/', \Portal\Controllers\Pages\LoginPageController::class);
     $app->post('/login', \Portal\Controllers\FormActions\LoginActionController::class);
-
     $app->get('/admin', \Portal\Controllers\Pages\AdminPageController::class);
     $app->get('/admin/applicants', \Portal\Controllers\Pages\ApplicantsPageController::class);
     $app->get('/admin/applicants/{id}', \Portal\Controllers\Pages\SingleApplicantPageController::class);

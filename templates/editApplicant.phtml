@@ -1,0 +1,32 @@
+<?php
+ /**
+ * @var $applicants \Portal\Entities\Applicant[]
+ * @var $previousPage int
+ * @var $nextPage int
+ * @var $pageCount int
+ * @var $currentPage int
+ */
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+    require 'partials/layout/head.phtml';
+    require 'src/Entities/Applicant.php';
+    ?>
+    <title>Applicants</title>
+</head>
+<body>
+<?php require 'partials/layout/header.phtml'; ?>
+<?php require 'partials/layout/nav.phtml'; ?>
+<main>
+    <div class="container">
+
+        <form><label for="name" >name</label>
+            <input id="name" value="<?php $applicants->getName() ?>">
+        </form>
+
+    </div>
+</main>
+</body>
+</html>
