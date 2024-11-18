@@ -9,17 +9,20 @@ class EditApplicationController
 {
     private $model;
     private $view;
+    private ApplicantsModel $applicantsModel;
 
-    public function __construct(ApplicantsModel $model, PhpRenderer $view)
+    public function __construct(ApplicantsModel $model, PhpRenderer $view, ApplicantsModel $applicantsModel)
     {
         $this->model = $model;
         $this->view = $view;
+        $this->applicantsModel = $applicantsModel;
     }
 
     public function __invoke($request, $response, $args)
     {
-        $Applicant = $request->getParsedBody();
-        $this->model->editApplicant($Applicant);
-        return $response->withHeader('Location', '/admin/applicant/edit/{id}')->withStatus(301);
+        $id = $args['id'];
+
+        $applicant = $this->applicantsModel->getById($id);
+        return $this->view->render($response, 'editApplicant.phtml', ['applicant' => $applicant]);
     }
 }
