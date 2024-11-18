@@ -96,6 +96,14 @@ class ApplicantsModel
 
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
-    public function addApplicants()
-    {}
+    public function addApplicants($name, $email, $date)
+    {
+        $query = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) 
+                                 VALUES (:name, :email, :applicationDate)');
+        return $query->execute([
+            'name' => $name,
+            'email' => $email,
+            'applicationdate' => $date
+        ]);
+    }
 }
