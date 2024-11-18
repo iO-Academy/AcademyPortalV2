@@ -9,6 +9,19 @@
   margin: 0 auto;
 }
 
+.applicant-container{
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applicant-container button {
+  width: 70px;
+  height: 40px;
+}
+
+
 .error-text {
   color: #FF0000;
 }
