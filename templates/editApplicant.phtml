@@ -1,20 +1,21 @@
 <?php
- /**
- * @var $applicants \Portal\Entities\Applicant[]
+/**
+ * @var $applicant \Portal\Entities\Applicant
  * @var $previousPage int
  * @var $nextPage int
  * @var $pageCount int
  * @var $currentPage int
  */
+
+$application = $applicant->getApplication();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <?php
     require 'partials/layout/head.phtml';
-    require 'src/Entities/Applicant.php';
     ?>
-    <title>Applicants</title>
+    <title>Applicant - <?= $applicant->getName(); ?></title>
 </head>
 <body>
 <?php require 'partials/layout/header.phtml'; ?>
@@ -22,8 +23,20 @@
 <main>
     <div class="container">
 
-        <form><label for="name" >name</label>
-            <input id="name" value="<?php $applicants->getName() ?>">
+        <form>
+            <label for="name">name</label>
+            <input id="name" value="<?= $applicant->getName() ?>">
+            <label for="email">Email</label>
+            <input id="email" value="<?= $applicant->getEmail() ?>">
+            <label for="name">Phone</label>
+            <input id="name" value="  <?php if ($application): ?>
+                    <?= $application->getPhone() ?>
+                <?php else: ?>No phone number
+                <?php endif; ?>
+">
+            <label for="name">name</label>
+            <input id="name" value="<?= $applicant->getName() ?>">
+
         </form>
 
     </div>
