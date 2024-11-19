@@ -18,7 +18,7 @@ class ApplicantValidator
             }
         }
 
-        StringValidator::validateLength($applicant['name'], 50, 2, 'Name');
+        StringValidator::validateLength($applicant['name'], 100, 1, 'Name');
 
         return true;
     }
