@@ -96,13 +96,38 @@ class ApplicantsModel
 
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
+
     public function addApplicant($data)
     {
-        $query = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, :application_date)');
-        return $query->execute([
+        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
+            $addApplicantQuery->execute([
             'name' => $data['name'],
             'email' => $data['email'],
-            'application_date' => $data['application_date']
+        ]);
+            $lastInsertId = $this->db->lastInsertId();
+            return $lastInsertId;
+    }
+
+    public function addApplication($details, $applicantId)
+    {
+        $addApplicationQuery = $this->db->prepare("INSERT INTO `applications` (`applicant_id`, `why`, `experience`, `diversitech`, `circumstance_id`, `funding_id`, `cohort_id`, `dob`, `phone`, `address`, `heard_about_id`, `age_confirmation`, `newsletter`, `eligible`, `terms`) 
+                VALUES (:applicant_id, :why, :experience, :diversitech, :circumstance_id, :funding_id, :cohort_id, :dob, :phone, :address, :heard_about_id, :age_confirmation, :newsletter, :eligible, :terms);");
+        return $addApplicationQuery->execute([
+            'applicant_id' => $applicantId,
+            'why' => $details['why'],
+            'experience' => $details['experience'],
+            'diversitech' => $details['diversitech'],
+            'circumstance_id' => $details['circumstance_id'],
+            'funding_id' => $details['funding_id'],
+            'cohort_id' => $details['cohort_id'],
+            'dob' => $details['dob'],
+            'phone' => $details['phone'],
+            'address' => $details['address'],
+            'heard_about_id' => $details['heard_about_id'],
+            'age_confirmation' => $details['age_confirmation'],
+            'newsletter' => $details['newsletter'],
+            'eligible' => $details['eligible'],
+            'terms' => $details['terms']
         ]);
     }
 
