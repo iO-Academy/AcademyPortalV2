@@ -23,6 +23,7 @@ class ApplicationHydrator
             $data['phone'],
             $data['address'],
             $data['hear_about'],
+            $data['circumstance_id'],
             (bool) $data['age_confirmation'],
             (bool) $data['newsletter'],
             (bool) $data['eligible'],

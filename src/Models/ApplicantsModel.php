@@ -68,6 +68,7 @@ class ApplicantsModel
                                             `applications`.`newsletter`,
                                             `applications`.`eligible`,
                                             `applications`.`terms`,
+                                            `applications`.`circumstance_id`,
                                             `circumstances`.`option` AS 'circumstance',
                                             `funding_options`.`option` AS 'funding',
                                             `cohorts`.`date` AS 'cohort',
