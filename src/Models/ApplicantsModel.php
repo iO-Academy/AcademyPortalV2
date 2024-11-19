@@ -44,10 +44,19 @@ class ApplicantsModel
         return $query->fetch()['count'];
     }
 
-    public function editApplicant($args){
-        $query = $this->db->prepare(";");
-        $query->execute();
-        return $query->fetch()['count'];
+    public function editApplicant($editedDetails){
+        $query1 = $this->db->prepare("INSERT INTO `applicants` (name, email, application_date) VALUES (:name, :email, :application_date);");
+        $query1->execute([
+            'name' => $editedDetails['name'],
+            'email' => $editedDetails['email'],
+            'application_date' => $editedDetails['application_date'],
+        ]);
+        $query2 = $this->db->prepare("INSERT INTO `applicants` (name, email, application_date) VALUES (:name, :email, :application_date);");
+        $query2->execute([
+            'name' => $editedDetails['name'],
+            'email' => $editedDetails['email'],
+            'application_date' => $editedDetails['application_date'],
+        ]);
     }
 
     public function getById(int $id): Applicant|false
