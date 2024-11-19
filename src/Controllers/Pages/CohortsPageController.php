@@ -30,6 +30,7 @@ class CohortsPageController extends Controller
 
         $cohorts = $this->cohortsModel->getAll();
 
+
         return $this->renderer->render($response, 'cohorts.phtml', ['cohorts' => $cohorts]);
     }
 }

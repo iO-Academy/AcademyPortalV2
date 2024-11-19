@@ -30,10 +30,10 @@ class StringValidator
         return (bool) preg_match('/^([ A-Za-z]{1,2}[0-9]{1,2}[ A-Za-z]?)\s?([0-9][A-Za-z]{2}?)$/', $string);
     }
 
-    public static function validateDate(string $date): string
-    {
-        $datetime = datetime->createFromFormat('d-m-Y', $date);
 
-    return $datetime;
+    public static function validateDate($date): string
+    {
+        $datetime = DateTime::createFromFormat('d-m-Y', $date);
+        return $datetime && $datetime->format('d-m-Y') === $date;
     }
 }
