@@ -36,7 +36,8 @@ class AddApplicantActionController extends Controller
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
 
-        $this->model->addApplicant($newApplicant);
+        $id = $this->model->addApplicant($newApplicant);
+        $this->model->addApplication($newApplicant, $id);
 
         return $response->withHeader('Location', '/admin/applicant')->withStatus(301);
     }
