@@ -71,4 +71,28 @@ class StringValidatorTest extends TestCase
         $string = '';
         $this->assertFalse(StringValidator::validatePostcode($string));
     }
+    public function testValidDate(): void
+    {
+        $date = '2024-11-18';
+        $result = StringValidator::validateDate($date);
+        $this->assertTrue($result, 'True, valid date');
+    }
+    public function testInvalidDate(): void
+    {
+        $date = '18-11-2024';
+        $result = StringValidator::validateDate($date);
+        $this->assertFalse($result, 'False, invalid date');
+    }
+    public function testEmptyDate(): void
+    {
+        $date = '';
+        $result = StringValidator::validateDate($date);
+        $this->assertFalse($result, 'False, empty date');
+    }
+    public function testNullDate(): void
+    {
+        $date = null;
+        $result = StringValidator::validateDate($date);
+        $this->assertFalse($result, 'False, null date');
+    }
 }

@@ -102,13 +102,66 @@ class ApplicantsModel
 
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
-    public function addApplicants($name, $email, $applicationDate)
+    public function addApplicant($data)
     {
         $query = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, :application_date)');
         return $query->execute([
-            ':name' => $name,
-            ':email' => $email,
-            ':application_date' => $applicationDate
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'application_date' => $data['application_date']
         ]);
+    }
+
+    public function getAllCircumstances()
+    {
+        $query = $this->db->prepare('SELECT `id`, `option` FROM `circumstances`');
+        $query->execute();
+        $data = $query->fetchAll();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
+    }
+
+
+    public function getAllCohorts()
+    {
+        $query = $this->db->prepare('SELECT `id`, `date` FROM `cohorts`');
+        $query->execute();
+        $data = $query->fetchAll();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllFundingOptions()
+    {
+        $query = $this->db->prepare('SELECT `id`, `option` FROM `funding_options`');
+        $query->execute();
+        $data = $query->fetchAll();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllHearAboutUs()
+    {
+        $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
+        $query->execute();
+        $data = $query->fetchAll();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
     }
 }
