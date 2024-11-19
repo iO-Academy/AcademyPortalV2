@@ -2,8 +2,11 @@
 
 namespace Portal\Validators;
 
+use Exception;
+
 class ApplicationValidator
 {
+
     public static function validate(array $application): bool
     {
 
@@ -12,6 +15,26 @@ class ApplicationValidator
         PhoneValidator::validatePhone($application['phone']);
         StringValidator::validateLength($application['address'], 200, 0, 'Address');
 
+        return true;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function checkExists($application, $field, $fieldName): bool {
+        if (!in_array($application, $field)) {
+            throw new Exception("$fieldName doesn't exist");
+        }
+        return true;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function checkNumeric($application, $fieldName): bool {
+        if (!is_numeric($application)) {
+            throw new Exception("$fieldName doesn't exist");
+        }
         return true;
     }
 }

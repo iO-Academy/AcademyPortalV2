@@ -34,28 +34,14 @@ class AddApplicantActionController extends Controller
         try {
             ApplicantValidator::validate($newApplicant);
             ApplicationValidator::validate($newApplicant);
-
-            $circumstances = $this->model->getAllCircumstances();
-            if (!is_numeric($newApplicant['circumstance_id']) && !in_array($newApplicant['circumstance_id'], $circumstances)) {
-                throw new Exception("Circumstance ID doesn't exist");
-            }
-
-            $fundingOptions = $this->model->getAllFundingOptions();
-            if (!is_numeric($newApplicant['funding_id']) && !in_array($newApplicant['funding_id'], $fundingOptions)) {
-                throw new Exception("Funding ID doesn't exist");
-            }
-
-            $cohorts = $this->model->getAllCohorts();
-            if (!is_numeric($newApplicant['cohorts_id']) && !in_array($newApplicant['cohort_id'], $cohorts)) {
-                throw new Exception("Cohort ID doesn't exist");
-            }
-
-            $heardAbouts = $this->model->getAllHearAboutUs();
-            if (!in_array($newApplicant['heard_about_id'], $heardAbouts)) {
-                throw new Exception("Heard About ID doesn't exist");
-            }
-
-
+            ApplicationValidator::checkExists($newApplicant['circumstance_id'], $this->model->getAllCircumstances(), "Circumstance ID");
+            ApplicationValidator::checkNumeric($newApplicant['circumstance_id'], "Circumstance ID");
+            ApplicationValidator::checkExists($newApplicant['funding_id'], $this->model->getAllFundingOptions(), "Funding ID");
+            ApplicationValidator::checkNumeric($newApplicant['funding_id'], "Funding ID");
+            ApplicationValidator::checkExists($newApplicant['cohort_id'], $this->model->getAllCohorts(), "Cohort ID");
+            ApplicationValidator::checkNumeric($newApplicant['cohort_id'], "Cohort ID");
+            ApplicationValidator::checkExists($newApplicant['heard_about_id'], $this->model->getAllHearAboutUs(), "Heard About ID");
+            ApplicationValidator::checkNumeric($newApplicant['heard_about_id'], "Heard About ID");
 
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
