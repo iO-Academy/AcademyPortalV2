@@ -18,7 +18,6 @@ class ApplicantHydrator
             $data['name'],
             new EmailAddress($data['email']),
             $data['application_date'],
-            $data['circumstance_id'],
             $applicationEntity
         );
     }

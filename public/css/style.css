@@ -16,6 +16,8 @@
   align-items: center;
 }
 
+
+
 .applicant-header-container a {
   border: 1px solid #dddddd;
   border-radius: 10px;
@@ -205,6 +207,10 @@ table thead {
 
 .single-applicant .details p span {
   font-weight: bold;
+}
+
+.applicationInfo {
+
 }
 
 .login {

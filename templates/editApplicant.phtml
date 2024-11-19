@@ -8,6 +8,7 @@
  */
 
 $application = $applicant->getApplication();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,62 +35,75 @@ $application = $applicant->getApplication();
                     <?= $application->getPhone() ?>
                 <?php else: ?>No phone number
                 <?php endif; ?>">
-            <section class="details">
-                <div>
+            <section class="appInfo">
+
                     <h2>Application Info</h2>
+                    <div class="applicationInfo">
+                        <div>
+                            <label for="cohort">Cohort</label>
+                            <input id="cohort" value="<?= $application->getCohort() ?>">
+                        </div>
+                        <?php var_dump($application->getCircumstanceId()); ?>
+                        <div>
+                            <label for="background">Background Info</label>
+                            <select name="background" id="background">
+                                <option disabled <?php
+                                if ($application->getCircumstanceId()== 0 | null) echo "selected" ?>>Not
+                                    selected
+                                </option>
+                                <option value="1" <?php if ($application->getCircumstanceId() == 1) echo "selected" ?>>
+                                    Changing
+                                    careers
+                                </option>
+                                <option value="2" <?php if ($application->getCircumstanceId() == 2) echo "selected" ?>>
+                                    Returning
+                                    to work
+                                </option>
+                                <option value="3" <?php if ($application->getCircumstanceId() == 3) echo "selected" ?>>
+                                    Recent
+                                    university graduate
+                                </option>
+                                <option value="4" <?php if ($application->getCircumstanceId() == 4) echo "selected" ?>>
+                                    School
+                                    leaver
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="why">Application Reason</label>
+                            <input id="why" value="<?= $application->getWhy() ?>">
+                        </div>
+                        <div>
+                            <label for="experience">Code experience</label>
+                            <input id="experience" value="<?= $application->getExperience() ?>">
+                        </div>
+                        <div>
 
-                    <label for="cohort">Cohort</label>
-                    <input id="cohort" value="<?= $application->getCohort()?>">
+                            <label for="hearAbout">Heard about us</label>
+                            <input id="hearAbout" value="<?= $application->getHearAbout() ?>">
+                        </div>
+                    </div>
 
-                    <label for="background">Background Info</label>
-                    <select name="background" id="background">
-                        <option disabled <?php
-                        if ($application->getCircumstance() == 0 | null) echo "selected" ?>>Not
-                            selected
-                        </option>
-                        <option value="1" <?php if ($applicant->getCircumstanceId() == 1) echo "selected" ?>>Changing
-                            careers
-                        </option>
-                        <option value="2" <?php if ($applicant->getCircumstanceId() == 2) echo "selected" ?>>Returning
-                            to work
-                        </option>
-                        <option value="3" <?php if ($applicant->getCircumstanceId() == 3) echo "selected" ?>>Recent
-                            university graduate
-                        </option>
-                        <option value="4" <?php if ($applicant->getCircumstanceId() == 4) echo "selected" ?>>School
-                            leaver
-                        </option>
-                    </select>
-
-                    <label for="why">Application Reason</label>
-                    <input id="why" value="<?= $application->getWhy() ?>">
-
-                    <label for="experience">Code experience</label>
-                    <input id="experience" value="<?= $application->getExperience() ?>">
-
-                    <label for="hearAbout">Heard about us</label
-                    <input id="hearAbout" value="<?= $application->getHearAbout() ?>">
-
-                </div>
                 <div>
                     <label>Diversitech</label>
                     <br>
                     <input name="diversitech" id="yes" type="radio"
-                           value="" <?php if ($application->getDiversitech() == true) echo "checked" ?>>
+                           value="1" <?php if ($application->getDiversitech() == 1) echo "checked" ?>>
                     <label for="yes">yes</label>
                     <input name="diversitech" id="no" type="radio"
-                           value="" <?php if ($application->getDiversitech() == false) echo "checked" ?>>
+                           value="0" <?php if ($application->getDiversitech() == 0) echo "checked" ?>>
                     <label for="no">no</label>
                 </div>
 
                 <div>
                     <label>Over 18</label>
                     <br>
+                    <?php var_dump($application->getAgeConfirmation());?>
                     <input name="ageConfirmation" id="yes" type="radio"
-                           value="" <?php if ($application->getAgeConfirmation() == true) echo "checked" ?>>
+                           value="1" <?php if ($application->getAgeConfirmation()) echo "checked" ?>>
                     <label for="yes">yes</label>
                     <input name="ageConfirmation" id="no" type="radio"
-                           value="" <?php if ($application->getAgeConfirmation() == false) echo "checked" ?>>
+                           value="0" <?php if (!$application->getAgeConfirmation()) echo "checked" ?>>
                     <label for="no">no</label>
                 </div>
 
@@ -97,10 +111,10 @@ $application = $applicant->getApplication();
                     <label>Newsletter signup</label>
                     <br>
                     <input name="newsletter" id="yes" type="radio"
-                           value="" <?php if ($application->getNewsletter() == true) echo "checked" ?>>
+                           value="1" <?php if ($application->getNewsletter() == 1) echo "checked" ?>>
                     <label for="yes">yes</label>
                     <input name="newsletter" id="no" type="radio"
-                           value="" <?php if ($application->getNewsletter() == false) echo "checked" ?>>
+                           value="0" <?php if ($application->getNewsletter() == 0) echo "checked" ?>>
                     <label for="no">no</label>
                 </div>
 
@@ -108,12 +122,13 @@ $application = $applicant->getApplication();
                     <label>Eligible to study in the UK</label>
                     <br>
                     <input name="eligible" id="yes" type="radio"
-                           value="" <?php if ($application->getEligible() == true) echo "checked" ?>>
+                           value="1" <?php if ($application->getEligible() == true) echo "checked" ?>>
                     <label for="yes">yes</label>
                     <input name="eligible" id="no" type="radio"
-                           value="" <?php if ($application->getEligible() == false) echo "checked" ?>>
+                           value="0" <?php if ($application->getEligible() == false) echo "checked" ?>>
                     <label for="no">no</label>
                 </div>
+                <button formmethod="post" formaction="" >Submit</button>
 
         </form>
     </div>
