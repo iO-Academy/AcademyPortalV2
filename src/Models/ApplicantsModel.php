@@ -105,4 +105,57 @@ class ApplicantsModel
             ':application_date' => $applicationDate
         ]);
     }
+
+    public function getAllCircumstances()
+    {
+        $query = $this->db->prepare('SELECT `id`, `option` FROM `circumstances`');
+        $query->execute();
+        $data = $query->fetch();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
+    }
+
+
+    public function getAllCohorts()
+    {
+        $query = $this->db->prepare('SELECT `id`, `date` FROM `cohorts`');
+        $query->execute();
+        $data = $query->fetch();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllFundingOptions()
+    {
+        $query = $this->db->prepare('SELECT `id`, `option` FROM `funding_options`');
+        $query->execute();
+        $data = $query->fetch();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
+    }
+
+    public function getAllHearAboutUd()
+    {
+        $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
+        $query->execute();
+        $data = $query->fetch();
+
+        if (!$data) {
+            return false;
+        } else {
+            return $data;
+        }
+    }
 }

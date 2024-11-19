@@ -42,8 +42,14 @@
             </select>
         <label for="cohort_id">Cohort start date</label>
             <select name="cohort_id" id="cohort_id">
+
+                <?php foreach ($cohorts as $cohort): ?>
+                    <option value="<?= $cohort->getId(); ?>"><?= $cohort->getDate(); ?></option>
+                <?php endforeach; ?>
+
                 <option value="1">13/01/2025</option>
                 <option value="2">10/03/2025</option>
+
             </select>
         <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob">
