@@ -99,14 +99,13 @@ class ApplicantsModel
 
     public function addApplicant($data)
     {
-        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, current_timestamp)');
+        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
             $addApplicantQuery->execute([
             'name' => $data['name'],
             'email' => $data['email'],
         ]);
             $lastInsertId = $this->db->lastInsertId();
             return $lastInsertId;
-
     }
 
     public function addApplication($details, $applicantId)
