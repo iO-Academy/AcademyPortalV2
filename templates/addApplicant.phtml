@@ -42,7 +42,6 @@
             </select>
         <label for="cohort_id">Cohort start date</label>
             <select name="cohort_id" id="cohort_id">
-
                 <?php foreach ($cohorts as $cohort): ?>
                     <option value="<?= $cohort->getId(); ?>"><?= $cohort->getDate(); ?></option>
                 <?php endforeach; ?>

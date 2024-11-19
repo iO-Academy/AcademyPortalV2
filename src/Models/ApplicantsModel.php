@@ -110,7 +110,7 @@ class ApplicantsModel
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `circumstances`');
         $query->execute();
-        $data = $query->fetch();
+        $data = $query->fetchAll();
 
         if (!$data) {
             return false;
@@ -124,7 +124,7 @@ class ApplicantsModel
     {
         $query = $this->db->prepare('SELECT `id`, `date` FROM `cohorts`');
         $query->execute();
-        $data = $query->fetch();
+        $data = $query->fetchAll();
 
         if (!$data) {
             return false;
@@ -137,7 +137,7 @@ class ApplicantsModel
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `funding_options`');
         $query->execute();
-        $data = $query->fetch();
+        $data = $query->fetchAll();
 
         if (!$data) {
             return false;
@@ -150,7 +150,7 @@ class ApplicantsModel
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
         $query->execute();
-        $data = $query->fetch();
+        $data = $query->fetchAll();
 
         if (!$data) {
             return false;
