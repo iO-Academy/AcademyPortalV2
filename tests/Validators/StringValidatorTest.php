@@ -40,4 +40,35 @@ class StringValidatorTest extends TestCase
         $this->expectExceptionMessage('Test: Length invalid');
         StringValidator::validateLength('test', 10, 5, 'Test');
     }
+
+    public function testValidatePostcodeLowercasePostcode(): void
+    {
+        $string = 'ba1 0de';
+        $case = StringValidator::validatePostcode($string);
+        $this->assertTrue($case);
+    }
+    public function testValidatePostcodeUppercasePostcode(): void
+    {
+        $string = 'BA32 9TL';
+        $case = StringValidator::validatePostcode($string);
+        $this->assertTrue($case);
+    }
+    public function testValidatePostcodeMixedcasePostcode(): void
+    {
+        $string = 'Ba32 9tL';
+        $case = StringValidator::validatePostcode($string);
+        $this->assertTrue($case);
+    }
+
+    public function testValidatePostcodeInvalidPostcode(): void
+    {
+        $string = 'invalid postcode format';
+        $this->assertFalse(StringValidator::validatePostcode($string));
+    }
+
+    public function testValidatePostcodeEmptyString(): void
+    {
+        $string = '';
+        $this->assertFalse(StringValidator::validatePostcode($string));
+    }
 }
