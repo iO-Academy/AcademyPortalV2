@@ -24,21 +24,47 @@ $application = $applicant->getApplication();
     <div class="container">
 
         <form>
+            <h2>Personal Information</h2>
             <label for="name">name</label>
             <input id="name" value="<?= $applicant->getName() ?>">
             <label for="email">Email</label>
             <input id="email" value="<?= $applicant->getEmail() ?>">
-            <label for="name">Phone</label>
-            <input id="name" value="  <?php if ($application): ?>
+            <label for="phone">Phone</label>
+            <input id="phone" value="  <?php if ($application): ?>
                     <?= $application->getPhone() ?>
                 <?php else: ?>No phone number
-                <?php endif; ?>
-">
-            <label for="name">name</label>
-            <input id="name" value="<?= $applicant->getName() ?>">
+                <?php endif; ?>">
+            <section class="details">
+                <h2>Application Info</h2>
+
+                <label for="cohort">Cohort</label>
+                <input id="cohort" value="<?= $application->getCohort() ?>">
+
+                <label for="background">Background Info</label>
+                <input id="background" value="<?= $application->getCircumstance() ?>">
+
+                <label for="why">Application Reason</label>
+                <input id="why" value="<?= $application->getWhy() ?>">
+
+                <label for="experience">Code experience</label>
+                <input id="experience" value="<?= $application->getExperience() ?>">
+
+                <label for="hearAbout">Heard about us</label
+                <input id="hearAbout" value="<?= $application->getHearAbout() ?>">
+
+                <label for="diversitech">Diversitech</label>
+                <input id="diversitech" value="<?= $application->getDiversitech() ?>">
+
+                <label for="ageConfirmation">Over 18</label>
+                <input id="ageConfirmation" value="<?= $application->getAgeConfirmation() ?>">
+
+                <label for="newsletter">Newsletter signup</label>
+                <input id="newsletter" value="<?= $application->getNewsletter() ?>">
+
+                <label for="eligible">Eligible to study in the UK</label>
+                <input id="eligible" value="<?= $application->getEligible() ?>">
 
         </form>
-
     </div>
 </main>
 </body>
