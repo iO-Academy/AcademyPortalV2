@@ -5,6 +5,7 @@ namespace Portal\Controllers\Pages;
 use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
 use Portal\Services\AuthService;
+use Portal\Validators\StringValidator;
 use Slim\Views\PhpRenderer;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -31,8 +32,12 @@ class AddApplicantPageController extends Controller
         $circumstances = $this->model->getAllCircumstances();
         $funding = $this->model->getAllFundingOptions();
         $cohorts = $this->model->getAllCohorts();
-        $hearAboutUs = $this->model->getAllHearAboutUs();
 
+        foreach ($cohorts as $cohort) {
+            $cohort['date'] = StringValidator::validateDate($cohort['date']);
+        };
+
+        $hearAboutUs = $this->model->getAllHearAboutUs();
 
         return $this->view->render($response, "addApplicant.phtml", [
             'circumstances' => $circumstances,
