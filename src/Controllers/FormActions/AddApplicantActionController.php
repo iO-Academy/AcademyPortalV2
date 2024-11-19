@@ -34,9 +34,6 @@ class AddApplicantActionController extends Controller
         try {
             ApplicantValidator::validate($newApplicant);
             ApplicationValidator::validate($newApplicant);
-            echo '<pre>';
-            echo $newApplicant['circumstance_id'];
-            var_dump($this->model->getAllCircumstances()[$newApplicant['circumstance_id'] - 1]);
             ApplicationValidator::checkExists($newApplicant['circumstance_id'], $this->model->getAllCircumstances()[$newApplicant['circumstance_id'] - 1], "Circumstance ID");
             ApplicationValidator::checkNumeric($newApplicant['circumstance_id'], "Circumstance ID");
             ApplicationValidator::checkExists($newApplicant['funding_id'], $this->model->getAllFundingOptions()[$newApplicant['funding_id'] - 1], "Funding ID");
