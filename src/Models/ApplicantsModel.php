@@ -44,10 +44,11 @@ class ApplicantsModel
         return $query->fetch()['count'];
     }
 
-    public function editApplicant($args){
-        $query = $this->db->prepare(";");
+    public function getCircumstanceID()
+    {
+        $query = $this->db->prepare("SELECT `circumstance_id` FROM `applications`;");
         $query->execute();
-        return $query->fetch()['count'];
+        return $query->fetch();
     }
 
     public function getById(int $id): Applicant|false
