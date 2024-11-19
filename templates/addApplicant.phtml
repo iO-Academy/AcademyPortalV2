@@ -23,27 +23,24 @@
         <label for="experience">Experience</label>
             <input type="text" id="experience" name="experience">
         <label for="diversitech">Diversitech qualified</label>
-            <select name="diversitech" id="diversitech">
-                <option value=0>No</option>
-                <option value=1>Yes</option>
-            </select>
+            <input id="diversitech" name="diversitech" type="checkbox" value ='1'>
         <label for="circumstance_id">circumstance</label>
             <select name="circumstance_id" id="circumstance_id">
-                <option value="1">Changing careers</option>
-                <option value="2">Returning to wok</option>
-                <option value="3">Recent university graduate</option>
-                <option value="4">School leaver</option>
+                <?php foreach ($circumstances as $circumstanceOption): ?>
+                    <option value="<?= $circumstanceOption['id']; ?>"><?= $circumstanceOption['option']; ?></option>
+                <?php endforeach; ?>
             </select>
         <label for="funding_id">Funding</label>
             <select name="funding_id" id="funding_id">
-                <option value="1">Full up-front payment</option>
-                <option value="2">Split monthly payments</option>
-                <option value="3">0% interest deffered playment plan (StepEx)</option>
+                <?php foreach ($funding as $fundingOption): ?>
+                    <option value="<?= $fundingOption['id']; ?>"><?= $fundingOption['option']; ?></option>
+                <?php endforeach; ?>
             </select>
         <label for="cohort_id">Cohort start date</label>
             <select name="cohort_id" id="cohort_id">
-                <option value="1">13/01/2025</option>
-                <option value="2">10/03/2025</option>
+                <?php foreach ($cohorts as $cohort): ?>
+                    <option value="<?= $cohort['id']; ?>"><?= $cohort['date']; ?></option>
+                <?php endforeach; ?>
             </select>
         <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob">
@@ -51,30 +48,20 @@
             <input type="tel" id="phone" name="name">
         <label for="address">Address:</label>
             <input type="text" id="address" name="address">
-        <label for="heard_about_id"></label>
+        <label for="heard_about_id">Hear about us</label>
             <select name="heard_about_id" id="heard_about_id">
-                <option value="1">Google</option>
-                <option value="2">Word of mouth</option>
-                <option value="3">Course Report</option>
-                <option value="4">Social Media</option>
-                <option value="5">Other</option>
+                <?php foreach ($hearAboutUs as $hearAboutUsOption): ?>
+                    <option value="<?= $hearAboutUsOption['id']; ?>"><?= $hearAboutUsOption['option']; ?></option>
+                <?php endforeach; ?>
             </select>
         <label for="age_confirmation">Age confirmation</label>
-            <select name="age_confirmation" id="age_confirmtation">
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-            </select>
+            <input id="age_confirmation" name="age_confirmation" type="checkbox" value ='1'>
         <Label for="newsletter">Newsletter</Label>
-            <select name="newsletter" id="newsletter">
-                <option value=0>No</option>
-                <option value=1>Yes</option>
-            </select>
-        <Label>Eligible</Label>
+            <input id="newsletter" name="newsletter" type="checkbox" value ='1'>
+        <Label for="eligible">Eligible</Label>
+            <input id="eligible" name="eligible" type="checkbox" value ='1'>
         <Label for="terms">T&C's read and agreed</Label>
-            <select name="terms" id="terms">
-                <option value=0>No</option>
-                <option value=1>Yes</option>
-            </select>
+            <input id="terms" name="terms" type="checkbox" value ='1'>
         <input type="submit" value="Submit application">
     </form>
 </main>
