@@ -38,11 +38,4 @@ class ApplicationValidator
         return true;
     }
 
-    public static function checkBool($num, $fieldName): bool {
-        if (!is_bool($num)) {
-            throw new Exception("$fieldName: This value should be boolean");
-        }
-        return true;
-    }
-
 }
