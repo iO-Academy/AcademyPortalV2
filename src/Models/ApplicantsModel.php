@@ -146,7 +146,7 @@ class ApplicantsModel
         }
     }
 
-    public function getAllHearAboutUd()
+    public function getAllHearAboutUs()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
         $query->execute();
