@@ -1,11 +1,11 @@
 <?php
 
-namespace Portal\Controllers\Pages;
+namespace Portal\Controllers\FormActions;
 
 use Portal\Models\ApplicantsModel;
 use Slim\Views\PhpRenderer;
 
-class AddApplicantController
+class AddApplicantActionController
 {
     private $model;
     private $view;
