@@ -8,7 +8,6 @@
  */
 
 $application = $applicant->getApplication();
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,9 +40,6 @@ $application = $applicant->getApplication();
                 <div class="form-group">
                     <label for="cohort">Cohort</label>
                     <input id="cohort" value="<?= $application->getCohort() ?>">
-
-                    <?php var_dump($application->getCircumstanceId()); ?>
-
                     <label for="background">Background Info</label>
                     <select name="background" id="background">
                         <option disabled <?php
@@ -87,7 +83,6 @@ $application = $applicant->getApplication();
                     <input id="diversitech" name="diversitech" type="checkbox"
                            value='1' <?php if ($application->getDiversitech() == 1) echo "checked" ?>>
                 </div>
-                <?php var_dump($application->getDiversitech()) ?>
             </div>
             <div class="form-group">
                 <Label for="ageConfirmation">Over 18</Label>
@@ -95,7 +90,6 @@ $application = $applicant->getApplication();
                     <input id="ageConfirmation" name="ageConfirmation" type="checkbox"
                            value='1' <?php if ($application->getAgeConfirmation()) echo "checked" ?>>
                 </div>
-                <?php var_dump($application->getAgeConfirmation()) ?>
             </div>
             <div class="form-group">
                 <Label for="newsletter">Newsletter signup</Label>
@@ -103,7 +97,6 @@ $application = $applicant->getApplication();
                     <input id="newsletter" name="newsletter" type="checkbox"
                            value='1' <?php if ($application->getNewsletter()) echo "checked" ?>>
                 </div>
-                <?php var_dump($application->getNewsletter()) ?>
             </div>
             <div class="form-group">
                 <Label for="eligible">Eligible to work in UK</Label>
@@ -111,7 +104,6 @@ $application = $applicant->getApplication();
                     <input id="eligible" name="eligible" type="checkbox"
                            value='1' <?php if ($application->getEligible()) echo "checked" ?>>
                 </div>
-                <?php var_dump($application->getEligible()) ?>
             </div>
             <button formmethod="post" formaction="">Submit</button>
         </form>
