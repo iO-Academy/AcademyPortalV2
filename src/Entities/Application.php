@@ -50,11 +50,11 @@ class Application
         string $phone,
         string $address,
         string $hearAbout,
+        int $circumstance_id,
         bool $ageConfirmation,
         bool $newsletter,
         bool $eligible,
         bool $terms,
-        int $circumstance_id,
     ) {
         $this->id = $id;
         $this->why = $why;
@@ -90,7 +90,7 @@ class Application
         return $this->experience;
     }
 
-    public function getDiversitech(): bool
+    public function getDiversitech(): int
     {
         return $this->diversitech;
     }
@@ -145,7 +145,7 @@ class Application
         return $this->newsletter;
     }
 
-    public function getEligible(): int
+    public function getEligible(): bool
     {
         return $this->eligible;
     }
