@@ -32,7 +32,6 @@ class AddApplicantActionController extends Controller
 
         try {
             ApplicantValidator::validate($newApplicant);
-            $newApplicant['email'] = new EmailAddress($newApplicant['email']);
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
