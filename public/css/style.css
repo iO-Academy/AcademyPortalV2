@@ -106,6 +106,7 @@ form .form-group {
 }
 
 form .form-group label {
+  font-weight: bold;
   display: block;
   margin-bottom: 10px;
 }
