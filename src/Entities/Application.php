@@ -145,7 +145,7 @@ class Application
         return $this->newsletter;
     }
 
-    public function getEligible(): bool
+    public function getEligible(): int
     {
         return $this->eligible;
     }
