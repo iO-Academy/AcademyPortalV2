@@ -35,34 +35,85 @@ $application = $applicant->getApplication();
                 <?php else: ?>No phone number
                 <?php endif; ?>">
             <section class="details">
-                <h2>Application Info</h2>
+                <div>
+                    <h2>Application Info</h2>
 
-                <label for="cohort">Cohort</label>
-                <input id="cohort" value="<?= $application->getCohort() ?>">
+                    <label for="cohort">Cohort</label>
+                    <input id="cohort" value="<?= $application->getCohort()?>">
 
-                <label for="background">Background Info</label>
-                <input id="background" value="<?= $application->getCircumstance() ?>">
+                    <label for="background">Background Info</label>
+                    <select name="background" id="background">
+                        <option disabled <?php
+                        if ($application->getCircumstance() == 0 | null) echo "selected" ?>>Not
+                            selected
+                        </option>
+                        <option value="1" <?php if ($applicant->getCircumstanceId() == 1) echo "selected" ?>>Changing
+                            careers
+                        </option>
+                        <option value="2" <?php if ($applicant->getCircumstanceId() == 2) echo "selected" ?>>Returning
+                            to work
+                        </option>
+                        <option value="3" <?php if ($applicant->getCircumstanceId() == 3) echo "selected" ?>>Recent
+                            university graduate
+                        </option>
+                        <option value="4" <?php if ($applicant->getCircumstanceId() == 4) echo "selected" ?>>School
+                            leaver
+                        </option>
+                    </select>
 
-                <label for="why">Application Reason</label>
-                <input id="why" value="<?= $application->getWhy() ?>">
+                    <label for="why">Application Reason</label>
+                    <input id="why" value="<?= $application->getWhy() ?>">
 
-                <label for="experience">Code experience</label>
-                <input id="experience" value="<?= $application->getExperience() ?>">
+                    <label for="experience">Code experience</label>
+                    <input id="experience" value="<?= $application->getExperience() ?>">
 
-                <label for="hearAbout">Heard about us</label
-                <input id="hearAbout" value="<?= $application->getHearAbout() ?>">
+                    <label for="hearAbout">Heard about us</label
+                    <input id="hearAbout" value="<?= $application->getHearAbout() ?>">
 
-                <label for="diversitech">Diversitech</label>
-                <input id="diversitech" value="<?= $application->getDiversitech() ?>">
+                </div>
+                <div>
+                    <label>Diversitech</label>
+                    <br>
+                    <input name="diversitech" id="yes" type="radio"
+                           value="" <?php if ($application->getDiversitech() == true) echo "checked" ?>>
+                    <label for="yes">yes</label>
+                    <input name="diversitech" id="no" type="radio"
+                           value="" <?php if ($application->getDiversitech() == false) echo "checked" ?>>
+                    <label for="no">no</label>
+                </div>
 
-                <label for="ageConfirmation">Over 18</label>
-                <input id="ageConfirmation" value="<?= $application->getAgeConfirmation() ?>">
+                <div>
+                    <label>Over 18</label>
+                    <br>
+                    <input name="ageConfirmation" id="yes" type="radio"
+                           value="" <?php if ($application->getAgeConfirmation() == true) echo "checked" ?>>
+                    <label for="yes">yes</label>
+                    <input name="ageConfirmation" id="no" type="radio"
+                           value="" <?php if ($application->getAgeConfirmation() == false) echo "checked" ?>>
+                    <label for="no">no</label>
+                </div>
 
-                <label for="newsletter">Newsletter signup</label>
-                <input id="newsletter" value="<?= $application->getNewsletter() ?>">
+                <div>
+                    <label>Newsletter signup</label>
+                    <br>
+                    <input name="newsletter" id="yes" type="radio"
+                           value="" <?php if ($application->getNewsletter() == true) echo "checked" ?>>
+                    <label for="yes">yes</label>
+                    <input name="newsletter" id="no" type="radio"
+                           value="" <?php if ($application->getNewsletter() == false) echo "checked" ?>>
+                    <label for="no">no</label>
+                </div>
 
-                <label for="eligible">Eligible to study in the UK</label>
-                <input id="eligible" value="<?= $application->getEligible() ?>">
+                <div>
+                    <label>Eligible to study in the UK</label>
+                    <br>
+                    <input name="eligible" id="yes" type="radio"
+                           value="" <?php if ($application->getEligible() == true) echo "checked" ?>>
+                    <label for="yes">yes</label>
+                    <input name="eligible" id="no" type="radio"
+                           value="" <?php if ($application->getEligible() == false) echo "checked" ?>>
+                    <label for="no">no</label>
+                </div>
 
         </form>
     </div>
