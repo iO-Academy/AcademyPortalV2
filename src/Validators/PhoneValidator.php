@@ -9,22 +9,16 @@ class PhoneValidator
 {
     public static function validatePhone($phone)
     {
+        $trimPhone = (trim($phone));
 
-        $pattern = "/^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/";
-
-        $match = preg_match($pattern,$phone);
-
-        if ($match != false) {
-            return true;
-        } else {
-            if (!isset($phone)) {
-                throw new Exception("$phone: Missing telephone number");
-            }
-
-        if (isset($course['remote']) && $course['remote'] != 1) {
-            throw new Exception('Remote: Invalid');
+        if (!$trimPhone) {
+            throw new Exception("$phone: Missing telephone number");
+        }elseif (!ctype_digit($trimPhone)){
+            throw new Exception("$phone: Must be a valid telephone number");
+        }elseif(strlen($trimPhone) !=11){
+            throw new Exception("$phone: Number length incorrect");
         }
+    return true;
 
     }
-}
 }
