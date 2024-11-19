@@ -42,6 +42,11 @@ class AddApplicantActionController extends Controller
             ApplicationValidator::checkNumeric($newApplicant['cohort_id'], "Cohort ID");
             ApplicationValidator::checkExists($newApplicant['heard_about_id'], $this->model->getAllHearAboutUs(), "Heard About ID");
             ApplicationValidator::checkNumeric($newApplicant['heard_about_id'], "Heard About ID");
+            ApplicationValidator::checkBool($newApplicant['diversitech'], "Diversitech");
+            ApplicationValidator::checkBool($newApplicant['age_confirmation'], "Age Confirmation");
+            ApplicationValidator::checkBool($newApplicant['newsletter'], "Newsletter");
+            ApplicationValidator::checkBool($newApplicant['eligible'], "Eligible");
+            ApplicationValidator::checkBool($newApplicant['terms'], "Terms");
 
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());

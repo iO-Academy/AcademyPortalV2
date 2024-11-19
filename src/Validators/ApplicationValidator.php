@@ -21,8 +21,8 @@ class ApplicationValidator
     /**
      * @throws Exception
      */
-    public static function checkExists($application, $field, $fieldName): bool {
-        if (!in_array($application, $field)) {
+    public static function checkExists($id, $field, $fieldName): bool {
+        if (!in_array($id, $field)) {
             throw new Exception("$fieldName doesn't exist");
         }
         return true;
@@ -31,10 +31,18 @@ class ApplicationValidator
     /**
      * @throws Exception
      */
-    public static function checkNumeric($application, $fieldName): bool {
-        if (!is_numeric($application)) {
+    public static function checkNumeric($num, $fieldName): bool {
+        if (!is_numeric($num)) {
             throw new Exception("$fieldName doesn't exist");
         }
         return true;
     }
+
+    public static function checkBool($num, $fieldName): bool {
+        if (!is_bool($num)) {
+            throw new Exception("$fieldName: This value should be boolean");
+        }
+        return true;
+    }
+
 }
