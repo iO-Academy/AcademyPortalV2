@@ -40,6 +40,6 @@ class AddApplicantActionController extends Controller
         $id = $this->model->addApplicant($newApplicant);
         $this->model->addApplication($newApplicant, $id);
 
-        return $response->withHeader('Location', '/admin/applicant')->withStatus(301);
+        return $response->withHeader('Location', '/admin/applicants')->withStatus(301);
     }
 }
