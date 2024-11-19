@@ -2,28 +2,42 @@
 
 namespace Portal\Controllers\FormActions;
 
-use ErrorException;
+use Exception;
+use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
-use Portal\Validators\StringValidator;
-use Portal\ValueObjects\EmailAddress;
+use Portal\Services\AuthService;
+use Portal\Validators\ApplicantValidator;
+use Portal\Validators\ApplicationValidator;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
-class EditApplicantActionController
+class EditApplicantActionController extends Controller
 {
     private $model;
-    public function __construct(ApplicantsModel $model)
+    private $authService;
+
+    public function __construct(ApplicantsModel $model, AuthService $authService)
     {
         $this->model = $model;
+        $this->authService = $authService;
     }
-    public function __invoke($request, $response, $args)
+
+    public function __invoke(Request $request, Response $response): Response
     {
+        if (!$this->authService->isLoggedIn()) {
+            return $this->redirect($response, '/');
+        }
+
         $details = $request->getParsedBody();
-        $validatedDetails = [];
-        $validatedDetails['name'] = StringValidator::validateLength($details['name'], 100, 1, 'Name');
-        $validatedDetails['email'] = new EmailAddress($details['email']);
-        $validatedDetails['date'] = $details['date']; //add date validator
 
+        try {
+            ApplicationValidator::validate($details);
+        } catch (Exception $e) {
+            return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
+        }
 
-        $this->model->editApplicant($validatedDetails);
-//        return $this->view->render($response, 'editApplicant.phtml', ['applicant' => $applicant]);
+        $this->model->editApplicant($details);
+
+        return $response->withHeader('Location', '/admin/applicant')->withStatus(301);
     }
 }

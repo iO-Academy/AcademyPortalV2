@@ -44,18 +44,30 @@ class ApplicantsModel
         return $query->fetch()['count'];
     }
 
-    public function editApplicant($editedDetails){
+    public function editApplicant($details){
         $query1 = $this->db->prepare("INSERT INTO `applicants` (name, email, application_date) VALUES (:name, :email, :application_date);");
         $query1->execute([
-            'name' => $editedDetails['name'],
-            'email' => $editedDetails['email'],
-            'application_date' => $editedDetails['application_date'],
+            'name' => $details['name'],
+            'email' => $details['email'],
+            'application_date' => $details['application_date'],
         ]);
         $query2 = $this->db->prepare("INSERT INTO `applicants` (name, email, application_date) VALUES (:name, :email, :application_date);");
         $query2->execute([
-            'name' => $editedDetails['name'],
-            'email' => $editedDetails['email'],
-            'application_date' => $editedDetails['application_date'],
+            'applicant_id' => $details['applicant_id'],
+            'why' => $details['why'],
+            'experience' => $details['experience'],
+            'diversitech' => $details['diversitech'],
+            'circumstance_id' => $details['circumstance_id'],
+            'funding_id' => $details['funding_id'],
+            'cohort_id' => $details['cohort_id'],
+            'dob' => $details['dob'],
+            'phone' => $details['phone'],
+            'address' => $details['address'],
+            'heard_about_id' => $details['heard_about_id'],
+            'age_confirmation' => $details['age_confirmation'],
+            'newsletter' => $details['newsletter'],
+            'eligible' => $details['eligible'],
+            'terms' => $details['terms']
         ]);
     }
 
