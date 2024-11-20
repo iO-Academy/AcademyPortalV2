@@ -131,7 +131,7 @@ class ApplicantsModel
         ]);
     }
 
-    public function getAllCircumstances()
+    public function getAllCircumstanceOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `circumstances`');
         $query->execute();
@@ -171,7 +171,7 @@ class ApplicantsModel
         }
     }
 
-    public function getAllHearAboutUs()
+    public function getAllHearAboutUsOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
         $query->execute();
