@@ -37,5 +37,4 @@ class ValidationService
         }
         return true;
     }
-
 }
