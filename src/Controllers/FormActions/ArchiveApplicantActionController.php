@@ -18,6 +18,6 @@ class ArchiveApplicantActionController
     {
         $applicantId = $args['id'];
         $this->model->archiveApplicant($applicantId);
-        return $response->withHeader('location', '/admin/applicants/')->withStatus(301);
+        return $response->withHeader('location', '/admin/applicants')->withStatus(301);
     }
 }
