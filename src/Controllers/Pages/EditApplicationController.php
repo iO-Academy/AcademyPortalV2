@@ -23,6 +23,8 @@ class EditApplicationController
         $cohorts = $this->model->getAllCohorts();
         $hearAboutUs = $this->model->getAllHearAboutUs();
         $applicant = $this->model->getById($id);
-        return $this->view->render($response, 'editApplicant.phtml', ['applicant' => $applicant, 'cohorts' => $cohorts, 'hearAboutUs' => $hearAboutUs]);
+        $circumstances = $this->model->getAllCircumstances();
+        $fundingOptions = $this->model->getAllFundingOptions();
+        return $this->view->render($response, 'editApplicant.phtml', ['applicant' => $applicant, 'cohorts' => $cohorts, 'hearAboutUs' => $hearAboutUs,'circumstances' => $circumstances, 'fundingOptions' => $fundingOptions]);
     }
 }
