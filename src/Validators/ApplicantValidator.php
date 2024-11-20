@@ -7,6 +7,9 @@ use Portal\ValueObjects\EmailAddress;
 
 class ApplicantValidator
 {
+    /**
+     * @throws Exception
+     */
     public static function validate(array $applicant): bool
     {
 
