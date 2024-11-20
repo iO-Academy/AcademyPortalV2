@@ -10,17 +10,10 @@
 }
 
 .applicant-header-container{
-  width: 300px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.applicant-header-container a {
-  border: 1px solid #dddddd;
-  border-radius: 10px;
-  padding: 6px 12px;
-  color: #000000;
+align-items: center;
 }
 
 .error-text {
