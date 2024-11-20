@@ -5,7 +5,7 @@ namespace Portal\Controllers\Pages;
 use Portal\Models\ApplicantsModel;
 use Slim\Views\PhpRenderer;
 
-class EditApplicationController
+class EditApplicationPopulateDataController
 {
     private $model;
     private $view;
