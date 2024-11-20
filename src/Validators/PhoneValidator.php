@@ -9,16 +9,17 @@ class PhoneValidator
 {
     public static function validatePhone($phone)
     {
-        $trimPhone = (trim($phone));
+        $triminter = preg_replace("/^\+44/", "0", $phone);
+        $trimspace = preg_replace("/[^0-9]/", "", $triminter);
+        $match = filter_var($trimspace, FILTER_VALIDATE_REGEXP, ["options" => [ "regexp" => "/^0\d{10}$/"]]);
+//        $match = preg_match("/^0\d{10}/",$trimspace);
 
-        if (!$trimPhone) {
-            throw new Exception("$phone: Missing telephone number");
-        }elseif (!ctype_digit($trimPhone)){
-            throw new Exception("$phone: Must be a valid telephone number");
-        }elseif(strlen($trimPhone) !=11){
-            throw new Exception("$phone: Number length incorrect");
+        if (!$match) {
+            throw new Exception("$phone: Must be a valid phone number");
+        } else {
+            return $match;
         }
-    return true;
 
     }
+
 }
