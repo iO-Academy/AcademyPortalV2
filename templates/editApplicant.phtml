@@ -38,32 +38,21 @@ $application = $applicant->getApplication();
             <h2>Application Info</h2>
             <div class="applicationInfo">
                 <div class="form-group">
-                    <label for="cohort">Cohort</label>
-                    <input id="cohort" name="cohort" value="<?= $application->getCohort() ?>">
-                    <label for="background">Background Info</label>
-                    <select name="circumstance_id" id="background">
-                        <option disabled <?php
-                        if ($application->getCircumstanceId() == 0 | null) echo "selected" ?>>Not
-                            selected
-                        </option>
-                        <option value="1" <?php if ($application->getCircumstanceId() == 1) echo "selected" ?>>
-                            Changing
-                            careers
-                        </option>
-                        <option value="2" <?php if ($application->getCircumstanceId() == 2) echo "selected" ?>>
-                            Returning
-                            to work
-                        </option>
-                        <option value="3" <?php if ($application->getCircumstanceId() == 3) echo "selected" ?>>
-                            Recent
-                            university graduate
-                        </option>
-                        <option value="4" <?php if ($application->getCircumstanceId() == 4) echo "selected" ?>>
-                            School
-                            leaver
-                        </option>
-                    </select>
 
+                    <label for="cohort_id">Cohort start date</label>
+                    <select name="cohort_id" id="cohort_id">
+                        <?php
+                        foreach ($cohorts as $cohort) {
+                            if ($cohort['date'] == $application->getCohort()) {
+                                $selected = 'selected';
+                                echo $selected;
+                            } else {
+                                $selected = "";
+                            }
+                            echo "<option value='{$cohort['id']}' {$selected}>{$cohort['date']}</option>";
+                        };
+                        ?>
+                    </select>
 
                     <label for="why">Application Reason</label>
                     <input id="why" name="why" value="<?= $application->getWhy() ?>">
@@ -71,9 +60,20 @@ $application = $applicant->getApplication();
                     <label for="experience">Code experience</label>
                     <input id="experience" name="experience" value="<?= $application->getExperience() ?>">
 
-
-                    <label for="hearAbout">Heard about us from</label>
-                    <input id="hearAbout" name="heard-about" value="<?= $application->getHearAbout() ?>">
+                    <label for="heard_about">Heard about us from</label>
+                    <select name="heard_about_id" id="heard_about">
+                        <?php
+                        foreach ($hearAboutUs as $hear) {
+                            if ($hear['option'] == $application->getHearAbout()) {
+                                $selected = 'selected';
+                                echo $selected;
+                            } else {
+                                $selected = "";
+                            }
+                            echo "<option value='{$hear['id']}' {$selected}>{$hear['option']}</option>";
+                        };
+                        ?>
+                    </select>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@ $application = $applicant->getApplication();
                 <Label for="diversitech">Diversitech Qualification</Label>
                 <div class="width-20">
                     <input id="diversitech" name="diversitech" type="checkbox"
-                           value='1' <?php if ($application->getDiversitech()) echo "checked" ?>>
+                           value='1' <?php if ($application->getDiversitech() == 1) echo "checked" ?>>
                 </div>
             </div>
             <div class="form-group">

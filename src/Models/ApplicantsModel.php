@@ -117,36 +117,57 @@ class ApplicantsModel
         SET `why` = :why,
             `experience` = :experience,
             `diversitech` = :diversitech,
-            `circumstance_id` = :circumstances_id,
-            `funding_id` = :funding_id,
             `cohort_id` = :cohort_id,
-            `dob` = :dob,
             `phone` = :phone,
-            `address` = :address,
             `heard_about_id` = :heard_about_id,
-            `age_confirmation` = :age_confirmation,
-            `newsletter` = :newsletter,
             `eligible` = :eligible,
-            `terms` = :terms
             WHERE `applicant_id` = :id");
 
         $query2->execute([
-            'applicant_id' => $details['id'],
+            'id' => $details['id'],
             'why' => !empty($details['why']) ? $details['why'] : null,
             'experience' => !empty($details['experience']) ? $details['experience'] : null,
             'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : null,
-            'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
-            'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
             'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
-            'dob' => !empty($details['dob']) ? $details['dob'] : null,
             'phone' => !empty($details['phone']) ? $details['phone'] : null,
-            'address' => !empty($details['address']) ? $details['address'] : null,
             'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
-            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : null,
-            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : null,
-            'eligible' => !empty($details['eligible']) ? $details['eligible'] : null,
-            'terms' => !empty($details['terms']) ? $details['terms'] : null
+            'eligible' => !empty($details['eligible']) ? $details['eligible'] : null
         ]);
+
+//        $query2 = $this->db->prepare("UPDATE `applications`
+//        SET `why` = :why,
+//            `experience` = :experience,
+//            `diversitech` = :diversitech,
+//            `circumstance_id` = :circumstances_id,
+//            `funding_id` = :funding_id,
+//            `cohort_id` = :cohort_id,
+//            `dob` = :dob,
+//            `phone` = :phone,
+//            `address` = :address,
+//            `heard_about_id` = :heard_about_id,
+//            `age_confirmation` = :age_confirmation,
+//            `newsletter` = :newsletter,
+//            `eligible` = :eligible,
+//            `terms` = :terms
+//            WHERE `applicant_id` = :id");
+//
+//        $query2->execute([
+//            'applicant_id' => $details['id'],
+//            'why' => !empty($details['why']) ? $details['why'] : null,
+//            'experience' => !empty($details['experience']) ? $details['experience'] : null,
+//            'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : null,
+//            'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
+//            'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
+//            'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
+//            'dob' => !empty($details['dob']) ? $details['dob'] : null,
+//            'phone' => !empty($details['phone']) ? $details['phone'] : null,
+//            'address' => !empty($details['address']) ? $details['address'] : null,
+//            'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
+//            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : null,
+//            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : null,
+//            'eligible' => !empty($details['eligible']) ? $details['eligible'] : null,
+//            'terms' => !empty($details['terms']) ? $details['terms'] : null
+//        ]);
     }
 
     public function addApplicant($data)
