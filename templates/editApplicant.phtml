@@ -57,8 +57,25 @@ $application = $applicant->getApplication();
                     <label for="why">Application Reason</label>
                     <input id="why" value="<?= $application->getWhy() ?>">
 
+                    <label for="heard_about">Circumstance</label>
+                    <select name="heard_about_id" id="heard_about">
+                        <?php
+                        foreach ($circumstances as $circumstance) {
+                            if ($circumstance['option'] == $application->getCircumstance()) {
+                                $selected = 'selected';
+                                echo $selected;
+                            } else {
+                                $selected = "";
+                            }
+                            echo "<option value='{$circumstance['id']}' {$selected}>{$circumstance['option']}</option>";
+                        };
+                        ?>
+                    </select>
+
                     <label for="experience">Code experience</label>
                     <input id="experience" value="<?= $application->getExperience() ?>">
+
+
 
                     <label for="heard_about">Heard about us from</label>
                     <select name="heard_about_id" id="heard_about">
