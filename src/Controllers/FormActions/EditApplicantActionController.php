@@ -7,10 +7,11 @@ use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
 use Portal\Services\AuthService;
 use Portal\Validators\ApplicantValidator;
+use Portal\Validators\ApplicationValidator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AddApplicantActionController extends Controller
+class EditApplicantActionController extends Controller
 {
     private $model;
     private $authService;
@@ -21,16 +22,18 @@ class AddApplicantActionController extends Controller
         $this->authService = $authService;
     }
 
-    public function __invoke(Request $request, Response $response): Response
+    public function __invoke(Request $request, Response $response, $args): Response
     {
         if (!$this->authService->isLoggedIn()) {
             return $this->redirect($response, '/');
         }
 
         $details = $request->getParsedBody();
+        $details['id'] = $args['id'];
 
 //        try {
 //            ApplicantValidator::validate($details);
+//            ApplicationValidator::validate($details);
 //        } catch (Exception $e) {
 //            return $this->redirectWithError($response, '/admin/applicant/edit/'.$details['id'], $e->getMessage());
 //        }

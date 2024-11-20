@@ -23,15 +23,15 @@ $application = $applicant->getApplication();
 <main>
     <div class="container">
 
-        <form>
+        <form method="post" action="/admin/applicants/edit/<?= $applicant->getId()?>">
             <h2>Personal Information</h2>
             <div class="form-group">
                 <label for="name">name</label>
-                <input id="name" value="<?= $applicant->getName() ?>">
+                <input id="name" name="name" value="<?= $applicant->getName() ?>">
                 <label for="email">Email</label>
-                <input id="email" value="<?= $applicant->getEmail() ?>">
+                <input id="email" name="email" value="<?= $applicant->getEmail() ?>">
                 <label for="phone">Phone</label>
-                <input id="phone"
+                <input id="phone" name="phone"
                        value="<?php if ($application): ?><?= $application->getPhone() ?><?php else: ?>No phone number<?php endif; ?>">
                 <section class="appInfo">
             </div>
@@ -39,9 +39,9 @@ $application = $applicant->getApplication();
             <div class="applicationInfo">
                 <div class="form-group">
                     <label for="cohort">Cohort</label>
-                    <input id="cohort" value="<?= $application->getCohort() ?>">
+                    <input id="cohort" name="cohort" value="<?= $application->getCohort() ?>">
                     <label for="background">Background Info</label>
-                    <select name="background" id="background">
+                    <select name="circumstance_id" id="background">
                         <option disabled <?php
                         if ($application->getCircumstanceId() == 0 | null) echo "selected" ?>>Not
                             selected
@@ -66,14 +66,14 @@ $application = $applicant->getApplication();
 
 
                     <label for="why">Application Reason</label>
-                    <input id="why" value="<?= $application->getWhy() ?>">
+                    <input id="why" name="why" value="<?= $application->getWhy() ?>">
 
                     <label for="experience">Code experience</label>
-                    <input id="experience" value="<?= $application->getExperience() ?>">
+                    <input id="experience" name="experience" value="<?= $application->getExperience() ?>">
 
 
                     <label for="hearAbout">Heard about us from</label>
-                    <input id="hearAbout" value="<?= $application->getHearAbout() ?>">
+                    <input id="hearAbout" name="heard-about" value="<?= $application->getHearAbout() ?>">
                 </div>
             </div>
 
@@ -81,7 +81,7 @@ $application = $applicant->getApplication();
                 <Label for="diversitech">Diversitech Qualification</Label>
                 <div class="width-20">
                     <input id="diversitech" name="diversitech" type="checkbox"
-                           value='1' <?php if ($application->getDiversitech() == 1) echo "checked" ?>>
+                           value='1' <?php if ($application->getDiversitech()) echo "checked" ?>>
                 </div>
             </div>
             <div class="form-group">
@@ -105,7 +105,7 @@ $application = $applicant->getApplication();
                            value='1' <?php if ($application->getEligible()) echo "checked" ?>>
                 </div>
             </div>
-            <button formmethod="post" formaction="">Submit</button>
+            <input type="submit" value="SUBMIT">
         </form>
     </div>
 </main>
