@@ -21,8 +21,9 @@ class ApplicantsModel
         $perPage = 20;
         $start = ($page - 1) * $perPage;
 
-        $query = $this->db->prepare('SELECT `id`, `name`, `email`, `application_date` 
+        $query = $this->db->prepare('SELECT `id`, `name`, `email`, `application_date`, `archived` 
                                             FROM `applicants` 
+                                            WHERE `archived` = 0
                                             LIMIT ' . (int)$start . ', ' . (int)$perPage);
         $query->execute();
 
