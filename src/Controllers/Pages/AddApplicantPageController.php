@@ -41,5 +41,4 @@ class AddApplicantPageController extends Controller
             'hearAboutUs' => $hearAboutUs
         ]);
     }
-
 }
