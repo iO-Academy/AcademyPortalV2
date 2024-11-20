@@ -191,4 +191,10 @@ class ApplicantsModel
             return $data;
         }
     }
+
+    public function archiveApplicant(int $applicantId)
+    {
+    $query = $this->db->prepare('UPDATE `applicants` SET `archived` = 1 WHERE `id` = :id');
+    $query->execute(['id' => $applicantId]);
+    }
 }
