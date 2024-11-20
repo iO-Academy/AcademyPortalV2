@@ -11,14 +11,9 @@ class PhoneValidator
     {
         $trimPhone = (trim($phone));
 
-        if (!$trimPhone) {
-            throw new Exception("$phone: Missing telephone number");
-        } elseif (!ctype_digit($trimPhone)) {
-            throw new Exception("$phone: Must be a valid telephone number");
-        } elseif (strlen($trimPhone) != 11) {
+        if (strlen($trimPhone) > 15) {
             throw new Exception("$phone: Number length incorrect");
         }
         return true;
-
     }
 }
