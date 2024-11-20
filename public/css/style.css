@@ -107,8 +107,8 @@ form .form-group label {
 }
 
 form .form-group input{
-  width: 100%;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 form .form-group textarea{
@@ -120,6 +120,14 @@ form .form-group select{
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
+}
+
+.flex{
+  display: flex;
+}
+
+.bottom-margin-75{
+  margin-bottom: 75px;
 }
 
 .width-20{
