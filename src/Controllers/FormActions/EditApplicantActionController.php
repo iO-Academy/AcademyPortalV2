@@ -7,7 +7,6 @@ use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
 use Portal\Services\AuthService;
 use Portal\Validators\ApplicantValidator;
-use Portal\ValueObjects\EmailAddress;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -30,11 +29,11 @@ class AddApplicantActionController extends Controller
 
         $details = $request->getParsedBody();
 
-        try {
-            ApplicantValidator::validate($details);
-        } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicant/edit/'.$details['id'], $e->getMessage());
-        }
+//        try {
+//            ApplicantValidator::validate($details);
+//        } catch (Exception $e) {
+//            return $this->redirectWithError($response, '/admin/applicant/edit/'.$details['id'], $e->getMessage());
+//        }
 
         $this->model->editApplicant($details);
 
