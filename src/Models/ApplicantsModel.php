@@ -175,21 +175,6 @@ class ApplicantsModel
         }
     }
 
-
-
-    public function getAllCohorts()
-    {
-        $query = $this->db->prepare('SELECT `id`, `date` FROM `cohorts`');
-        $query->execute();
-        $data = $query->fetchAll();
-
-        if (!$data) {
-            return false;
-        } else {
-            return $data;
-        }
-    }
-
     public function getAllFundingOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `funding_options`');

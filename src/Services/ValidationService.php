@@ -24,7 +24,7 @@ class ValidationService
 
     public static function checkCohortOptionExists($id, $db, $fieldName): bool
     {
-        if (!in_array($id, $db)) {
+        if (!$id === $db) {
             throw new Exception("$fieldName doesn't exist");
         }
         return true;

@@ -5,6 +5,7 @@ namespace Portal\Controllers\Pages;
 use PharIo\Manifest\Application;
 use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
+use Portal\Models\CohortsModel;
 use Portal\Services\AuthService;
 use Slim\Views\PhpRenderer;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -13,14 +14,17 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 class AddApplicantPageController extends Controller
 {
     private PhpRenderer $view;
-    private ApplicantsModel $model;
+    private ApplicantsModel $applicantsModel;
+    private CohortsModel $cohortsModel;
     private AuthService $authService;
 
-    public function __construct(PhpRenderer $view, AuthService $authService, ApplicantsModel $model)
+    public function __construct(PhpRenderer $view, AuthService $authService, ApplicantsModel $applicantsModel,
+                                CohortsModel $cohortsModel )
     {
         $this->view = $view;
         $this->authService = $authService;
-        $this->model = $model;
+        $this->applicantsModel = $applicantsModel;
+        $this->cohortsModel = $cohortsModel;
 
     }
 
@@ -30,10 +34,13 @@ class AddApplicantPageController extends Controller
             return $this->redirect($response, '/');
         }
 
-        $circumstanceOptions = $this->model->getAllCircumstanceOptions();
-        $fundingOptions = $this->model->getAllFundingOptions();
-        $cohorts = $this->model->getAllCohorts();
-        $hearAboutUsOptions = $this->model->getAllHearAboutUsOptions();
+        $circumstanceOptions = $this->applicantsModel->getAllCircumstanceOptions();
+        $fundingOptions = $this->applicantsModel->getAllFundingOptions();
+        $cohorts = $this->cohortsModel->getAll();
+        $hearAboutUsOptions = $this->applicantsModel->getAllHearAboutUsOptions();
+//        echo '<pre>';
+//        var_dump($this->applicantsModel->getAllCircumstanceOptions());
+//        var_dump($this->cohortsModel->getAll());
 
 
         return $this->view->render($response, "addApplicant.phtml", [

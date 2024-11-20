@@ -31,14 +31,14 @@
 
             <label for="circumstance_id">circumstance</label>
             <select name="circumstance_id" id="circumstance_id">
-                <?php foreach ($circumstanceOptions as $circumstanceOption): ?>
+                <?php foreach ($circumstances as $circumstanceOption): ?>
                     <option value="<?= $circumstanceOption['id']; ?>"><?= $circumstanceOption['option']; ?></option>
                 <?php endforeach; ?>
             </select>
 
             <label for="funding_id">Funding</label>
             <select name="funding_id" id="funding_id">
-                <?php foreach ($fundingOptions as $fundingOption): ?>
+                <?php foreach ($funding as $fundingOption): ?>
                     <option value="<?= $fundingOption['id']; ?>"><?= $fundingOption['option']; ?></option>
                 <?php endforeach; ?>
             </select>
@@ -46,7 +46,7 @@
             <label for="cohort_id">Cohort start date</label>
             <select name="cohort_id" id="cohort_id">
                 <?php foreach ($cohorts as $cohort): ?>
-                    <option value="<?= $cohort['id']; ?>"><?= $cohort['date']; ?></option>
+                    <option value="<?= $cohort->getId(); ?>"><?= $cohort->getDate(); ?></option>
                 <?php endforeach; ?>
             </select>
 
@@ -61,7 +61,7 @@
 
             <label for="heard_about_id">Hear about us</label>
             <select name="heard_about_id" id="heard_about_id">
-                <?php foreach ($hearAboutUsOptions as $hearAboutUsOption): ?>
+                <?php foreach ($hearAboutUs as $hearAboutUsOption): ?>
                     <option value="<?= $hearAboutUsOption['id']; ?>"><?= $hearAboutUsOption['option']; ?></option>
                 <?php endforeach; ?>
             </select>
