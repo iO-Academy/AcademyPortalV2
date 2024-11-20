@@ -19,7 +19,7 @@ class Application
     private bool $newsletter;
     private bool $eligible;
     private bool $terms;
-    private int | null $circumstance_id;
+    private int|null $circumstance_id;
 
     /**
      * @param int $id
@@ -39,10 +39,10 @@ class Application
      * @param bool $terms
      */
     public function __construct(
-        int $id,
+        int    $id,
         string $why,
         string $experience,
-        bool $diversitech,
+        bool   $diversitech,
         string $circumstance,
         string $funding,
         string $cohort,
@@ -50,12 +50,13 @@ class Application
         string $phone,
         string $address,
         string $hearAbout,
-        int $circumstance_id,
-        bool $ageConfirmation,
-        bool $newsletter,
-        bool $eligible,
-        bool $terms,
-    ) {
+        int    $circumstance_id,
+        bool   $ageConfirmation,
+        bool   $newsletter,
+        bool   $eligible,
+        bool   $terms
+    )
+    {
         $this->id = $id;
         $this->why = $why;
         $this->experience = $experience;
@@ -115,42 +116,50 @@ class Application
         return $this->cohort;
     }
 
-    public function getDob(): string
+    public
+    function getDob(): string
     {
         return $this->dob;
     }
 
-    public function getPhone(): string
+    public
+    function getPhone(): string
     {
         return $this->phone;
     }
 
-    public function getAddress(): string
+    public
+    function getAddress(): string
     {
         return $this->address;
     }
 
-    public function getHearAbout(): string
+    public
+    function getHearAbout(): string
     {
         return $this->hearAbout;
     }
 
-    public function getAgeConfirmation(): bool
+    public
+    function getAgeConfirmation(): bool
     {
         return $this->ageConfirmation;
     }
 
-    public function getNewsletter(): bool
+    public
+    function getNewsletter(): bool
     {
         return $this->newsletter;
     }
 
-    public function getEligible(): bool
+    public
+    function getEligible(): bool
     {
         return $this->eligible;
     }
 
-    public function getTerms(): bool
+    public
+    function getTerms(): bool
     {
         return $this->terms;
     }

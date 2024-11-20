@@ -2,6 +2,7 @@
 
 namespace Portal\Controllers\Pages;
 
+use Portal\Entities\Application;
 use Portal\Models\ApplicantsModel;
 use Slim\Views\PhpRenderer;
 
@@ -10,8 +11,7 @@ class EditApplicationController
     private $model;
     private $view;
 
-
-    public function __construct(ApplicantsModel $model, PhpRenderer $view)
+    public function __construct(ApplicantsModel $model, PhpRenderer $view )
     {
         $this->model = $model;
         $this->view = $view;
@@ -21,8 +21,9 @@ class EditApplicationController
     public function __invoke($request, $response, $args)
     {
         $id = $args['id'];
-
+        $cohorts = $this->model->getAllCohorts();
+        $hearAboutUs = $this->model->getAllHearAboutUs();
         $applicant = $this->model->getById($id);
-        return $this->view->render($response, 'editApplicant.phtml', ['applicant' => $applicant]);
+        return $this->view->render($response, 'editApplicant.phtml', ['applicant' => $applicant, 'cohorts' => $cohorts, 'hearAboutUs' => $hearAboutUs]);
     }
 }
