@@ -295,3 +295,24 @@ td:has(> .edit-button) {
   cursor: pointer;
   transform: scale(1.05) translate(-10%, -60%);
 }
+
+.archive-button {
+  left: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: #c83e6a;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+  transition: all 0.1s linear;
+  box-shadow: 0 0 0 0 rgb(0,0,0);
+}
+.archive-button:hover {
+  background-color: mediumpurple;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0 rgb(0,0,0);
+  color: white;
+  cursor: pointer;
+  transform: scale(1.05) translate(-10%, -60%);
+}
