@@ -3,36 +3,48 @@
 namespace Portal\Services;
 
 use Exception;
+use Portal\Models\ApplicantsModel;
+use Portal\Models\CohortsModel;
 
 class ValidationService
 {
-    public static function checkCircumstanceOptionExists($id, $db, $fieldName): bool
+    public static function checkCircumstanceOptionExists($id, ApplicantsModel $model, $fieldName): bool
     {
-        if (!in_array($id, $db)) {
+        $result = $model->getAllCircumstanceOptions();
+        $result = array_map(function($item) {return $item['id']; }, $result);
+//        echo $id;
+//        var_dump($result);
+        if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
         return true;
     }
 
-    public static function checkFundingOptionExists($id, $db, $fieldName): bool
+    public static function checkFundingOptionExists($id, ApplicantsModel $model, $fieldName): bool
     {
-        if (!in_array($id, $db)) {
+        $result = $model->getAllFundingOptions();
+        $result = array_map(function($item) {return $item['id']; }, $result);
+        if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
         return true;
     }
 
-    public static function checkCohortOptionExists($id, $db, $fieldName): bool
+    public static function checkCohortOptionExists($id, CohortsModel $model, $fieldName): bool
     {
-        if (!$id === $db) {
+        $result = $model->getAll();
+        $result = array_map(function($item) {return $item->getId(); }, $result);
+        if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
         return true;
     }
 
-    public static function checkHeardAboutOptionExists($id, $db, $fieldName): bool
+    public static function checkHeardAboutOptionExists($id, ApplicantsModel $model, $fieldName): bool
     {
-        if (!in_array($id, $db)) {
+        $result = $model->getAllHearAboutUsOptions();
+        $result = array_map(function($item) {return $item['id']; }, $result);
+        if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
         return true;
