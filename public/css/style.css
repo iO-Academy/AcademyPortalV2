@@ -99,6 +99,11 @@ nav a:first-child {
   align-items: center;
 }
 
+.form-asterisk {
+  color: #ea1818;
+  font-size: 18px;
+}
+
 form .form-group {
   margin-bottom: 10px;
 }
