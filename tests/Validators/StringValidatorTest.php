@@ -40,5 +40,4 @@ class StringValidatorTest extends TestCase
         $this->expectExceptionMessage('Test: Length invalid');
         StringValidator::validateLength('test', 10, 5, 'Test');
     }
-
 }
