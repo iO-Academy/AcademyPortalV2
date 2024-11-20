@@ -120,7 +120,7 @@ class ApplicantsModel
             `cohort_id` = :cohort_id,
             `phone` = :phone,
             `heard_about_id` = :heard_about_id,
-            `eligible` = :eligible,
+            `eligible` = :eligible
             WHERE `applicant_id` = :id");
 
         $query2->execute([
