@@ -8,8 +8,26 @@ use Portal\Services\ValidationService;
 class ApplicationValidator
 {
 
+
     public static function validate(array $application, $fieldOptions): bool
     {
+
+//        $fields = ["circumstance_id", "funding_id", "cohort_id", "heard_about_id"];
+//
+//        foreach ($fields as $field) {
+//            if (!in_array($application[$field], $fieldOptions->getAllCircumstances()[$application['circumstance_id'] - 1])) {
+//                throw new Exception("$field: Missing required field");
+//            }
+//        }
+
+
+
+//    {
+//        if (!in_array($id, $field)) {
+//            throw new Exception("$fieldName doesn't exist");
+//        }
+//        return true;
+//    }
 
         StringValidator::validateLength($application['why'], 65535, 0, 'Why');
         StringValidator::validateLength($application['experience'], 65535, 0, 'Experience');
@@ -26,5 +44,4 @@ class ApplicationValidator
 
         return true;
     }
-
 }
