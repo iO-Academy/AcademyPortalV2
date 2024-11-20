@@ -114,20 +114,21 @@ class ApplicantsModel
                 VALUES (:applicant_id, :why, :experience, :diversitech, :circumstance_id, :funding_id, :cohort_id, :dob, :phone, :address, :heard_about_id, :age_confirmation, :newsletter, :eligible, :terms);");
         return $addApplicationQuery->execute([
             'applicant_id' => $applicantId,
-            'why' => $details['why'],
-            'experience' => $details['experience'],
-            'diversitech' => $details['diversitech'],
-            'circumstance_id' => $details['circumstance_id'],
-            'funding_id' => $details['funding_id'],
-            'cohort_id' => $details['cohort_id'],
-            'dob' => $details['dob'],
-            'phone' => $details['phone'],
-            'address' => $details['address'],
-            'heard_about_id' => $details['heard_about_id'],
-            'age_confirmation' => $details['age_confirmation'],
-            'newsletter' => $details['newsletter'],
-            'eligible' => $details['eligible'],
-            'terms' => $details['terms']
+            'why' => !empty($details['why']) ? $details['why'] : null,
+            'experience' => !empty($details['experience']) ? $details['experience'] : null,
+            'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : null,
+            'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
+            'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
+            'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
+            'dob' => !empty($details['dob']) ? $details['dob'] : null,
+            'phone' => !empty($details['phone']) ? $details['phone'] : null,
+            'address' => !empty($details['address']) ? $details['address'] : null,
+            'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
+            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : null,
+            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : null,
+            'eligible' => !empty($details['eligible']) ? $details['eligible'] : null,
+            'terms' => !empty($details['terms']) ? $details['terms'] : null
+
         ]);
     }
 
