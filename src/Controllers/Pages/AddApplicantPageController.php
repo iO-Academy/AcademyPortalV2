@@ -18,14 +18,16 @@ class AddApplicantPageController extends Controller
     private CohortsModel $cohortsModel;
     private AuthService $authService;
 
-    public function __construct(PhpRenderer $view, AuthService $authService, ApplicantsModel $applicantsModel,
-                                CohortsModel $cohortsModel )
-    {
+    public function __construct(
+        PhpRenderer $view,
+        AuthService $authService,
+        ApplicantsModel $applicantsModel,
+        CohortsModel $cohortsModel
+    ){
         $this->view = $view;
         $this->authService = $authService;
         $this->applicantsModel = $applicantsModel;
         $this->cohortsModel = $cohortsModel;
-
     }
 
     public function __invoke(Request $request, Response $response, array $args = []): Response
@@ -38,10 +40,6 @@ class AddApplicantPageController extends Controller
         $fundingOptions = $this->applicantsModel->getAllFundingOptions();
         $cohorts = $this->cohortsModel->getAll();
         $hearAboutUsOptions = $this->applicantsModel->getAllHearAboutUsOptions();
-//        echo '<pre>';
-//        var_dump($this->applicantsModel->getAllCircumstanceOptions());
-//        var_dump($this->cohortsModel->getAll());
-
 
         return $this->view->render($response, "addApplicant.phtml", [
             'circumstances' => $circumstanceOptions,

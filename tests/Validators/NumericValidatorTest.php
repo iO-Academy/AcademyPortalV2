@@ -32,5 +32,4 @@ class NumericValidatorTest extends TestCase
         $this->expectExceptionMessage("Cohort should be a number");
         NumericValidator::checkNumeric($input, $fieldName);
     }
-
 }

@@ -5,7 +5,6 @@ namespace Portal\Validators;
 use Exception;
 
 class PhoneValidator
-
 {
     public static function validatePhone($phone)
     {

@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class ValidationServiceTest extends TestCase
 {
-
     public function testCheckCircumstanceOptionExistsFailure()
     {
         $id = 1;

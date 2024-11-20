@@ -15,8 +15,7 @@ class StringValidator
         int $maxLength,
         int $minLength = 0,
         string $fieldName = 'unknown'
-    ): bool
-    {
+    ): bool {
         $len = strlen($string);
 
         if ($len < $minLength || $len > $maxLength) {

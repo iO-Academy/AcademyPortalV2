@@ -36,9 +36,6 @@ class AddApplicantActionController extends Controller
         try {
             ApplicationValidator::validate($newApplicant, $this->applicantsModel, $this->cohortsModel);
             ApplicantValidator::validate($newApplicant);
-//            echo '<pre>';
-//            var_dump($newApplicant);
-
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
