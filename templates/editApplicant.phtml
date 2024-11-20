@@ -29,11 +29,11 @@ $application = $applicant->getApplication();
                 <label for="name">Name</label>
                 <input id="name" name="name" value="<?= $applicant->getName() ?>">
                 <label for="dob">D.O.B</label>
-                <input id="dob" name="dob" value="<?= $application->getDob() ?>">
+                <input type="date" id="dob" name="dob" value="<?= $application->getDob() ?>">
                 <label for="address">Address</label>
                 <input id="address" name="address" value="<?= $application->getAddress() ?>">
                 <label for="email">Email</label>
-                <input id="email" name="email" value="<?= $applicant->getEmail() ?>">
+                <input type="email" id="email" name="email" value="<?= $applicant->getEmail() ?>">
                 <label for="phone">Phone</label>
                 <input id="phone" name="phone"
                        value="<?php if ($application): ?><?= $application->getPhone() ?><?php else: ?>No phone number<?php endif; ?>">
@@ -93,7 +93,6 @@ $application = $applicant->getApplication();
                         };
                         ?>
                     </select>
-
                     <label for="fundingOptions">Funding Options</label>
                     <select name="funding_id" id="fundingOptions">
                         <?php
