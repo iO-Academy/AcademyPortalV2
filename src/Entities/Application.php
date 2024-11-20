@@ -19,6 +19,7 @@ class Application
     private bool $newsletter;
     private bool $eligible;
     private bool $terms;
+    private int | null $circumstance_id;
 
     /**
      * @param int $id
@@ -49,10 +50,11 @@ class Application
         string $phone,
         string $address,
         string $hearAbout,
+        int $circumstance_id,
         bool $ageConfirmation,
         bool $newsletter,
         bool $eligible,
-        bool $terms
+        bool $terms,
     ) {
         $this->id = $id;
         $this->why = $why;
@@ -69,6 +71,7 @@ class Application
         $this->newsletter = $newsletter;
         $this->eligible = $eligible;
         $this->terms = $terms;
+        $this->circumstance_id = $circumstance_id;
     }
 
 
@@ -87,7 +90,7 @@ class Application
         return $this->experience;
     }
 
-    public function getDiversitech(): bool
+    public function getDiversitech(): int
     {
         return $this->diversitech;
     }
@@ -95,6 +98,11 @@ class Application
     public function getCircumstance(): string
     {
         return $this->circumstance;
+    }
+
+    public function getCircumstanceId(): int
+    {
+        return $this->circumstance_id;
     }
 
     public function getFunding(): string

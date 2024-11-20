@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+    require 'partials/layout/head.phtml';
+    ?>
+    <title>Add Applicant</title>
+</head>
+<body>
+<?php require 'partials/layout/header.phtml'; ?>
+<?php require 'partials/layout/nav.phtml'; ?>
+<main>
+    <form method="post" action="/admin/applicant/add" class="container">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="why">Why would you like to become a developer?</label>
+            <textarea id="why" name="why"></textarea>
+
+            <label for="experience">Experience</label>
+            <textarea id="experience" name="experience"></textarea>
+
+            <label for="diversitech">I confirm I am Diversitech qualified.</label>
+            <div class="width-20">
+                <input id="diversitech" name="diversitech" type="checkbox" value='1'>
+            </div>
+
+            <label for="circumstance_id">circumstance</label>
+            <select name="circumstance_id" id="circumstance_id">
+                <?php foreach ($circumstances as $circumstanceOption): ?>
+                    <option value="<?= $circumstanceOption['id']; ?>"><?= $circumstanceOption['option']; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <label for="funding_id">Funding</label>
+            <select name="funding_id" id="funding_id">
+                <?php foreach ($funding as $fundingOption): ?>
+                    <option value="<?= $fundingOption['id']; ?>"><?= $fundingOption['option']; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <label for="cohort_id">Cohort start date</label>
+            <select name="cohort_id" id="cohort_id">
+                <?php foreach ($cohorts as $cohort): ?>
+                    <option value="<?= $cohort['id']; ?>"><?= $cohort['date']; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob">
+
+            <label for="phone">Telephone number</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+
+            <label for="heard_about_id">Hear about us</label>
+            <select name="heard_about_id" id="heard_about_id">
+                <?php foreach ($hearAboutUs as $hearAboutUsOption): ?>
+                    <option value="<?= $hearAboutUsOption['id']; ?>"><?= $hearAboutUsOption['option']; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <label for="age_confirmation">I confirm I will be at least 18 years before my chosen cohort.</label>
+            <div class="width-20">
+                <input id="age_confirmation" name="age_confirmation" type="checkbox" value='1'>
+            </div>
+
+            <Label for="newsletter">I confirm I would like to subscribe to the newsletter.</Label>
+            <div class="width-20">
+                <input id="newsletter" name="newsletter" type="checkbox" value='1'>
+            </div>
+
+            <Label for="eligible">I confirm I am eligible to study in the UK.</Label>
+            <div class="width-20">
+                <input id="eligible" name="eligible" type="checkbox" value='1'>
+            </div>
+
+            <Label for="terms">T&C's read and agreed.</Label>
+            <div class="width-20">
+                <input id="terms" name="terms" type="checkbox" value='1'>
+            </div>
+
+            <div class="btn-width">
+                <input class="btn" type="submit" value="Submit application">
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>

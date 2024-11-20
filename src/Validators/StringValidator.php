@@ -2,6 +2,7 @@
 
 namespace Portal\Validators;
 
+use DateTime;
 use Exception;
 
 class StringValidator
@@ -24,8 +25,4 @@ class StringValidator
         return true;
     }
 
-    public static function  validatePostcode ($string)
-    {
-        return (bool) preg_match('/^([ A-Za-z]{1,2}[0-9]{1,2}[ A-Za-z]?)\s?([0-9][A-Za-z]{2}?)$/', $string);
-    }
 }
