@@ -12,8 +12,8 @@ class StringValidator
      */
     public static function validateLength(
         string $string,
-        int    $maxLength = 255,
-        int    $minLength = 0,
+        int $maxLength,
+        int $minLength = 0,
         string $fieldName = 'unknown'
     ): bool
     {
@@ -24,5 +24,4 @@ class StringValidator
         }
         return true;
     }
-
 }
