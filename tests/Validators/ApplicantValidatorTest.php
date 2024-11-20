@@ -38,5 +38,4 @@ class ApplicantValidatorTest extends TestCase
             'email' => 'test'
         ]);
     }
-
 }
