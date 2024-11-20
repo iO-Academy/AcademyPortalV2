@@ -34,15 +34,18 @@ class AddApplicantActionController extends Controller
         try {
             ApplicantValidator::validate($newApplicant);
             ApplicationValidator::validate($newApplicant);
-            ApplicationValidator::checkExists($newApplicant['circumstance_id'], $this->model->getAllCircumstances()[$newApplicant['circumstance_id'] - 1], "Circumstance ID");
+            ApplicationValidator::checkExists($newApplicant['circumstance_id'],
+                $this->model->getAllCircumstances()[$newApplicant['circumstance_id'] - 1], "Circumstance ID");
             ApplicationValidator::checkNumeric($newApplicant['circumstance_id'], "Circumstance ID");
-            ApplicationValidator::checkExists($newApplicant['funding_id'], $this->model->getAllFundingOptions()[$newApplicant['funding_id'] - 1], "Funding ID");
+            ApplicationValidator::checkExists($newApplicant['funding_id'],
+                $this->model->getAllFundingOptions()[$newApplicant['funding_id'] - 1], "Funding ID");
             ApplicationValidator::checkNumeric($newApplicant['funding_id'], "Funding ID");
-            ApplicationValidator::checkExists($newApplicant['cohort_id'], $this->model->getAllCohorts()[$newApplicant['cohort_id'] - 1], "Cohort ID");
+            ApplicationValidator::checkExists($newApplicant['cohort_id'],
+                $this->model->getAllCohorts()[$newApplicant['cohort_id'] - 1], "Cohort ID");
             ApplicationValidator::checkNumeric($newApplicant['cohort_id'], "Cohort ID");
-            ApplicationValidator::checkExists($newApplicant['heard_about_id'], $this->model->getAllHearAboutUs()[$newApplicant['heard_about_id'] - 1], "Heard About ID");
+            ApplicationValidator::checkExists($newApplicant['heard_about_id'],
+                $this->model->getAllHearAboutUs()[$newApplicant['heard_about_id'] - 1], "Heard About ID");
             ApplicationValidator::checkNumeric($newApplicant['heard_about_id'], "Heard About ID");
-
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
