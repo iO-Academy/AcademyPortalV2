@@ -102,8 +102,8 @@ class ApplicantsModel
         $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` 
             (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
         $addApplicantQuery->execute([
-        'name' => $data['name'],
-        'email' => $data['email'],
+            'name' => $data['name'],
+            'email' => $data['email'],
         ]);
         $lastInsertId = $this->db->lastInsertId();
         return $lastInsertId;
@@ -111,38 +111,42 @@ class ApplicantsModel
 
     public function addApplication($details, $applicantId)
     {
-        $addApplicationQuery = $this->db->prepare("INSERT INTO `applications` 
-            (`applicant_id`,
-            `why`,
-            `experience`,
-            `diversitech`,
-            `circumstance_id`,
-            `funding_id`,
-            `cohort_id`,
-            `dob`,
-            `phone`,
-            `address`,
-            `heard_about_id`,
-            `age_confirmation`,
-            `newsletter`,
-            `eligible`, `terms`) 
-            VALUES 
-                (:applicant_id,
-                 :why,
-                 :experience,
-                 :diversitech,
-                 :circumstance_id,
-                 :funding_id,
-                 :cohort_id,
-                 :dob,
-                 :phone,
-                 :address,
-                 :heard_about_id,
-                 :age_confirmation,
-                 :newsletter,
-                 :eligible,
-                 :terms);");
+        $addApplicationQuery = $this->db->prepare('INSERT INTO `applicants` 
+            (`name`, `email`, `application_date`) VALUES (:name, :email, current_date);
+            INSERT INTO `applications` 
+                        (`applicant_id`,
+                        `why`,
+                        `experience`,
+                        `diversitech`,
+                        `circumstance_id`,
+                        `funding_id`,
+                        `cohort_id`,
+                        `dob`,
+                        `phone`,
+                        `address`,
+                        `heard_about_id`,
+                        `age_confirmation`,
+                        `newsletter`,
+                        `eligible`, `terms`) 
+                        VALUES 
+                            (:applicant_id,
+                             :why,
+                             :experience,
+                             :diversitech,
+                             :circumstance_id,
+                             :funding_id,
+                             :cohort_id,
+                             :dob,
+                             :phone,
+                             :address,
+                             :heard_about_id,
+                             :age_confirmation,
+                             :newsletter,
+                             :eligible,
+                             :terms);');
         return $addApplicationQuery->execute([
+            'name' => $details['name'],
+            'email' => $details['email'],
             'applicant_id' => $applicantId,
             'why' => !empty($details['why']) ? $details['why'] : null,
             'experience' => !empty($details['experience']) ? $details['experience'] : null,

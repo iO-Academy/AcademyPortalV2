@@ -13,7 +13,7 @@ use Portal\ValueObjects\EmailAddress;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AddApplicantActionController extends Controller
+class AddApplicationActionController extends Controller
 {
     private $applicantsModel;
     private $cohortsModel;
@@ -36,12 +36,13 @@ class AddApplicantActionController extends Controller
         try {
             ApplicationValidator::validate($newApplicant, $this->applicantsModel, $this->cohortsModel);
             ApplicantValidator::validate($newApplicant);
+
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
 
         $id = $this->applicantsModel->addApplicant($newApplicant);
-//        $this->applicantsModel->addApplication($newApplicant, $id);
+        $this->applicantsModel->addApplication($newApplicant, $id);
 
         return $response->withHeader('Location', '/admin/applicants')->withStatus(301);
     }
