@@ -28,6 +28,10 @@ $application = $applicant->getApplication();
             <div class="form-group">
                 <label for="name">name</label>
                 <input id="name" value="<?= $applicant->getName() ?>">
+                <label for="dob">D.O.B</label>
+                <input id="dob" value="<?= $application->getDob() ?>">
+                <label for="address">Address</label>
+                <input id="address" value="<?= $application->getAddress() ?>">
                 <label for="email">Email</label>
                 <input id="email" value="<?= $applicant->getEmail() ?>">
                 <label for="phone">Phone</label>
@@ -76,7 +80,6 @@ $application = $applicant->getApplication();
                     <input id="experience" value="<?= $application->getExperience() ?>">
 
 
-
                     <label for="heard_about">Heard about us from</label>
                     <select name="heard_about_id" id="heard_about">
                         <?php
@@ -91,6 +94,27 @@ $application = $applicant->getApplication();
                         };
                         ?>
                     </select>
+                    <label for="fundingOptions">Funding Options</label>
+                    <select name="funding__id" id="fundingOptions">
+                        <?php
+                        foreach ($fundingOptions as $fundingOption) {
+                            if ($fundingOption['option'] == $application->getFunding()) {
+                                $selected = 'selected';
+                                echo $selected;
+                            } else {
+                                $selected = "";
+                            }
+                            echo "<option value='{$fundingOption['id']}' {$selected}>{$fundingOption['option']}</option>";
+                        };
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <Label for="terms">Agreed to terms</Label>
+                <div class="width-20">
+                    <input id="terms" name="terms" type="checkbox"
+                           value='1' <?php if ($application->getTerms()) echo "checked" ?>>
                 </div>
             </div>
 
@@ -98,7 +122,7 @@ $application = $applicant->getApplication();
                 <Label for="diversitech">Diversitech Qualification</Label>
                 <div class="width-20">
                     <input id="diversitech" name="diversitech" type="checkbox"
-                           value='1' <?php if ($application->getDiversitech() == 1) echo "checked" ?>>
+                           value='1' <?php if ($application->getDiversitech()) echo "checked" ?>>
                 </div>
             </div>
             <div class="form-group">
