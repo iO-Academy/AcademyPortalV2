@@ -21,13 +21,15 @@ class ApplicationValidator
         NumericValidator::checkNumeric($application['heard_about_id'], "Heard About ID");
 
         ValidationService::checkCircumstanceOptionExists($application['circumstance_id'],
-            $applicantsModel->getAllCircumstanceOptions()[$application['circumstance_id'] - 1], "Circumstance ID");
+            $applicantsModel->getAllCircumstanceOptions()[$application['circumstance_id'] - 1],
+            "Circumstance ID");
         ValidationService::checkFundingOptionExists($application['funding_id'],
             $applicantsModel->getAllFundingOptions()[$application['funding_id'] - 1], "Funding ID");
         ValidationService::checkCohortOptionExists($application['cohort_id'],
             $cohorts->getAll()[$application['cohort_id'] - 1 ]->getId(), "Cohort ID");
         ValidationService::checkHeardAboutOptionExists($application['heard_about_id'],
-            $applicantsModel->getAllHearAboutUsOptions()[$application['heard_about_id'] - 1], "Heard About ID");
+            $applicantsModel->getAllHearAboutUsOptions()[$application['heard_about_id'] - 1],
+            "Heard About ID");
 
         return true;
     }
