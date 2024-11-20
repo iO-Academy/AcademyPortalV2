@@ -10,7 +10,7 @@
 <?php require 'partials/layout/header.phtml'; ?>
 <?php require 'partials/layout/nav.phtml'; ?>
 <main>
-    <form method="post" action="/admin/applicant/add" class="container">
+    <form method="post" action="/admin/application/add" class="container">
         <h1>Add Applicant</h1>
         <h2>Applicant</h2>
         <div class="form-group">
@@ -23,7 +23,7 @@
                 <input class="input-width-full" type="email" id="email" name="email" required>
             </div>
             <div class="btn-width bottom-margin-75">
-                <input class="btn" type="submit" value="Submit Applicant">
+                <input class="btn" type="submit" formaction="/admin/applicant/add" value="Submit Applicant">
             </div>
             <h2>Application</h2>
             <div class="form-group">

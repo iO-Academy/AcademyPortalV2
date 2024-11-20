@@ -19,4 +19,5 @@ return function (App $app) {
     $app->get('/admin/cohorts', \Portal\Controllers\Pages\CohortsPageController::class);
     $app->get('/admin/applicant/add', \Portal\Controllers\Pages\AddApplicantPageController::class);
     $app->post('/admin/applicant/add', \Portal\Controllers\FormActions\AddApplicantActionController::class);
+    $app->post('/admin/application/add', \Portal\Controllers\FormActions\AddApplicationActionController::class);
 };
