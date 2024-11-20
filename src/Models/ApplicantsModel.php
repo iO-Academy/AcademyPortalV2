@@ -146,6 +146,7 @@ class ApplicantsModel
     }
 
 
+
     public function getAllCohorts()
     {
         $query = $this->db->prepare('SELECT `id`, `date` FROM `cohorts`');
