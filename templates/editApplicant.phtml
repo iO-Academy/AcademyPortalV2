@@ -23,7 +23,7 @@ $application = $applicant->getApplication();
 <main>
     <div class="container">
 
-        <form method="post" action="/admin/applicants/edit/<?= $applicant->getId()?>">
+        <form method="post" action="/admin/applicants/edit/<?= $applicant->getId() ?>">
             <h2>Personal Information</h2>
             <div class="form-group">
                 <label for="name">Name</label>
@@ -45,16 +45,12 @@ $application = $applicant->getApplication();
 
                     <label for="cohort_id">Cohort start date</label>
                     <select name="cohort_id" id="cohort_id">
+                        <option value="0" disabled>Not selected</option>
                         <?php
                         foreach ($cohorts as $cohort) {
-                            if ($cohort['date'] == $application->getCohort()) {
-                                $selected = 'selected';
-                                echo $selected;
-                            } else {
-                                $selected = "";
-                            }
+                            $selected = $cohort['date'] == $application->getCohort() ? 'selected' : '';
                             echo "<option value='{$cohort['id']}' {$selected}>{$cohort['date']}</option>";
-                        };
+                        }
                         ?>
                     </select>
 
@@ -63,14 +59,10 @@ $application = $applicant->getApplication();
 
                     <label for="circumstance">Circumstance</label>
                     <select name="circumstance_id" id="circumstance">
+                        <option value="0" disabled>Not selected</option>
                         <?php
                         foreach ($circumstances as $circumstance) {
-                            if ($circumstance['option'] == $application->getCircumstance()) {
-                                $selected = 'selected';
-                                echo $selected;
-                            } else {
-                                $selected = "";
-                            }
+                            $selected = $circumstance['option'] == $application->getCircumstance() ? 'selected' : '';
                             echo "<option value='{$circumstance['id']}' {$selected}>{$circumstance['option']}</option>";
                         };
                         ?>
@@ -81,28 +73,20 @@ $application = $applicant->getApplication();
 
                     <label for="heard_about">Heard about us from</label>
                     <select name="heard_about_id" id="heard_about">
+                        <option value="0" disabled>Not selected</option>
                         <?php
                         foreach ($hearAboutUs as $hear) {
-                            if ($hear['option'] == $application->getHearAbout()) {
-                                $selected = 'selected';
-                                echo $selected;
-                            } else {
-                                $selected = "";
-                            }
+                            $selected = ($hear['option'] == $application->getHearAbout()) ? 'selected' : '';
                             echo "<option value='{$hear['id']}' {$selected}>{$hear['option']}</option>";
                         };
                         ?>
                     </select>
                     <label for="fundingOptions">Funding Options</label>
                     <select name="funding_id" id="fundingOptions">
+                        <option value="0" disabled>Not selected</option>
                         <?php
                         foreach ($fundingOptions as $fundingOption) {
-                            if ($fundingOption['option'] == $application->getFunding()) {
-                                $selected = 'selected';
-                                echo $selected;
-                            } else {
-                                $selected = "";
-                            }
+                            $selected = ($fundingOption['option'] == $application->getFunding()) ? 'selected' : '';
                             echo "<option value='{$fundingOption['id']}' {$selected}>{$fundingOption['option']}</option>";
                         };
                         ?>
