@@ -8,7 +8,7 @@ use Portal\Services\ValidationService;
 class ApplicationValidator
 {
 
-    public static function validate(array $application, $field): bool
+    public static function validate(array $application, $fieldOptions): bool
     {
 
         StringValidator::validateLength($application['why'], 65535, 0, 'Why');
@@ -19,10 +19,10 @@ class ApplicationValidator
         NumericValidator::checkNumeric($application['funding_id'], "Funding ID");
         NumericValidator::checkNumeric($application['cohort_id'], "Cohort ID");
         NumericValidator::checkNumeric($application['heard_about_id'], "Heard About ID");
-        ValidationService::checkExists($application['circumstance_id'], $field->getAllCircumstances()[$application['circumstance_id'] - 1], "Circumstance ID");
-        ValidationService::checkExists($application['funding_id'], $field->getAllFundingOptions()[$application['funding_id'] - 1], "Funding ID");
-        ValidationService::checkExists($application['cohort_id'], $field->getAllCohorts()[$application['cohort_id'] - 1], "Cohort ID");
-        ValidationService::checkExists($application['heard_about_id'], $field->getAllHearAboutUs()[$application['heard_about_id'] - 1], "Heard About ID");
+        ValidationService::checkExists($application['circumstance_id'], $fieldOptions->getAllCircumstances()[$application['circumstance_id'] - 1], "Circumstance ID");
+        ValidationService::checkExists($application['funding_id'], $fieldOptions->getAllFundingOptions()[$application['funding_id'] - 1], "Funding ID");
+        ValidationService::checkExists($application['cohort_id'], $fieldOptions->getAllCohorts()[$application['cohort_id'] - 1], "Cohort ID");
+        ValidationService::checkExists($application['heard_about_id'], $fieldOptions->getAllHearAboutUs()[$application['heard_about_id'] - 1], "Heard About ID");
 
         return true;
     }
