@@ -133,6 +133,10 @@ form .form-group select{
   display: flex;
 }
 
+.bottom-margin-75{
+  margin-bottom: 75px;
+}
+
 .width-20{
   width: 20px;
 }
