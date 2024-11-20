@@ -12,10 +12,10 @@
 <main>
     <form method="post" action="/admin/applicant/add" class="container">
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name <span class="form-asterisk">*</span></label>
             <input type="text" id="name" name="name" required>
 
-            <label for="email">E-mail</label>
+            <label for="email">E-mail <span class="form-asterisk">*</span></label>
             <input type="email" id="email" name="email" required>
 
             <label for="why">Why would you like to become a developer?</label>
@@ -31,14 +31,14 @@
 
             <label for="circumstance_id">circumstance</label>
             <select name="circumstance_id" id="circumstance_id">
-                <?php foreach ($circumstances as $circumstanceOption): ?>
+                <?php foreach ($circumstanceOptions as $circumstanceOption): ?>
                     <option value="<?= $circumstanceOption['id']; ?>"><?= $circumstanceOption['option']; ?></option>
                 <?php endforeach; ?>
             </select>
 
             <label for="funding_id">Funding</label>
             <select name="funding_id" id="funding_id">
-                <?php foreach ($funding as $fundingOption): ?>
+                <?php foreach ($fundingOptions as $fundingOption): ?>
                     <option value="<?= $fundingOption['id']; ?>"><?= $fundingOption['option']; ?></option>
                 <?php endforeach; ?>
             </select>
@@ -61,7 +61,7 @@
 
             <label for="heard_about_id">Hear about us</label>
             <select name="heard_about_id" id="heard_about_id">
-                <?php foreach ($hearAboutUs as $hearAboutUsOption): ?>
+                <?php foreach ($hearAboutUsOptions as $hearAboutUsOption): ?>
                     <option value="<?= $hearAboutUsOption['id']; ?>"><?= $hearAboutUsOption['option']; ?></option>
                 <?php endforeach; ?>
             </select>

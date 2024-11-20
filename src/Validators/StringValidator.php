@@ -24,5 +24,4 @@ class StringValidator
         }
         return true;
     }
-
 }

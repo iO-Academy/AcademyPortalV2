@@ -99,19 +99,49 @@ class ApplicantsModel
 
     public function addApplicant($data)
     {
-        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
-            $addApplicantQuery->execute([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` 
+            (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
+        $addApplicantQuery->execute([
+        'name' => $data['name'],
+        'email' => $data['email'],
         ]);
-            $lastInsertId = $this->db->lastInsertId();
-            return $lastInsertId;
+        $lastInsertId = $this->db->lastInsertId();
+        return $lastInsertId;
     }
 
     public function addApplication($details, $applicantId)
     {
-        $addApplicationQuery = $this->db->prepare("INSERT INTO `applications` (`applicant_id`, `why`, `experience`, `diversitech`, `circumstance_id`, `funding_id`, `cohort_id`, `dob`, `phone`, `address`, `heard_about_id`, `age_confirmation`, `newsletter`, `eligible`, `terms`) 
-                VALUES (:applicant_id, :why, :experience, :diversitech, :circumstance_id, :funding_id, :cohort_id, :dob, :phone, :address, :heard_about_id, :age_confirmation, :newsletter, :eligible, :terms);");
+        $addApplicationQuery = $this->db->prepare("INSERT INTO `applications` 
+            (`applicant_id`,
+            `why`,
+            `experience`,
+            `diversitech`,
+            `circumstance_id`,
+            `funding_id`,
+            `cohort_id`,
+            `dob`,
+            `phone`,
+            `address`,
+            `heard_about_id`,
+            `age_confirmation`,
+            `newsletter`,
+            `eligible`, `terms`) 
+            VALUES 
+                (:applicant_id,
+                 :why,
+                 :experience,
+                 :diversitech,
+                 :circumstance_id,
+                 :funding_id,
+                 :cohort_id,
+                 :dob,
+                 :phone,
+                 :address,
+                 :heard_about_id,
+                 :age_confirmation,
+                 :newsletter,
+                 :eligible,
+                 :terms);");
         return $addApplicationQuery->execute([
             'applicant_id' => $applicantId,
             'why' => !empty($details['why']) ? $details['why'] : null,
@@ -132,7 +162,7 @@ class ApplicantsModel
         ]);
     }
 
-    public function getAllCircumstances()
+    public function getAllCircumstanceOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `circumstances`');
         $query->execute();
@@ -173,7 +203,7 @@ class ApplicantsModel
         }
     }
 
-    public function getAllHearAboutUs()
+    public function getAllHearAboutUsOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
         $query->execute();

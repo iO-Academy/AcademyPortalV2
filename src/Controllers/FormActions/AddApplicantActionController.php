@@ -22,7 +22,6 @@ class AddApplicantActionController extends Controller
         $this->model = $model;
         $this->authService = $authService;
     }
-
     public function __invoke(Request $request, Response $response): Response
     {
         if (!$this->authService->isLoggedIn()) {
@@ -33,12 +32,11 @@ class AddApplicantActionController extends Controller
 
         try {
             ApplicationValidator::validate($newApplicant, $this->model);
-
+            ApplicantValidator::validate($newApplicant);
 
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
-
 
         $id = $this->model->addApplicant($newApplicant);
         $this->model->addApplication($newApplicant, $id);

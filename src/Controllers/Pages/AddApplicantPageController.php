@@ -2,6 +2,7 @@
 
 namespace Portal\Controllers\Pages;
 
+use PharIo\Manifest\Application;
 use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
 use Portal\Services\AuthService;
@@ -20,6 +21,7 @@ class AddApplicantPageController extends Controller
         $this->view = $view;
         $this->authService = $authService;
         $this->model = $model;
+
     }
 
     public function __invoke(Request $request, Response $response, array $args = []): Response
@@ -28,18 +30,17 @@ class AddApplicantPageController extends Controller
             return $this->redirect($response, '/');
         }
 
-        $circumstances = $this->model->getAllCircumstances();
-        $funding = $this->model->getAllFundingOptions();
+        $circumstanceOptions = $this->model->getAllCircumstanceOptions();
+        $fundingOptions = $this->model->getAllFundingOptions();
         $cohorts = $this->model->getAllCohorts();
-        $hearAboutUs = $this->model->getAllHearAboutUs();
+        $hearAboutUsOptions = $this->model->getAllHearAboutUsOptions();
 
 
         return $this->view->render($response, "addApplicant.phtml", [
-            'circumstances' => $circumstances,
-            'funding' => $funding,
+            'circumstances' => $circumstanceOptions,
+            'funding' => $fundingOptions,
             'cohorts' => $cohorts,
-            'hearAboutUs' => $hearAboutUs
+            'hearAboutUs' => $hearAboutUsOptions
         ]);
     }
-
 }
