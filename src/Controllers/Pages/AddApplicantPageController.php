@@ -23,7 +23,7 @@ class AddApplicantPageController extends Controller
         AuthService $authService,
         ApplicantsModel $applicantsModel,
         CohortsModel $cohortsModel
-    ){
+    ) {
         $this->view = $view;
         $this->authService = $authService;
         $this->applicantsModel = $applicantsModel;
