@@ -49,14 +49,13 @@ class EditApplicantActionController extends Controller
         }
 
         try {
-            $applicantId = $this->applicantsModel->editApplicant($changedApplicant);
-            if ($hasApplication && $applicantId) {
-                $this->applicantsModel->editApplication($changedApplicant, $applicantId);
+            $this->applicantsModel->editApplicant($changedApplicant);
+            if ($hasApplication) {
+                $this->applicantsModel->editApplication($changedApplicant);
             }
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
-
 
         return $response->withHeader('Location', '/admin/applicants')->withStatus(301);
     }
