@@ -2,7 +2,6 @@
 
 namespace Portal\Validators;
 
-
 use InvalidArgumentException;
 use Portal\Models\ApplicantsModel;
 use Portal\Models\CohortsModel;
@@ -10,7 +9,11 @@ use Portal\Services\ValidationService;
 
 class ApplicationValidator
 {
-    public static function validate(array $application, ApplicantsModel $applicantsModel, CohortsModel $cohortsModel): array
+    public static function validate(
+        array $application,
+        ApplicantsModel $applicantsModel,
+        CohortsModel $cohortsModel
+    ): array
     {
         $newApplication = [];
 

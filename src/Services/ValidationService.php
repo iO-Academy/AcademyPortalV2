@@ -11,40 +11,56 @@ class ValidationService
     public static function checkCircumstanceOptionExists($id, ApplicantsModel $model, $fieldName): bool
     {
         $result = $model->getAllCircumstanceOptions();
-        $result = array_map(function($item) {return $item['id']; }, $result);
+        $result = array_map(function ($item) {
+            return $item['id'];
+        }, $result);
+
         if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
+
         return true;
     }
 
     public static function checkFundingOptionExists($id, ApplicantsModel $model, $fieldName): bool
     {
         $result = $model->getAllFundingOptions();
-        $result = array_map(function($item) {return $item['id']; }, $result);
+        $result = array_map(function ($item) {
+            return $item['id'];
+        }, $result);
+
         if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
+
         return true;
     }
 
     public static function checkCohortOptionExists($id, CohortsModel $model, $fieldName): bool
     {
         $result = $model->getAll();
-        $result = array_map(function($item) {return $item->getId(); }, $result);
+        $result = array_map(function ($item) {
+            return $item->getId();
+        }, $result);
+
         if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
+
         return true;
     }
 
     public static function checkHeardAboutOptionExists($id, ApplicantsModel $model, $fieldName): bool
     {
         $result = $model->getAllHearAboutUsOptions();
-        $result = array_map(function($item) {return $item['id']; }, $result);
+        $result = array_map(function ($item) {
+            return $item['id'];
+        }, $result);
+
         if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }
+
         return true;
     }
 }

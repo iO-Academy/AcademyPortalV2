@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Validators;
 
 use Portal\Validators\ApplicationValidator;
@@ -62,7 +63,7 @@ class ApplicationValidatorTest extends TestCase
             'eligible' => 1,
             'terms' => 1,
             'phone' => ''
-        ]);   
+        ]);
     }
 
     public function testWhyFieldExceedsMaxLength(): void
