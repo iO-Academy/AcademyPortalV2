@@ -9,8 +9,6 @@ use Portal\Models\CohortsModel;
 use Portal\Services\AuthService;
 use Portal\Validators\ApplicantValidator;
 use Portal\Validators\ApplicationValidator;
-use Portal\Validators\PhoneValidator;
-use Portal\ValueObjects\EmailAddress;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
