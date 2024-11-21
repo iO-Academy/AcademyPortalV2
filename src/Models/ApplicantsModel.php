@@ -134,7 +134,7 @@ class ApplicantsModel
             'id' => $details['id'],
             'why' => !empty($details['why']) ? $details['why'] : null,
             'experience' => !empty($details['experience']) ? $details['experience'] : null,
-            'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : null,
+            'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : 0,
             'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
             'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
             'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
@@ -142,10 +142,10 @@ class ApplicantsModel
             'phone' => !empty($details['phone']) ? $details['phone'] : null,
             'address' => !empty($details['address']) ? $details['address'] : null,
             'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
-            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : null,
-            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : null,
-            'eligible' => !empty($details['eligible']) ? $details['eligible'] : null,
-            'terms' => !empty($details['terms']) ? $details['terms'] : null
+            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : 0,
+            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : 0,
+            'eligible' => !empty($details['eligible']) ? $details['eligible'] : 0,
+            'terms' => !empty($details['terms']) ? $details['terms'] : 0
         ]);
     }
 
