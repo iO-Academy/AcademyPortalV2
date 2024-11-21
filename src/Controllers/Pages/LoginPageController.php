@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 
-class LoginPageController extends Controller
+class git cLoginPageController extends Controller
 {
     private PhpRenderer $renderer;
     private AuthService $authService;
