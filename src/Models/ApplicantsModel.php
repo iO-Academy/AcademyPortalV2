@@ -173,7 +173,10 @@ class ApplicantsModel
 
     public function editApplicant($details)
     {
-        $queryEditApplicant = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
+        $queryEditApplicant = $this->db->prepare("UPDATE `applicants` 
+            SET `name` = :name,
+                `email` = :email 
+            WHERE `id` = :id;");
         $queryEditApplicant->execute([
             'id' => $details['id'],
             'name' => $details['name'],
