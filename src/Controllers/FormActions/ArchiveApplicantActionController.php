@@ -16,8 +16,12 @@ class ArchiveApplicantActionController
 
     public function __invoke($request, $response, $args)
     {
+
+        if (!$this->applicant->isLoggedIn()) {
+            return $this->redirect($response, '/');
+        }
         $applicantId = $args['id'];
         $this->model->archiveApplicant($applicantId);
-        return $response->withHeader('location', '/admin/applicants')->withStatus(301);
+        return $response->withHeader('location', '/admin/archive')->withStatus(301);
     }
 }

@@ -1,0 +1,72 @@
+<?php
+/**
+ * @var $applicants \Portal\Entities\Applicant[]
+ * @var $previousPage int
+ * @var $nextPage int
+ * @var $pageCount int
+ * @var $currentPage int
+ */
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+    require 'partials/layout/head.phtml';
+    ?>
+    <title>Archived Applicants</title>
+</head>
+<body>
+<?php require 'partials/layout/header.phtml'; ?>
+<?php require 'partials/layout/nav.phtml'; ?>
+<main>
+    <div class="container">
+        <div class="applicant-header-container">
+            <h1>Archived Applicants</h1>
+<!--            <a href="applicant/add">Add applicant</a>-->
+        </div>
+
+        <?php if (count($applicants) === 0): ?>
+            No applicants found
+        <?php else: ?>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Application Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($applicants as $applicant): ?>
+                    <tr>
+                        <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a></td>
+                        <td><?php echo $applicant->getEmail(); ?></td>
+                        <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
+                        <td><a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="edit-button">EDIT</a>
+                            <form action="/admin/applicants/archive/<?= $applicant->getId()?>" method="post">
+                                <input type="submit" class="archive-button" value="Archive"></form></td>
+                        <!--                        <a href="/admin/applicants/archive/--><?php //= $applicant->getId() ?><!--" class="archive-button">ARCHIVE</a></td>-->
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+
+        <div class="pagination">
+            <a href="?page=<?= $previousPage; ?>" class="prev <?php if ($previousPage === 0) echo 'disabled' ?>">Previous</a>
+            <?php
+            for ($i = 1; $i <= $pageCount; $i++) {
+                if ($i == $currentPage) {
+                    echo "<a href='?page=$i' class='active'>$i</a>";
+                } else {
+                    echo "<a href='?page=$i'>$i</a>";
+                }
+            }
+            ?>
+            <a href="?page=<?= $nextPage; ?>" class="next <?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

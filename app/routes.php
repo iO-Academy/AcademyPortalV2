@@ -19,5 +19,6 @@ return function (App $app) {
     $app->get('/admin/applicant/add', \Portal\Controllers\Pages\AddApplicantPageController::class);
     $app->post('/admin/applicant/add', \Portal\Controllers\FormActions\AddApplicantActionController::class);
     $app->get('/admin/applicants/edit/{id}', \Portal\Controllers\Pages\EditApplicationPopulateDataController::class);
-    $app->post('/admin/applicants/archive/{id}', \Portal\Controllers\FormActions\ArchiveApplicantActionController::class);
+    $app->get('/admin/archive/{id}', \Portal\Controllers\FormActions\ArchiveApplicantActionController::class);
+    $app->post('/admin/archive/{id}', \Portal\Controllers\FormActions\ArchiveApplicantActionController::class);
 };
