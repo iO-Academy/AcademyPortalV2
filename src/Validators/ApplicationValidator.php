@@ -19,7 +19,7 @@ class ApplicationValidator
         $requiredFields = [
             'why', 'experience', 'circumstance_id',
             'funding_id', 'cohort_id', 'dob', 'phone', 'address', 'heard_about_id',
-            'age_confirmation', 'newsletter', 'eligible', 'terms'
+            'age_confirmation', 'eligible', 'terms'
         ];
 
         foreach ($requiredFields as $field) {
@@ -93,10 +93,15 @@ class ApplicationValidator
             $newApplication['age_confirmation'],
             "Age confirmation"
         );
-        NumericValidator::checkNumeric(
-            $newApplication['newsletter'],
-            "Newsletter"
-        );
+        if (isset($application['newsletter'])) {
+            $newApplication['newsletter'] = $application['newsletter'];
+            NumericValidator::checkNumeric(
+                $newApplication['newsletter'],
+                'newsletter'
+            );
+        } else {
+            $newApplication['newsletter'] = 0;
+        }
         NumericValidator::checkNumeric(
             $newApplication['eligible'],
             "Eligible"
