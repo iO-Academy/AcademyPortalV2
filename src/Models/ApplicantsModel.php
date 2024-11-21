@@ -59,6 +59,7 @@ class ApplicantsModel
                                             `applicants`.`name`, 
                                             `applicants`.`email`, 
                                             `applicants`.`application_date`,
+                                            `applicants`.`archived`,
                                             `applications`.`id` AS 'application_id',
                                             `applications`.`why`,
                                             `applications`.`experience`,

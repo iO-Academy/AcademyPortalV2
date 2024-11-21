@@ -10,6 +10,8 @@ class Applicant
     private string $name;
     private EmailAddress $email;
     private string $application_date;
+
+    private int $archived;
     private ?Application $application;
 
 
@@ -18,6 +20,7 @@ class Applicant
         string       $name,
         EmailAddress $email,
         string       $application_date,
+        int          $archived,
 
         ?Application $application = null
 
@@ -27,6 +30,7 @@ class Applicant
         $this->name = $name;
         $this->email = $email;
         $this->application_date = $application_date;
+        $this->archived = $archived;
         $this->application = $application;
 
 
@@ -50,6 +54,11 @@ class Applicant
     public function getApplicationDate(): string
     {
         return $this->application_date;
+    }
+
+    public function getArchived(): string
+    {
+        return $this->archived;
     }
 
     public function getFormattedApplicationDate(): string

@@ -24,6 +24,11 @@ $application = $applicant->getApplication();
         </div>
 
         <section class="details">
+            <?php
+            if($applicant->getArchived()){
+                echo "<p class='archived'>Archived</p>";
+            }
+            ?>
             <h2>Personal Information</h2>
             <p><span>Name:</span> <?= $applicant->getName() ?></p>
             <p><span>Email:</span> <?= $applicant->getEmail() ?></p>

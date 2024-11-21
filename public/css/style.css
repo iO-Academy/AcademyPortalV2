@@ -271,6 +271,11 @@ table thead {
   color: #337ab7;
 }
 
+.archived {
+  color: #FF0000;
+  font-size: 2rem;
+}
+
 @media screen and (max-width: 768px) {
   header {
     flex-direction: column-reverse;
