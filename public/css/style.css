@@ -10,13 +10,11 @@
 }
 
 .applicant-header-container{
-  width: 300px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+align-items: center;
 }
-
-
 
 .applicant-header-container a {
   border: 1px solid #dddddd;
@@ -101,6 +99,16 @@ nav a:first-child {
   align-items: center;
 }
 
+.editContainer{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-asterisk {
+  color: #ea1818;
+  font-size: 18px;
+}
+
 form .form-group {
   margin-bottom: 10px;
 }
@@ -114,6 +122,7 @@ form .form-group label {
 form .form-group input{
   width: 100%;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 form .form-group textarea{
@@ -125,6 +134,14 @@ form .form-group select{
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
+}
+
+.flex{
+  display: flex;
+}
+
+.bottom-margin-75{
+  margin-bottom: 75px;
 }
 
 .width-20{
@@ -208,10 +225,6 @@ table thead {
 
 .single-applicant .details p span {
   font-weight: bold;
-}
-
-.applicationInfo {
-
 }
 
 .login {

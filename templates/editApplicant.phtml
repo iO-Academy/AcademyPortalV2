@@ -21,8 +21,7 @@ $application = $applicant->getApplication();
 <?php require 'partials/layout/header.phtml'; ?>
 <?php require 'partials/layout/nav.phtml'; ?>
 <main>
-    <div class="container">
-
+    <div class="editContainer">
         <form method="post" action="/admin/applicants/edit/<?= $applicant->getId() ?>">
             <h2>Personal Information</h2>
             <div class="form-group">
@@ -129,7 +128,7 @@ $application = $applicant->getApplication();
                            value='1' <?php if ($application->getEligible()) echo "checked" ?>>
                 </div>
             </div>
-            <input type="submit" value="SUBMIT">
+            <input class="btn btn-width" type="submit" value="SUBMIT">
         </form>
     </div>
 </main>
