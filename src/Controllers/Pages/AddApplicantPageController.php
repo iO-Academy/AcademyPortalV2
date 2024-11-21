@@ -36,6 +36,8 @@ class AddApplicantPageController extends Controller
             return $this->redirect($response, '/');
         }
 
+        $query = $request->getQueryParams();
+
         $circumstanceOptions = $this->applicantsModel->getAllCircumstanceOptions();
         $fundingOptions = $this->applicantsModel->getAllFundingOptions();
         $cohorts = $this->cohortsModel->getAll();
@@ -45,7 +47,8 @@ class AddApplicantPageController extends Controller
             'circumstances' => $circumstanceOptions,
             'funding' => $fundingOptions,
             'cohorts' => $cohorts,
-            'hearAboutUs' => $hearAboutUsOptions
+            'hearAboutUs' => $hearAboutUsOptions,
+            'error' => $query['error'] ?? null
         ]);
     }
 }
