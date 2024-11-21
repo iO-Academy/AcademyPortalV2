@@ -45,7 +45,8 @@ class AddApplicantPageController extends Controller
             'circumstances' => $circumstanceOptions,
             'funding' => $fundingOptions,
             'cohorts' => $cohorts,
-            'hearAboutUs' => $hearAboutUsOptions
+            'hearAboutUs' => $hearAboutUsOptions,
+            'error' => $query['error'] ?? null
         ]);
     }
 }

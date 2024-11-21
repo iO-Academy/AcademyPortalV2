@@ -10,6 +10,11 @@
 <?php require 'partials/layout/header.phtml'; ?>
 <?php require 'partials/layout/nav.phtml'; ?>
 <main>
+    <?php
+    if ($error) {
+        echo "<div class='error-text invalid-login'>$error</div>";
+    }
+    ?>
     <form method="post" action="/admin/applicant/add" class="container">
         <h1>Add an Applicant</h1>
         <h2>Applicant</h2>
