@@ -2,22 +2,36 @@
 
 namespace Portal\Controllers\FormActions;
 
+use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
+use Portal\Services\AuthService;
+use Psr\Http\Message\ResponseInterface as Response;
 
-class ArchiveApplicantActionController
+
+class ArchiveApplicantActionController extends Controller
 {
 
     private $model;
 
-    public function __construct(ApplicantsModel $model)
+    private $authService;
+
+    public function __construct(ApplicantsModel $model, AuthService $authService)
     {
         $this->model = $model;
+        $this->authService = $authService;
     }
 
-    public function __invoke($request, $response, $args)
+    public function __invoke($request, $response): Response
     {
-        $applicantId = $args['id'];
-        $this->model->archiveApplicant($applicantId);
+
+        if (!$this->authService->isLoggedIn()) {
+            return $this->redirect($response, '/');
+        }
+
+
+
+
+
         return $response->withHeader('location', '/admin/applicants')->withStatus(301);
     }
 }
