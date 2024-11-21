@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use App\Controllers\CoursesAPIController;
 use App\Controllers\ArchivePageController;
+use App\Controllers\ArchiveApplicantActionController;
 use Slim\App;
 
 return function (App $app) {
@@ -22,4 +23,5 @@ return function (App $app) {
     $app->get('/admin/applicants/edit/{id}', \Portal\Controllers\Pages\EditApplicationController::class);
     $app->post('/admin/applicants/edit/{id}', \Portal\Controllers\FormActions\EditApplicantActionController::class);
     $app->get('/admin/archive', \Portal\Controllers\Pages\ArchivePageController::class);
+    $app->post('/admin/applicants/archive/{id}', \Portal\Controllers\FormActions\ArchiveApplicantActionController::class);
 };
