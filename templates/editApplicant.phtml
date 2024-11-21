@@ -24,75 +24,84 @@ $application = $applicant->getApplication();
     <div class="editContainer">
         <form method="post" action="/admin/applicants/edit/<?= $applicant->getId() ?>">
             <h2>Personal Information</h2>
-            <div class="form-group">
+            <div class="edit-form-group">
                 <label for="name">Name</label>
                 <input id="name" name="name" value="<?= $applicant->getName() ?>">
-                <label for="dob">D.O.B</label>
-                <input type="date" id="dob" name="dob" value="<?= $application->getDob() ?>">
-                <label for="address">Address</label>
-                <input id="address" name="address" value="<?= $application->getAddress() ?>">
+
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="<?= $applicant->getEmail() ?>">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone"
-                       value="<?php if ($application): ?><?= $application->getPhone() ?><?php else: ?>No phone number<?php endif; ?>">
-                <section class="appInfo">
+
             </div>
+            <?php if ($application): ?>
             <h2>Application Info</h2>
             <div class="applicationInfo">
-                <div class="form-group">
-
+                <div class="edit-form-group">
                     <label for="cohort_id">Cohort start date</label>
-                    <select name="cohort_id" id="cohort_id">
-                        <option value="0" disabled>Not selected</option>
-                        <?php
-                        foreach ($cohorts as $cohort) {
-                            $selected = $cohort['date'] == $application->getCohort() ? 'selected' : '';
-                            echo "<option value='{$cohort['id']}' {$selected}>{$cohort['date']}</option>";
-                        }
-                        ?>
-                    </select>
+                    <div>
+                        <select name="cohort_id" id="cohort_id">
+                            <option value="0" disabled>Not selected</option>
+                            <?php
+                            foreach ($cohorts as $cohort) {
+                                $selected = $cohort['date'] == $application->getCohort() ? 'selected' : '';
+                                echo "<option value='{$cohort['id']}' {$selected}>{$cohort['date']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <label for="dob">D.O.B</label>
+                    <input type="date" id="dob" name="dob" value="<?= $application->getDob() ?>">
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone"
+                           value="<?php if ($application): ?><?= $application->getPhone() ?><?php else: ?>No phone number<?php endif; ?>">
+                    <section class="appInfo">
+                        <label for="address">Address</label>
+                        <input id="address" name="address" value="<?= $application->getAddress() ?>">
+                        <div>
+                            <label for="why">Application Reason</label>
+                            <input id="why" name="why" value="<?= $application->getWhy() ?>">
+                        </div>
+                        <label for="circumstance">Circumstance</label>
+                        <div>
+                            <select name="circumstance_id" id="circumstance">
+                                <option value="0" disabled>Not selected</option>
+                                <?php
+                                foreach ($circumstances as $circumstance) {
+                                    $selected = $circumstance['option'] == $application->getCircumstance() ? 'selected' : '';
+                                    echo "<option value='{$circumstance['id']}' {$selected}>{$circumstance['option']}</option>";
+                                };
+                                ?>
+                            </select>
+                        </div>
+                        <label for="experience">Code experience</label>
+                        <input id="experience" name="experience" value="<?= $application->getExperience() ?>">
 
-                    <label for="why">Application Reason</label>
-                    <input id="why" name="why" value="<?= $application->getWhy() ?>">
-
-                    <label for="circumstance">Circumstance</label>
-                    <select name="circumstance_id" id="circumstance">
-                        <option value="0" disabled>Not selected</option>
-                        <?php
-                        foreach ($circumstances as $circumstance) {
-                            $selected = $circumstance['option'] == $application->getCircumstance() ? 'selected' : '';
-                            echo "<option value='{$circumstance['id']}' {$selected}>{$circumstance['option']}</option>";
-                        };
-                        ?>
-                    </select>
-
-                    <label for="experience">Code experience</label>
-                    <input id="experience" name="experience" value="<?= $application->getExperience() ?>">
-
-                    <label for="heard_about">Heard about us from</label>
-                    <select name="heard_about_id" id="heard_about">
-                        <option value="0" disabled>Not selected</option>
-                        <?php
-                        foreach ($hearAboutUs as $hear) {
-                            $selected = ($hear['option'] == $application->getHearAbout()) ? 'selected' : '';
-                            echo "<option value='{$hear['id']}' {$selected}>{$hear['option']}</option>";
-                        };
-                        ?>
-                    </select>
-                    <label for="fundingOptions">Funding Options</label>
-                    <select name="funding_id" id="fundingOptions">
-                        <option value="0" disabled>Not selected</option>
-                        <?php
-                        foreach ($fundingOptions as $fundingOption) {
-                            $selected = ($fundingOption['option'] == $application->getFunding()) ? 'selected' : '';
-                            echo "<option value='{$fundingOption['id']}' {$selected}>{$fundingOption['option']}</option>";
-                        };
-                        ?>
-                    </select>
+                        <label for="heard_about">Heard about us from</label>
+                        <div>
+                            <select name="heard_about_id" id="heard_about">
+                                <option value="0" disabled>Not selected</option>
+                                <?php
+                                foreach ($hearAboutUs as $hear) {
+                                    $selected = ($hear['option'] == $application->getHearAbout()) ? 'selected' : '';
+                                    echo "<option value='{$hear['id']}' {$selected}>{$hear['option']}</option>";
+                                };
+                                ?>
+                            </select>
+                        </div>
+                        <label for="fundingOptions">Funding Options</label>
+                        <div>
+                            <select name="funding_id" id="fundingOptions">
+                                <option value="0" disabled>Not selected</option>
+                                <?php
+                                foreach ($fundingOptions as $fundingOption) {
+                                    $selected = ($fundingOption['option'] == $application->getFunding()) ? 'selected' : '';
+                                    echo "<option value='{$fundingOption['id']}' {$selected}>{$fundingOption['option']}</option>";
+                                };
+                                ?>
+                            </select>
+                        </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="edit-form-group">
                 <Label for="terms">Agreed to terms</Label>
                 <div class="width-20">
                     <input id="terms" name="terms" type="checkbox"
@@ -100,28 +109,28 @@ $application = $applicant->getApplication();
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="edit-form-group">
                 <Label for="diversitech">Diversitech Qualification</Label>
                 <div class="width-20">
                     <input id="diversitech" name="diversitech" type="checkbox"
                            value='1' <?php if ($application->getDiversitech()) echo "checked" ?>>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="edit-form-group">
                 <Label for="ageConfirmation">Over 18</Label>
                 <div class="width-20">
                     <input id="ageConfirmation" name="age_confirmation" type="checkbox"
                            value='1' <?php if ($application->getAgeConfirmation()) echo "checked" ?>>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="edit-form-group">
                 <Label for="newsletter">Newsletter signup</Label>
                 <div class="width-20">
                     <input id="newsletter" name="newsletter" type="checkbox"
                            value='1' <?php if ($application->getNewsletter()) echo "checked" ?>>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="edit-form-group">
                 <Label for="eligible">Eligible to work in UK</Label>
                 <div class="width-20">
                     <input id="eligible" name="eligible" type="checkbox"
@@ -131,6 +140,9 @@ $application = $applicant->getApplication();
             <input class="btn btn-width" type="submit" value="SUBMIT">
         </form>
     </div>
+    <?php else: ?>
+        <p>No application data found</p>
+    <?php endif; ?>
 </main>
 </body>
 </html>
