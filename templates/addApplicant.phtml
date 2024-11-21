@@ -11,7 +11,7 @@
 <?php require 'partials/layout/nav.phtml'; ?>
 <main>
     <form method="post" action="/admin/applicant/add" class="container">
-        <h1>Add Applicant</h1>
+        <h1>Add an Applicant</h1>
         <h2>Applicant</h2>
         <div class="form-group">
             <div class="form-group">
@@ -27,19 +27,19 @@
             </div>
             <h2>Application</h2>
             <div class="form-group">
-                <label for="why">Why would you like to become a developer?</label>
+                <label for="why">Why do you want to become a developer?</label>
                 <textarea id="why" name="why"></textarea>
             </div>
             <div class="form-group">
-                <label for="experience">Experience</label>
+                <label for="experience">Any past coding experience?</label>
                 <textarea id="experience" name="experience"></textarea>
             </div>
             <div class="form-group flex">
                 <input id="diversitech" name="diversitech" type="checkbox" value='1'>
-                <label for="diversitech">I confirm I am Diversitech qualified.</label>
+                <label for="diversitech">Apply for Diversitech funding</label>
             </div>
             <div class="form-group">
-                <label for="circumstance_id">circumstance</label>
+                <label for="circumstance_id">What best describes your circumstances?</label>
                 <select name="circumstance_id" id="circumstance_id">
                     <option value="0">Select option</option>
                     <?php foreach ($circumstances as $circumstanceOption): ?>
@@ -48,7 +48,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="funding_id">Funding</label>
+                <label for="funding_id">How would you like to fund your place?</label>
                 <select name="funding_id" id="funding_id">
                     <option value="0">Select option</option>
                     <?php foreach ($funding as $fundingOption): ?>
@@ -57,7 +57,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="cohort_id">Cohort start date</label>
+                <label for="cohort_id">When would you like to start your course?</label>
                 <select name="cohort_id" id="cohort_id">
                     <option value="0">Select option</option>
                     <?php foreach ($cohorts as $cohort): ?>
@@ -70,15 +70,15 @@
                 <input type="date" id="dob" name="dob">
             </div>
             <div class="form-group">
-                <label for="phone">Telephone number</label>
+                <label for="phone">Phone number</label>
                 <input type="tel" id="phone" name="phone">
             </div>
             <div class="form-group">
-                <label for="address">Address:</label>
+                <label for="address">Address</label>
                 <textarea id="address" name="address"></textarea>
             </div>
             <div class="form-group">
-                <label for="heard_about_id">Hear about us</label>
+                <label for="heard_about_id">How did you hear about us?</label>
                 <select name="heard_about_id" id="heard_about_id">
                     <option value="0">Select option</option>
                     <?php foreach ($hearAboutUs as $hearAboutUsOption): ?>
@@ -88,19 +88,19 @@
             </div>
             <div class="form-group flex">
                 <input id="age_confirmation" name="age_confirmation" type="checkbox" value='1'>
-                <label for="age_confirmation">I confirm I will be at least 18 years before my chosen cohort.</label>
+                <label for="age_confirmation">I will be at least 18 years of age before my chosen course start date</label>
             </div>
             <div class="form-group flex">
                 <input id="newsletter" name="newsletter" type="checkbox" value='1'>
-                <Label for="newsletter">I confirm I would like to subscribe to the newsletter.</Label>
+                <Label for="newsletter">I would like to receive email updates from iO Academy</Label>
             </div>
             <div class="form-group flex">
                 <input id="eligible" name="eligible" type="checkbox" value='1'>
-                <Label for="eligible">I confirm I am eligible to study in the UK.</Label>
+                <Label for="eligible">I am eligible to live and work in the UK</Label>
             </div>
             <div class="form-group flex">
                 <input id="terms width-20" name="terms" type="checkbox" value='1'>
-                <Label for="terms">T&C's read and agreed.</Label>
+                <Label for="terms">I accept the terms and conditions</Label>
             </div>
             <div class="btn-width">
                 <input class="btn" type="submit" value="Submit Applicant & Application">
