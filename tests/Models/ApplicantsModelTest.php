@@ -13,5 +13,4 @@ class ApplicantsModelTest extends TestCase
         $case = new ApplicantsModel($db);
         $this->assertInstanceOf(ApplicantsModel::class, $case);
     }
-
 }
