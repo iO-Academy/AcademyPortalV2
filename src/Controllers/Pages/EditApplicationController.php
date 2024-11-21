@@ -2,11 +2,12 @@
 
 namespace Portal\Controllers\Pages;
 
+use Portal\Controllers\Controller;
 use Portal\Entities\Application;
 use Portal\Models\ApplicantsModel;
 use Slim\Views\PhpRenderer;
 
-class EditApplicationController
+class EditApplicationController extends Controller
 {
     private $model;
     private $view;
@@ -17,7 +18,7 @@ class EditApplicationController
         $this->view = $view;
     }
 
-    public function __invoke($request, $response, $args)
+    public function __invoke($request, $response)
     {
         $id = $args['id'];
         $cohorts = $this->model->getAllCohorts();
