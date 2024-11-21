@@ -38,7 +38,7 @@ class EditApplicantActionController extends Controller
         try {
             $changedApplicant = ApplicantValidator::validate($input);
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
         }
 
         try {
@@ -54,7 +54,7 @@ class EditApplicantActionController extends Controller
                 $this->applicantsModel->editApplication($changedApplicant);
             }
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
         }
 
         return $response->withHeader('Location', '/admin/applicants')->withStatus(301);
