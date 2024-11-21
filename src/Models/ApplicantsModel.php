@@ -152,19 +152,50 @@ class ApplicantsModel
 
     public function addApplicant($data)
     {
-        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
-            $addApplicantQuery->execute([
+        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` 
+            (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
+        $addApplicantQuery->execute([
             'name' => $data['name'],
             'email' => $data['email'],
         ]);
-            $lastInsertId = $this->db->lastInsertId();
-            return $lastInsertId;
+        $lastInsertId = $this->db->lastInsertId();
+        return $lastInsertId;
     }
 
     public function addApplication($details, $applicantId)
     {
-        $addApplicationQuery = $this->db->prepare("INSERT INTO `applications` (`applicant_id`, `why`, `experience`, `diversitech`, `circumstance_id`, `funding_id`, `cohort_id`, `dob`, `phone`, `address`, `heard_about_id`, `age_confirmation`, `newsletter`, `eligible`, `terms`) 
-                VALUES (:applicant_id, :why, :experience, :diversitech, :circumstance_id, :funding_id, :cohort_id, :dob, :phone, :address, :heard_about_id, :age_confirmation, :newsletter, :eligible, :terms);");
+        $addApplicationQuery = $this->db->prepare('
+            INSERT INTO `applications` 
+                        (`applicant_id`,
+                        `why`,
+                        `experience`,
+                        `diversitech`,
+                        `circumstance_id`,
+                        `funding_id`,
+                        `cohort_id`,
+                        `dob`,
+                        `phone`,
+                        `address`,
+                        `heard_about_id`,
+                        `age_confirmation`,
+                        `newsletter`,
+                        `eligible`, `terms`) 
+                        VALUES 
+                            (:applicant_id,
+                             :why,
+                             :experience,
+                             :diversitech,
+                             :circumstance_id,
+                             :funding_id,
+                             :cohort_id,
+                             :dob,
+                             :phone,
+                             :address,
+                             :heard_about_id,
+                             :age_confirmation,
+                             :newsletter,
+                             :eligible,
+                             :terms);');
         return $addApplicationQuery->execute([
             'applicant_id' => $applicantId,
             'why' => $details['why'],
@@ -184,23 +215,9 @@ class ApplicantsModel
         ]);
     }
 
-    public function getAllCircumstances()
+    public function getAllCircumstanceOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `circumstances`');
-        $query->execute();
-        $data = $query->fetchAll();
-
-        if (!$data) {
-            return false;
-        } else {
-            return $data;
-        }
-    }
-
-
-    public function getAllCohorts()
-    {
-        $query = $this->db->prepare('SELECT `id`, `date` FROM `cohorts`');
         $query->execute();
         $data = $query->fetchAll();
 
@@ -224,7 +241,7 @@ class ApplicantsModel
         }
     }
 
-    public function getAllHearAboutUs()
+    public function getAllHearAboutUsOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
         $query->execute();
@@ -241,5 +258,27 @@ class ApplicantsModel
     {
     $query = $this->db->prepare('UPDATE `applicants` SET `archived` = 1 WHERE `id` = :id');
     $query->execute(['id' => $applicantId]);
+    }
+
+    public function getAllArchived(int $page = 1): array
+    {
+        $perPage = 20;
+        $start = ($page - 1) * $perPage;
+
+        $query = $this->db->prepare('SELECT `id`, `name`, `email`, `application_date`, `archived` 
+                                            FROM `applicants` 
+                                            WHERE `archived` = 1
+                                            LIMIT ' . (int)$start . ', ' . (int)$perPage);
+        $query->execute();
+
+        $data = $query->fetchAll();
+
+        $applicants = [];
+
+        foreach ($data as $applicant) {
+            $applicants[] = ApplicantHydrator::hydrateSingle($applicant);
+        }
+
+        return $applicants;
     }
 }

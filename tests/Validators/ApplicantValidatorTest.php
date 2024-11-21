@@ -25,7 +25,8 @@ class ApplicantValidatorTest extends TestCase
     {
         $this->expectException(\Exception::class);
         ApplicantValidator::validate([
-            'name' => 'testingggggggggggggg testingggggggggggggg testingggggggggggggg testingggggggggggggg testingggggggggggggg',
+            'name' => 'testingggggggggggggg testingggggggggggggg 
+            testingggggggggggggg testingggggggggggggg testingggggggggggggg',
             'email' => 'test@test.com'
         ]);
     }
@@ -39,4 +40,14 @@ class ApplicantValidatorTest extends TestCase
         ]);
     }
 
+    public function testValidateInvalidEmailLength(): void
+    {
+
+        $this->expectException(\Exception::class);
+        ApplicantValidator::validate([
+            'name' => 'name',
+            'email' => 'thisisacrazyloooooooooooooooooooooooooooooooooooooooooooooo
+            ooooooooooooooooooooooooooooooooooooongemail@email.com'
+        ]);
+    }
 }
