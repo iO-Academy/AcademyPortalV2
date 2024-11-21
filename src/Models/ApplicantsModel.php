@@ -105,15 +105,19 @@ class ApplicantsModel
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
 
-    public function editApplicant($details){
-        $query1 = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
-        $query1->execute([
-            'id' => $details['id'],
-            'name' => $details['name'],
-            'email' => $details['email']
+    public function editApplicant($data)
+    {
+        $queryEditApplicant = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
+        $queryEditApplicant->execute([
+            'id' => $data['id'],
+            'name' => $data['name'],
+            'email' => $data['email']
         ]);
+    }
 
-        $query2 = $this->db->prepare("UPDATE `applications`
+    public function editApplication($details)
+    {
+        $queryEditApplication = $this->db->prepare("UPDATE `applications`
         SET `why` = :why,
             `experience` = :experience,
             `diversitech` = :diversitech,
@@ -130,7 +134,7 @@ class ApplicantsModel
             `terms` = :terms
             WHERE `applicant_id` = :id");
 
-        $query2->execute([
+        $queryEditApplication->execute([
             'id' => $details['id'],
             'why' => $details['why'],
             'experience' => $details['experience'],
@@ -148,6 +152,8 @@ class ApplicantsModel
             'terms' => $details['terms']
         ]);
     }
+
+
 
     public function addApplicant($data)
     {
