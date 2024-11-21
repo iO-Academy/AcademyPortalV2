@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use App\Controllers\CoursesAPIController;
+use App\Controllers\ArchivePageController;
 use Slim\App;
 
 return function (App $app) {
@@ -18,10 +19,7 @@ return function (App $app) {
     $app->get('/admin/cohorts', \Portal\Controllers\Pages\CohortsPageController::class);
     $app->get('/admin/applicant/add', \Portal\Controllers\Pages\AddApplicantPageController::class);
     $app->post('/admin/applicant/add', \Portal\Controllers\FormActions\AddApplicantActionController::class);
-    $app->post('/admin/applicants/archive/{id}', \Portal\Controllers\FormActions\ArchiveApplicantActionController::class);
     $app->get('/admin/applicants/edit/{id}', \Portal\Controllers\Pages\EditApplicationController::class);
     $app->post('/admin/applicants/edit/{id}', \Portal\Controllers\FormActions\EditApplicantActionController::class);
-    $app->get('/admin/applicants/edit/{id}', \Portal\Controllers\Pages\EditApplicationPopulateDataController::class);
-    $app->get('/admin/archive/{id}', \Portal\Controllers\FormActions\ArchiveApplicantActionController::class);
-    $app->post('/admin/archive/{id}', \Portal\Controllers\FormActions\ArchiveApplicantActionController::class);
+    $app->get('/admin/archive', \Portal\Controllers\Pages\ArchivePageController::class);
 };
