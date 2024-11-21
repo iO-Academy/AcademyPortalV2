@@ -32,7 +32,7 @@ class ArchivePageController extends Controller
 
         $page = $data['page'] ?? 1;
 
-        $applicants = $this->applicantsModel->getAll($page);
+        $applicants = $this->applicantsModel->getAllArchived($page);
         $applicantsTotalCount = $this->applicantsModel->getCount();
 
         return $this->renderer->render($response, 'archivedApplicants.phtml', [

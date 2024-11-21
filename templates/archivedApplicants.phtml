@@ -22,7 +22,7 @@
     <div class="container">
         <div class="applicant-header-container">
             <h1>Archived Applicants</h1>
-            <a href="admin/applicants">Return to Applicants</a>
+            <a href="/admin/applicants">Return to Applicants</a>
         </div>
 
         <?php if (count($applicants) === 0): ?>
@@ -44,9 +44,6 @@
                         <td><?php echo $applicant->getEmail(); ?></td>
                         <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
                         <td><a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="edit-button">EDIT</a>
-                            <form action="/admin/applicants/archive/<?= $applicant->getId()?>" method="post">
-                                <input type="submit" class="archive-button" value="Archive"></form></td>
-                        <!--                        <a href="/admin/applicants/archive/--><?php //= $applicant->getId() ?><!--" class="archive-button">ARCHIVE</a></td>-->
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
