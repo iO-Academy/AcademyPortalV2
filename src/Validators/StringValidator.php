@@ -2,6 +2,7 @@
 
 namespace Portal\Validators;
 
+use DateTime;
 use Exception;
 
 class StringValidator
@@ -20,7 +21,6 @@ class StringValidator
         if ($len < $minLength || $len > $maxLength) {
             throw new Exception("$fieldName: Length invalid");
         }
-
         return true;
     }
 }
