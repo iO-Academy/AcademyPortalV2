@@ -27,7 +27,6 @@ class ApplicationValidator
                 $newApplication[$field] = $application[$field];
             }
         }
-
         StringValidator::validateLength($newApplication['why'], 65535, 0, 'Why');
         StringValidator::validateLength(
             $newApplication['experience'],
@@ -35,30 +34,6 @@ class ApplicationValidator
             0,
             'Experience'
         );
-        $newApplication['phone'] = PhoneValidator::validatePhone($newApplication['phone']);
-        StringValidator::validateLength(
-            $newApplication['address'],
-            200,
-            0,
-            'Address'
-        );
-        NumericValidator::checkNumeric(
-            $newApplication['circumstance_id'],
-            "Circumstance ID"
-        );
-        NumericValidator::checkNumeric(
-            $newApplication['funding_id'],
-            "Funding ID"
-        );
-        NumericValidator::checkNumeric(
-            $newApplication['cohort_id'],
-            "Cohort ID"
-        );
-        NumericValidator::checkNumeric(
-            $newApplication['heard_about_id'],
-            "Hear About ID"
-        );
-
         if (isset($application['diversitech'])) {
             $newApplication['diversitech'] = $application['diversitech'];
             NumericValidator::checkNumeric(
@@ -68,10 +43,13 @@ class ApplicationValidator
         } else {
             $newApplication['diversitech'] = 0;
         }
-
         ValidationService::checkCircumstanceOptionExists(
             $newApplication['circumstance_id'],
             $applicantsModel,
+            "Circumstance ID"
+        );
+        NumericValidator::checkNumeric(
+            $newApplication['circumstance_id'],
             "Circumstance ID"
         );
         ValidationService::checkFundingOptionExists(
@@ -79,15 +57,51 @@ class ApplicationValidator
             $applicantsModel,
             "Funding ID"
         );
+        NumericValidator::checkNumeric(
+            $newApplication['funding_id'],
+            "Funding ID"
+        );
         ValidationService::checkCohortOptionExists(
             $newApplication['cohort_id'],
             $cohortsModel,
             "Cohort ID"
         );
+        NumericValidator::checkNumeric(
+            $newApplication['cohort_id'],
+            "Cohort ID"
+        );
+        $newApplication['phone'] = PhoneValidator::validatePhone($newApplication['phone']);
+        StringValidator::validateLength($newApplication['phone'], 15, 0, 'Why');
+        StringValidator::validateLength(
+            $newApplication['address'],
+            200,
+            0,
+            'Address'
+        );
         ValidationService::checkHeardAboutOptionExists(
             $newApplication['heard_about_id'],
             $applicantsModel,
             "Heard About ID"
+        );
+        NumericValidator::checkNumeric(
+            $newApplication['heard_about_id'],
+            "Hear About ID"
+        );
+        NumericValidator::checkNumeric(
+            $newApplication['age_confirmation'],
+            "Age confirmation"
+        );
+        NumericValidator::checkNumeric(
+            $newApplication['newsletter'],
+            "Newsletter"
+        );
+        NumericValidator::checkNumeric(
+            $newApplication['eligible'],
+            "Eligible"
+        );
+        NumericValidator::checkNumeric(
+            $newApplication['terms'],
+            "Terms"
         );
 
         return $newApplication;
