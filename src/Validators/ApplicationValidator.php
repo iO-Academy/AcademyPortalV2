@@ -2,67 +2,84 @@
 
 namespace Portal\Validators;
 
-use Exception;
+
+use InvalidArgumentException;
 use Portal\Models\ApplicantsModel;
 use Portal\Models\CohortsModel;
 use Portal\Services\ValidationService;
 
 class ApplicationValidator
 {
-    public static function validate(array $application, ApplicantsModel $applicantsModel, CohortsModel $cohortsModel): bool
+    public static function validate(array $application, ApplicantsModel $applicantsModel, CohortsModel $cohortsModel): array
     {
-        StringValidator::validateLength($application['why'], 65535, 0, 'Why');
+        $newApplication = [];
+
+        $requiredFields = [
+            'application_id', 'why', 'experience', 'diversitech', 'circumstance',
+            'funding', 'cohort', 'dob', 'phone', 'address', 'hear_about',
+            'age_confirmation', 'newsletter', 'eligible', 'terms'
+        ];
+
+        foreach ($requiredFields as $field) {
+            if (!isset($application[$field])) {
+                throw new InvalidArgumentException("Missing required field: $field");
+            } else {
+                $newApplication[$field] = $application[$field];
+            }
+        }
+
+        StringValidator::validateLength($newApplication['why'], 65535, 0, 'Why');
         StringValidator::validateLength(
-            $application['experience'],
+            $newApplication['experience'],
             65535,
             0,
             'Experience'
         );
-        PhoneValidator::validatePhone($application['phone']);
+        $newApplication['phone'] = PhoneValidator::validatePhone($newApplication['phone']);
         StringValidator::validateLength(
-            $application['address'],
+            $newApplication['address'],
             200,
             0,
             'Address'
         );
         NumericValidator::checkNumeric(
-            $application['circumstance_id'],
+            $newApplication['circumstance_id'],
             "Circumstance ID"
         );
         NumericValidator::checkNumeric(
-            $application['funding_id'],
+            $newApplication['funding_id'],
             "Funding ID"
         );
         NumericValidator::checkNumeric(
-            $application['cohort_id'],
+            $newApplication['cohort_id'],
             "Cohort ID"
         );
         NumericValidator::checkNumeric(
-            $application['heard_about_id'],
+            $newApplication['heard_about_id'],
             "Heard About ID"
         );
 
         ValidationService::checkCircumstanceOptionExists(
-            $application['circumstance_id'],
+            $newApplication['circumstance_id'],
             $applicantsModel,
             "Circumstance ID"
         );
         ValidationService::checkFundingOptionExists(
-            $application['funding_id'],
+            $newApplication['funding_id'],
             $applicantsModel,
             "Funding ID"
         );
         ValidationService::checkCohortOptionExists(
-            $application['cohort_id'],
+            $newApplication['cohort_id'],
             $cohortsModel,
             "Cohort ID"
         );
         ValidationService::checkHeardAboutOptionExists(
-            $application['heard_about_id'],
+            $newApplication['heard_about_id'],
             $applicantsModel,
             "Heard About ID"
         );
 
-        return true;
+        return $newApplication;
     }
 }
