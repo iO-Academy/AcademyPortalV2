@@ -12,8 +12,7 @@ class ValidationService
     {
         $result = $model->getAllCircumstanceOptions();
         $result = array_map(function($item) {return $item['id']; }, $result);
-//        echo $id;
-//        var_dump($result);
+        echo $id;
         if (!in_array($id, $result)) {
             throw new Exception("$fieldName doesn't exist");
         }

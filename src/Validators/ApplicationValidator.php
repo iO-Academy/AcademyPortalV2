@@ -3,6 +3,7 @@
 namespace Portal\Validators;
 
 use Exception;
+use InvalidArgumentException;
 use Portal\Models\ApplicantsModel;
 use Portal\Models\CohortsModel;
 use Portal\Services\ValidationService;
@@ -11,20 +12,39 @@ class ApplicationValidator
 {
     public static function validate(array $application, ApplicantsModel $applicantsModel, CohortsModel $cohortsModel): bool
     {
-        StringValidator::validateLength($application['why'], 65535, 0, 'Why');
+
+        $requiredFields = [
+            'why', 'experience', 'circumstance_id',
+            'funding_id', 'cohort_id', 'dob', 'phone', 'address', 'heard_about_id',
+            'age_confirmation', 'eligible', 'terms'
+        ];
+
+        foreach ($requiredFields as $field) {
+            if (!isset($application[$field])) {
+                throw new InvalidArgumentException("Missing required field: $field");
+            }
+        }
+
+        StringValidator::validateLength($application['why'], 65535, 1, 'Why');
         StringValidator::validateLength(
             $application['experience'],
             65535,
-            0,
+            1,
             'Experience'
         );
-        PhoneValidator::validatePhone($application['phone']);
+        StringValidator::validateLength(
+            $application['dob'],
+            10,
+            1,
+            'Date of Birth'
+        );
         StringValidator::validateLength(
             $application['address'],
             200,
-            0,
+            1,
             'Address'
         );
+        PhoneValidator::validatePhone($application['phone']);
         NumericValidator::checkNumeric(
             $application['circumstance_id'],
             "Circumstance ID"
