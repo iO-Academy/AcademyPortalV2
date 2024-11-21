@@ -15,8 +15,8 @@ class ApplicationValidator
         $newApplication = [];
 
         $requiredFields = [
-            'application_id', 'why', 'experience', 'diversitech', 'circumstance',
-            'funding', 'cohort', 'dob', 'phone', 'address', 'hear_about',
+            'why', 'experience', 'circumstance_id',
+            'funding_id', 'cohort_id', 'dob', 'phone', 'address', 'heard_about_id',
             'age_confirmation', 'newsletter', 'eligible', 'terms'
         ];
 
@@ -56,8 +56,18 @@ class ApplicationValidator
         );
         NumericValidator::checkNumeric(
             $newApplication['heard_about_id'],
-            "Heard About ID"
+            "Hear About ID"
         );
+
+        if (isset($application['diversitech'])) {
+            $newApplication['diversitech'] = $application['diversitech'];
+            NumericValidator::checkNumeric(
+                $newApplication['diversitech'],
+                'Diversitech'
+            );
+        } else {
+            $newApplication['diversitech'] = 0;
+        }
 
         ValidationService::checkCircumstanceOptionExists(
             $newApplication['circumstance_id'],

@@ -47,6 +47,8 @@ class AddApplicantActionController extends Controller
             $hasApplication = true;
         } catch (Exception $e) {
             $hasApplication = false;
+            return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
+
         }
 
         try {
