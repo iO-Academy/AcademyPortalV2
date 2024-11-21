@@ -171,13 +171,13 @@ class ApplicantsModel
         ]);
     }
 
-    public function editApplicant($data)
+    public function editApplicant($details)
     {
         $queryEditApplicant = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
         $queryEditApplicant->execute([
-            'id' => $data['id'],
-            'name' => $data['name'],
-            'email' => $data['email']
+            'id' => $details['id'],
+            'name' => $details['name'],
+            'email' => $details['email']
         ]);
     }
 
@@ -199,7 +199,6 @@ class ApplicantsModel
             `eligible` = :eligible,
             `terms` = :terms
             WHERE `applicant_id` = :id");
-
         return $queryEditApplication->execute([
             'id' => $details['id'],
             'why' => $details['why'],
