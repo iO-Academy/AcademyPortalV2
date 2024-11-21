@@ -106,14 +106,26 @@ class ApplicantsModel
     }
 
     public function editApplicant($details){
-        $query1 = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
-        $query1->execute([
-            'id' => $details['id'],
-            'name' => $details['name'],
-            'email' => $details['email']
+        // check if application exists for this applicant
+        $query0 = $this->db->prepare("SELECT 1 FROM `applications` WHERE `applicant_id` = :applicant_id LIMIT 1;");
+        $query0->execute([
+            'applicant_id' => $details['id']
         ]);
+        $application = $query0->fetch();
 
-        $query2 = $this->db->prepare("UPDATE `applications`
+        if(!$application) {
+            // if application doesn't exist, add one
+            return $this->addApplication($details, $details['id']);
+        } else {
+            // if it does exist, update it
+            $query1 = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
+            $query1->execute([
+                'id' => $details['id'],
+                'name' => $details['name'],
+                'email' => $details['email']
+            ]);
+
+            $query2 = $this->db->prepare("UPDATE `applications`
         SET `why` = :why,
             `experience` = :experience,
             `diversitech` = :diversitech,
@@ -130,23 +142,24 @@ class ApplicantsModel
             `terms` = :terms
             WHERE `applicant_id` = :id");
 
-        $query2->execute([
-            'id' => $details['id'],
-            'why' => !empty($details['why']) ? $details['why'] : null,
-            'experience' => !empty($details['experience']) ? $details['experience'] : null,
-            'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : 0,
-            'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
-            'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
-            'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
-            'dob' => !empty($details['dob']) ? $details['dob'] : null,
-            'phone' => !empty($details['phone']) ? $details['phone'] : null,
-            'address' => !empty($details['address']) ? $details['address'] : null,
-            'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
-            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : 0,
-            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : 0,
-            'eligible' => !empty($details['eligible']) ? $details['eligible'] : 0,
-            'terms' => !empty($details['terms']) ? $details['terms'] : 0
-        ]);
+            $query2->execute([
+                'id' => $details['id'],
+                'why' => !empty($details['why']) ? $details['why'] : null,
+                'experience' => !empty($details['experience']) ? $details['experience'] : null,
+                'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : 0,
+                'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
+                'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
+                'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
+                'dob' => !empty($details['dob']) ? $details['dob'] : null,
+                'phone' => !empty($details['phone']) ? $details['phone'] : null,
+                'address' => !empty($details['address']) ? $details['address'] : null,
+                'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
+                'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : 0,
+                'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : 0,
+                'eligible' => !empty($details['eligible']) ? $details['eligible'] : 0,
+                'terms' => !empty($details['terms']) ? $details['terms'] : 0
+            ]);
+        }
     }
 
     public function addApplicant($data)
@@ -166,20 +179,20 @@ class ApplicantsModel
                 VALUES (:applicant_id, :why, :experience, :diversitech, :circumstance_id, :funding_id, :cohort_id, :dob, :phone, :address, :heard_about_id, :age_confirmation, :newsletter, :eligible, :terms);");
         return $addApplicationQuery->execute([
             'applicant_id' => $applicantId,
-            'why' => $details['why'],
-            'experience' => $details['experience'],
-            'diversitech' => $details['diversitech'],
-            'circumstance_id' => $details['circumstance_id'],
-            'funding_id' => $details['funding_id'],
-            'cohort_id' => $details['cohort_id'],
-            'dob' => $details['dob'],
-            'phone' => $details['phone'],
-            'address' => $details['address'],
-            'heard_about_id' => $details['heard_about_id'],
-            'age_confirmation' => $details['age_confirmation'],
-            'newsletter' => $details['newsletter'],
-            'eligible' => $details['eligible'],
-            'terms' => $details['terms']
+            'why' => !empty($details['why']) ? $details['why'] : null,
+            'experience' => !empty($details['experience']) ? $details['experience'] : null,
+            'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : 0,
+            'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
+            'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
+            'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
+            'dob' => !empty($details['dob']) ? $details['dob'] : null,
+            'phone' => !empty($details['phone']) ? $details['phone'] : null,
+            'address' => !empty($details['address']) ? $details['address'] : null,
+            'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
+            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : 0,
+            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : 0,
+            'eligible' => !empty($details['eligible']) ? $details['eligible'] : 0,
+            'terms' => !empty($details['terms']) ? $details['terms'] : 0
         ]);
     }
 
