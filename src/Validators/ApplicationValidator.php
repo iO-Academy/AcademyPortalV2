@@ -13,8 +13,7 @@ class ApplicationValidator
         array $application,
         ApplicantsModel $applicantsModel,
         CohortsModel $cohortsModel
-    ): array
-    {
+    ): array {
         $newApplication = [];
 
         $requiredFields = [
