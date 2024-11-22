@@ -31,22 +31,22 @@
 }
 
 .applicant-header-container a {
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
     border-radius: 10px;
     padding: 6px 12px;
-    color: #000000;
+    color: var(--black);
 }
 
 .error-text {
-    color: #FF0000;
+    color: var(--red);
 }
 
 a {
     text-decoration: none;
-    color: #337ab7;
+    color: var(--light-blue);
 }
 a:hover {
-    color: #000000;
+    color: var(--black);
 }
 
 header {
@@ -67,7 +67,7 @@ header .icons a {
 }
 
 header .icons a:hover {
-    background-color: #dddddd;
+    background-color: var(--light-grey);
     border-radius: 5px;
 }
 
@@ -89,22 +89,22 @@ nav.container {
 }
 
 nav a {
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
     border-left: none;
     padding: 6px 12px;
-    color: #000000;
+    color: var(--black);
 }
 
 nav a:hover {
-    background-color: #dddddd;
+    background-color: var(--light-grey);
 }
 
 .applicant-header-container a:hover {
-    background-color: #dddddd;
+    background-color: var(--light-grey);
 }
 
 nav a:first-child {
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
 }
 
 .titleLink {
@@ -114,7 +114,7 @@ nav a:first-child {
 }
 
 .form-asterisk {
-    color: #ea1818;
+    color: var(--red);
     font-size: 18px;
 }
 
@@ -166,12 +166,12 @@ form .form-group select{
 
 table {
     width: 100%;
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
     border-collapse: collapse;
 }
 
 table th, table td {
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
     padding: 8px;
 }
 
@@ -186,27 +186,27 @@ table thead {
 
 .pagination a {
     padding: 5px;
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
     border-left: none;
     color: #333333;
 }
 
 .pagination a.prev {
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
 }
 
 .pagination a.disabled {
     pointer-events: none;
     cursor: default;
-    color: #dddddd;
+    color: var(--light-grey);
 }
 
 .pagination a.active {
-    background-color: #61fed2;
+    background-color: var(--io-green);
 }
 
 .btn {
-    background-color: #61fed2;
+    background-color: var(--io-green);
     padding: 8px;
     border: none;
     border-radius: 4px;
@@ -218,7 +218,7 @@ table thead {
 }
 
 .btn:hover {
-    background-color: rgb(0, 248, 131.75);
+    background-color: var(--io-green);
 }
 
 .single-applicant .applicant-header {
@@ -228,7 +228,7 @@ table thead {
 }
 
 .single-applicant .details h2 {
-    color: #743DFB;
+    color: var(--io-purple);
 }
 
 .single-applicant .details p span {
@@ -249,7 +249,7 @@ table thead {
     margin: 0 auto;
     padding: 15px;
     border-radius: 10px;
-    background-color: #dddddd;
+    background-color: var(--light-grey);
 }
 
 .login section form label {
@@ -275,22 +275,22 @@ table thead {
 
 .admin .links a {
     padding: 50px 20px;
-    border: 2px solid #337ab7;
+    border: 2px solid var(--light-blue);
     border-radius: 5px;
     text-align: center;
 }
 
 .admin .links a:hover {
-    background-color: #dddddd;
-    color: #337ab7;
+    background-color: var(--light-grey);
+    color: var(--light-blue);
 }
 
 .archived {
-    color: #FF0000;
+    color: var(--red);
     font-size: 2rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: var(--small)) {
     header {
         flex-direction: column-reverse;
     }
@@ -309,32 +309,15 @@ td:has(> .edit-button) {
     top: 50%;
     transform: translateY(-50%);
     padding: 6px;
-    border: 1px solid #dddddd;
+    border: 1px solid var(--light-grey);
     border-radius: 10px;
     font-size: 14px;
     position: absolute;
-    background-color: #61fed2;
+    background-color: var(--io-green);
     color: black;
     transition: all 0.1s linear;
     box-shadow: 0 0 0 0 rgb(0,0,0);
 }
 .edit-button:hover {
-    background-color: #dddddd;
-}
-
-.archive-button {
-    left: 50%;
-    transform: translateY(-50%);
-    padding: 6px;
-    border: 1px solid #dddddd;;
-    border-radius: 10px;
-    font-size: 14px;
-    position: absolute;
-    background-color: #61fed2;
-    color: black;
-    transition: all 0.1s linear;
-    box-shadow: 0 0 0 0 rgb(0,0,0);
-}
-.archive-button:hover {
-    background-color: #dddddd;
+    background-color: var(--light-grey);
 }
