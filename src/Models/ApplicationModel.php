@@ -65,8 +65,9 @@ class ApplicationModel
         ]);
     }
 
-    public function editApplication ($details){
-        $query = $this->db->prepare("UPDATE `applications`
+    public function editApplication
+    ($details)
+    {$query = $this->db->prepare("UPDATE `applications`
         SET `why` = :why,
             `experience` = :experience,
             `diversitech` = :diversitech,
@@ -98,7 +99,5 @@ class ApplicationModel
             'newsletter' => $details['newsletter'],
             'eligible' => $details['eligible'],
             'terms' => $details['terms']
-        ]);
-
-    }
+        ]);}
 }

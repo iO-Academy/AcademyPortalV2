@@ -98,8 +98,10 @@ class ApplicantsModel
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
 
-    public function editApplicant($details){
-        $query1 = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
+    public function editApplicant
+    ($details){
+        $query1 = $this->db->prepare
+        ("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
         $query1->execute([
             'id' => $details['id'],
             'name' => $details['name'],

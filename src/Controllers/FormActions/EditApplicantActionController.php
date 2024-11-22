@@ -22,14 +22,16 @@ class EditApplicantActionController extends Controller
     private $authService;
     private $applicationModel;
 
-    public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel, ApplicationModel $applicationModel)
-    {
+    public function __construct(ApplicantsModel $applicantsModel,
+                                AuthService $authService,
+                                CohortsModel $cohortsModel,
+                                ApplicationModel $applicationModel
+    ) {
         $this->applicantsModel = $applicantsModel;
         $this->authService = $authService;
         $this->applicationModel = $applicationModel;
-        $this->cohortsModel= $cohortsModel;
+        $this->cohortsModel = $cohortsModel;
     }
-
     public function __invoke(Request $request, Response $response, $args = []): Response
     {
         if (!$this->authService->isLoggedIn())
@@ -41,7 +43,7 @@ class EditApplicantActionController extends Controller
         $input['id'] = $args['id'];
         $hasApplication = false;
 
-        try {
+        try{
             $editedApplicant = ApplicantValidator::validate($input);
             if (!isset( $input['id'] )) {
                 throw new InvalidArgumentException("id not found.");
@@ -49,7 +51,7 @@ class EditApplicantActionController extends Controller
             NumericValidator::checkNumeric($input['id'], 'id',);
             $editedApplicant['id'] = $args['id'];
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
         $this->model->editApplicant($details);
@@ -67,7 +69,7 @@ class EditApplicantActionController extends Controller
                 $this->applicantsModel->editApplication($editedApplicant);
             }
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
         return $response->withHeader('Location', '/admin/applicants')->withStatus(301);

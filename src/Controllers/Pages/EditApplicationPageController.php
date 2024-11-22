@@ -20,21 +20,19 @@ class EditApplicationPageController extends Controller
     private AuthService $authService;
 
 
-    public function __construct(
-        ApplicantsModel $model,
-        PhpRenderer     $view,
-        AuthService     $authService,
-        ApplicantsModel $applicantsModel,
-        CohortsModel    $cohortsModel
-    )
-    {
+    public function __construct
+    (ApplicantsModel $model,
+    PhpRenderer $view,
+    AuthService $authService,
+    ApplicantsModel $applicantsModel,
+    CohortsModel $cohortsModel
+    ) {
         $this->model = $model;
         $this->view = $view;
         $this->authService = $authService;
         $this->applicantsModel = $applicantsModel;
         $this->cohortsModel = $cohortsModel;
     }
-
     public function __invoke($request, $response, $args = []): Response
     {
         $circumstances = $this->applicantsModel->getAllCircumstanceOptions();
@@ -49,11 +47,11 @@ class EditApplicationPageController extends Controller
         return $this->view->render
         ($response, 'editApplicant.phtml',
             ['applicant' => $applicant,
-                'cohorts' => $cohorts,
-                'hearAboutUs' => $hearAboutUs,
-                'circumstances' => $circumstances,
-                'fundingOptions' => $fundingOptions,
-                'error' => $query['error'] ?? null]
+            'cohorts' => $cohorts,
+            'hearAboutUs' => $hearAboutUs,
+            'circumstances' => $circumstances,
+            'fundingOptions' => $fundingOptions,
+            'error' => $query['error'] ?? null]
         );
     }
 }
