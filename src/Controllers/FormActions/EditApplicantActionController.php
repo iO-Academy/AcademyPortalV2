@@ -22,7 +22,6 @@ class EditApplicantActionController extends Controller
     private $authService;
     private $applicationModel;
 
-    public function __construct(ApplicantsModel $model, AuthService $authService, ApplicationModel $applicationModel)
     public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel)
     {
         $this->applicantsModel = $applicantsModel;
@@ -33,7 +32,8 @@ class EditApplicantActionController extends Controller
 
     public function __invoke(Request $request, Response $response, $args = []): Response
     {
-        if (!$this->authService->isLoggedIn()) {
+        if (!$this->authService->isLoggedIn())
+        {
             return $this->redirect($response, '/');
         }
 
