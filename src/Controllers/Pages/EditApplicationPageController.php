@@ -20,11 +20,12 @@ class EditApplicationPageController extends Controller
     private AuthService $authService;
 
 
-    public function __construct(ApplicantsModel $model,
-                                PhpRenderer $view,
-                                AuthService $authService,
-                                ApplicantsModel $applicantsModel,
-                                CohortsModel $cohortsModel
+    public function __construct(
+        ApplicantsModel $model,
+        PhpRenderer $view,
+        AuthService $authService,
+        ApplicantsModel $applicantsModel,
+        CohortsModel $cohortsModel
     ) {
         $this->model = $model;
         $this->view = $view;
