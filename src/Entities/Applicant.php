@@ -18,17 +18,13 @@ class Applicant
         string $name,
         EmailAddress $email,
         string $application_date,
-
         ?Application $application = null
-
     ) {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->application_date = $application_date;
         $this->application = $application;
-
-
     }
 
     public function getId(): int
@@ -60,6 +56,4 @@ class Applicant
     {
         return $this->application;
     }
-
-
 }
