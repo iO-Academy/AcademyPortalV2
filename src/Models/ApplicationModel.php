@@ -65,7 +65,7 @@ class ApplicationModel
         ]);
     }
 
-    public function editApplication ($details)
+    public function editApplication($details)
     {
         $query = $this->db->prepare("UPDATE `applications`
         SET `why` = :why,
