@@ -43,7 +43,7 @@
                     <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a></td>
                     <td><?php echo $applicant->getEmail(); ?></td>
                     <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
-                    <td><a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="edit-button">EDIT</a></td>
+                    <td><a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="edit-button">Edit</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
