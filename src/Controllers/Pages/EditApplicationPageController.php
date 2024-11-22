@@ -22,17 +22,17 @@ class EditApplicationPageController extends Controller
 
     public function __construct(
         ApplicantsModel $model,
-        PhpRenderer $view,
-        AuthService $authService,
+        PhpRenderer     $view,
+        AuthService     $authService,
         ApplicantsModel $applicantsModel,
-        CohortsModel $cohortsModel
-    ) {
+        CohortsModel    $cohortsModel
+    )
+    {
         $this->model = $model;
         $this->view = $view;
         $this->authService = $authService;
         $this->applicantsModel = $applicantsModel;
         $this->cohortsModel = $cohortsModel;
-
     }
 
     public function __invoke($request, $response, $args = []): Response
@@ -46,12 +46,14 @@ class EditApplicationPageController extends Controller
 
         $query = $request->getQueryParams();
 
-        return $this->view->render($response, 'editApplicant.phtml',
+        return $this->view->render
+        ($response, 'editApplicant.phtml',
             ['applicant' => $applicant,
                 'cohorts' => $cohorts,
                 'hearAboutUs' => $hearAboutUs,
                 'circumstances' => $circumstances,
                 'fundingOptions' => $fundingOptions,
-                'error' => $query['error'] ?? null]);
+                'error' => $query['error'] ?? null]
+        );
     }
 }
