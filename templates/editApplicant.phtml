@@ -89,8 +89,8 @@ $application = $applicant->getApplication();
                     <option value="0" disabled>Select option</option>
                     <?php
                     foreach ($cohorts as $cohort) {
-                        $selected = $cohort['date'] == $application->getCohort() ? 'selected' : '';
-                        echo "<option value='{$cohort['id']}' {$selected}>{$cohort['date']}</option>";
+                        $selected = $cohort->getDate() == $application->getCohort() ? 'selected' : '';
+                        echo "<option value='{$cohort->getId()}' {$selected}>{$cohort->getDate()}</option>";
                     }
                     ?>
                 </select>

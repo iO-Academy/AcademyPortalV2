@@ -39,7 +39,7 @@ class EditApplicationPageController extends Controller
     {
         $circumstances = $this->applicantsModel->getAllCircumstanceOptions();
         $fundingOptions = $this->applicantsModel->getAllFundingOptions();
-        $cohorts = $this->cohortsModel->getDate();
+        $cohorts = $this->cohortsModel->getAll();
         $hearAboutUs = $this->applicantsModel->getAllHearAboutUsOptions();
         $id = $args['id'];
         $applicant = $this->model->getById($id);
