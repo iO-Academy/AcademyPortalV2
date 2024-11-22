@@ -90,7 +90,7 @@ class Application
         return $this->experience;
     }
 
-    public function getDiversitech(): int
+    public function getDiversitech(): bool
     {
         return $this->diversitech;
     }

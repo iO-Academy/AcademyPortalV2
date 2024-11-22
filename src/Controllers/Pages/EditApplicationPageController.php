@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Portal\Models\ApplicantsModel;
 use Slim\Views\PhpRenderer;
 
-class EditApplicationController extends Controller
+class EditApplicationPageController extends Controller
 {
     private $model;
     private $view;
@@ -20,11 +20,12 @@ class EditApplicationController extends Controller
     private AuthService $authService;
 
 
-    public function __construct(ApplicantsModel $model,
-                                PhpRenderer $view,
-                                AuthService $authService,
-                                ApplicantsModel $applicantsModel,
-                                CohortsModel $cohortsModel
+    public function __construct(
+        ApplicantsModel $model,
+        PhpRenderer $view,
+        AuthService $authService,
+        ApplicantsModel $applicantsModel,
+        CohortsModel $cohortsModel
     ) {
         $this->model = $model;
         $this->view = $view;
@@ -38,7 +39,7 @@ class EditApplicationController extends Controller
     {
         $circumstances = $this->applicantsModel->getAllCircumstanceOptions();
         $fundingOptions = $this->applicantsModel->getAllFundingOptions();
-        $cohorts = $this->cohortsModel->getDates();
+        $cohorts = $this->cohortsModel->getAll();
         $hearAboutUs = $this->applicantsModel->getAllHearAboutUsOptions();
         $id = $args['id'];
         $applicant = $this->model->getById($id);

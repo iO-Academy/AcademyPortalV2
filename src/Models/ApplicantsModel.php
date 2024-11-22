@@ -44,13 +44,6 @@ class ApplicantsModel
         return $query->fetch()['count'];
     }
 
-    public function getCircumstanceID()
-    {
-        $query = $this->db->prepare("SELECT `circumstance_id` FROM `applications`;");
-        $query->execute();
-        return $query->fetch();
-    }
-
     public function getById(int $id): Applicant|false
     {
         $query = $this->db->prepare("SELECT 
