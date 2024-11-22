@@ -14,10 +14,10 @@ class Applicant
 
 
     public function __construct(
-        int          $id,
-        string       $name,
+        int $id,
+        string $name,
         EmailAddress $email,
-        string       $application_date,
+        string $application_date,
 
         ?Application $application = null
 
