@@ -5,51 +5,59 @@ namespace Portal\Controllers\FormActions;
 use Exception;
 use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
+use Portal\Models\ApplicationModel;
+use Portal\Models\CohortsModel;
 use Portal\Services\AuthService;
 use Portal\Validators\ApplicantValidator;
 use Portal\Validators\ApplicationValidator;
-use Portal\ValueObjects\EmailAddress;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class AddApplicantActionController extends Controller
 {
-    private $model;
+    private $applicantsModel;
+    private $cohortsModel;
     private $authService;
+    private $applicationModel;
 
-    public function __construct(ApplicantsModel $model, AuthService $authService)
+    public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel, ApplicationModel $applicationModel)
     {
-        $this->model = $model;
+        $this->applicantsModel = $applicantsModel;
+        $this->cohortsModel = $cohortsModel;
         $this->authService = $authService;
+        $this->applicationModel = $applicationModel;
     }
 
-    public function __invoke(Request $request, Response $response): Response
+    public function __invoke(Request $request, Response $response, $args = []): Response
     {
         if (!$this->authService->isLoggedIn()) {
             return $this->redirect($response, '/');
         }
 
-        $newApplicant = $request->getParsedBody();
+        $input = $request->getParsedBody();
+        $hasApplication = false;
 
         try {
-            ApplicantValidator::validate($newApplicant);
-            ApplicationValidator::validate($newApplicant);
-            ApplicationValidator::checkExists($newApplicant['circumstance_id'], $this->model->getAllCircumstances()[$newApplicant['circumstance_id'] - 1], "Circumstance ID");
-            ApplicationValidator::checkNumeric($newApplicant['circumstance_id'], "Circumstance ID");
-            ApplicationValidator::checkExists($newApplicant['funding_id'], $this->model->getAllFundingOptions()[$newApplicant['funding_id'] - 1], "Funding ID");
-            ApplicationValidator::checkNumeric($newApplicant['funding_id'], "Funding ID");
-            ApplicationValidator::checkExists($newApplicant['cohort_id'], $this->model->getAllCohorts()[$newApplicant['cohort_id'] - 1], "Cohort ID");
-            ApplicationValidator::checkNumeric($newApplicant['cohort_id'], "Cohort ID");
-            ApplicationValidator::checkExists($newApplicant['heard_about_id'], $this->model->getAllHearAboutUs()[$newApplicant['heard_about_id'] - 1], "Heard About ID");
-            ApplicationValidator::checkNumeric($newApplicant['heard_about_id'], "Heard About ID");
-
+            $newApplicant = ApplicantValidator::validate($input);
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
         }
 
+        try {
+            $newApplication = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
+            $hasApplication = true;
+        } catch (Exception $e) {
+            $hasApplication = false;
+        }
 
-        $id = $this->model->addApplicant($newApplicant);
-        $this->model->addApplication($newApplicant, $id);
+        try {
+            $applicantId = $this->applicantsModel->addApplicant($newApplicant);
+            if ($hasApplication && $applicantId) {
+                $this->applicationModel->addApplication($newApplication, $applicantId);
+            }
+        } catch (Exception $e) {
+            return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
+        }
 
         return $response->withHeader('Location', '/admin/applicants')->withStatus(301);
     }

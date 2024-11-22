@@ -45,13 +45,6 @@ class ApplicantsModel
         return $query->fetch()['count'];
     }
 
-    public function getCircumstanceID()
-    {
-        $query = $this->db->prepare("SELECT `circumstance_id` FROM `applications`;");
-        $query->execute();
-        return $query->fetch();
-    }
-
     public function getById(int $id): Applicant|false
     {
         $query = $this->db->prepare("SELECT 
@@ -113,94 +106,23 @@ class ApplicantsModel
             'name' => $details['name'],
             'email' => $details['email']
         ]);
-
-        $query2 = $this->db->prepare("UPDATE `applications`
-        SET `why` = :why,
-            `experience` = :experience,
-            `diversitech` = :diversitech,
-            `circumstance_id` = :circumstance_id,
-            `funding_id` = :funding_id,
-            `cohort_id` = :cohort_id,
-            `dob` = :dob,
-            `phone` = :phone,
-            `address` = :address,
-            `heard_about_id` = :heard_about_id,
-            `age_confirmation` = :age_confirmation,
-            `newsletter` = :newsletter,
-            `eligible` = :eligible,
-            `terms` = :terms
-            WHERE `applicant_id` = :id");
-
-        $query2->execute([
-            'id' => $details['id'],
-            'why' => !empty($details['why']) ? $details['why'] : null,
-            'experience' => !empty($details['experience']) ? $details['experience'] : null,
-            'diversitech' => !empty($details['diversitech']) ? $details['diversitech'] : 0,
-            'circumstance_id' => !empty($details['circumstance_id']) ? $details['circumstance_id'] : null,
-            'funding_id' => !empty($details['funding_id']) ? $details['funding_id'] : null,
-            'cohort_id' => !empty($details['cohort_id']) ? $details['cohort_id'] : null,
-            'dob' => !empty($details['dob']) ? $details['dob'] : null,
-            'phone' => !empty($details['phone']) ? $details['phone'] : null,
-            'address' => !empty($details['address']) ? $details['address'] : null,
-            'heard_about_id' => !empty($details['heard_about_id']) ? $details['heard_about_id'] : null,
-            'age_confirmation' => !empty($details['age_confirmation']) ? $details['age_confirmation'] : 0,
-            'newsletter' => !empty($details['newsletter']) ? $details['newsletter'] : 0,
-            'eligible' => !empty($details['eligible']) ? $details['eligible'] : 0,
-            'terms' => !empty($details['terms']) ? $details['terms'] : 0
-        ]);
     }
 
     public function addApplicant($data)
     {
-        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
-            $addApplicantQuery->execute([
+        $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` 
+            (`name`, `email`, `application_date`) VALUES (:name, :email, current_date)');
+        $addApplicantQuery->execute([
             'name' => $data['name'],
             'email' => $data['email'],
         ]);
-            $lastInsertId = $this->db->lastInsertId();
-            return $lastInsertId;
+        $lastInsertId = $this->db->lastInsertId();
+        return $lastInsertId;
     }
 
-    public function addApplication($details, $applicantId)
-    {
-        $addApplicationQuery = $this->db->prepare("INSERT INTO `applications` (`applicant_id`, `why`, `experience`, `diversitech`, `circumstance_id`, `funding_id`, `cohort_id`, `dob`, `phone`, `address`, `heard_about_id`, `age_confirmation`, `newsletter`, `eligible`, `terms`) 
-                VALUES (:applicant_id, :why, :experience, :diversitech, :circumstance_id, :funding_id, :cohort_id, :dob, :phone, :address, :heard_about_id, :age_confirmation, :newsletter, :eligible, :terms);");
-        return $addApplicationQuery->execute([
-            'applicant_id' => $applicantId,
-            'why' => $details['why'],
-            'experience' => $details['experience'],
-            'diversitech' => $details['diversitech'],
-            'circumstance_id' => $details['circumstance_id'],
-            'funding_id' => $details['funding_id'],
-            'cohort_id' => $details['cohort_id'],
-            'dob' => $details['dob'],
-            'phone' => $details['phone'],
-            'address' => $details['address'],
-            'heard_about_id' => $details['heard_about_id'],
-            'age_confirmation' => $details['age_confirmation'],
-            'newsletter' => $details['newsletter'],
-            'eligible' => $details['eligible'],
-            'terms' => $details['terms']
-        ]);
-    }
-
-    public function getAllCircumstances()
+    public function getAllCircumstanceOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `circumstances`');
-        $query->execute();
-        $data = $query->fetchAll();
-
-        if (!$data) {
-            return false;
-        } else {
-            return $data;
-        }
-    }
-
-
-    public function getAllCohorts()
-    {
-        $query = $this->db->prepare('SELECT `id`, `date` FROM `cohorts`');
         $query->execute();
         $data = $query->fetchAll();
 
@@ -224,7 +146,7 @@ class ApplicantsModel
         }
     }
 
-    public function getAllHearAboutUs()
+    public function getAllHearAboutUsOptions()
     {
         $query = $this->db->prepare('SELECT `id`, `option` FROM `hear_about`');
         $query->execute();

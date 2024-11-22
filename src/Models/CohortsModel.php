@@ -53,4 +53,10 @@ class CohortsModel
 
         return $cohorts;
     }
+
+    public function getDate (){
+        $query = $this->db->prepare("SELECT `id`, `date` FROM `cohorts`;");
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
