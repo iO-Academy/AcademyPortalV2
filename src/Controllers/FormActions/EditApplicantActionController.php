@@ -40,7 +40,7 @@ class EditApplicantActionController extends Controller
         try {
             $editedApplicant = ApplicantValidator::validate($input);
             if (!isset( $input['id'] )) {
-                throw new InvalidArgumentException("There has been an id error");
+                throw new InvalidArgumentException("id not found.");
             }
             NumericValidator::checkNumeric($input['id'], 'id',);
             $editedApplicant['id'] = $args['id'];
