@@ -313,20 +313,20 @@ td:has(> .edit-button) {
 }
 
 .archive-button {
-  left: 50%;
-  transform: translateY(-50%);
-  position: absolute;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-  background-color: #c83e6a;
-  color: white;
-  font-weight: bold;
-  font-size: 0.75rem;
-  transition: all 0.1s linear;
-  box-shadow: 0 0 0 0 rgb(0,0,0);
+  .btn {
+    background-color: $io-green;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+
+    &:hover {
+      background-color: darken($io-green, 20);
+    }
+  }
 }
 .archive-button:hover {
-  background-color: mediumpurple;
+  background-color: gray;
   box-shadow: 0.1rem 0.1rem 0.1rem 0 rgb(0,0,0);
   color: white;
   cursor: pointer;
