@@ -32,7 +32,8 @@ class EditApplicantActionController extends Controller
 
     public function __invoke(Request $request, Response $response, $args = []): Response
     {
-        if (!$this->authService->isLoggedIn()) {
+        if (!$this->authService->isLoggedIn())
+        {
             return $this->redirect($response, '/');
         }
 
@@ -51,8 +52,8 @@ class EditApplicantActionController extends Controller
             return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
         }
 
-        $this->applicantsModel->editApplicant($input);
-        $this->applicationModel->editApplication($input);
+        $this->model->editApplicant($details);
+        $this->applicationModel->editApplication($details);
         try {
             $editedApplicant = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
             $hasApplication = true;
@@ -63,7 +64,7 @@ class EditApplicantActionController extends Controller
         try {
             $this->applicantsModel->editApplicant($editedApplicant);
             if ($hasApplication) {
-                $this->applicationModel->editApplication($editedApplicant);
+                $this->applicantsModel->editApplication($editedApplicant);
             }
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
