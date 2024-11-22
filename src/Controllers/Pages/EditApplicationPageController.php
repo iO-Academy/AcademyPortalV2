@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Portal\Models\ApplicantsModel;
 use Slim\Views\PhpRenderer;
 
-class EditApplicationController extends Controller
+class EditApplicationPageController extends Controller
 {
     private $model;
     private $view;
