@@ -105,49 +105,6 @@ class ApplicantsModel
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
 
-    public function editApplicant($details){
-        $query1 = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
-        $query1->execute([
-            'id' => $details['id'],
-            'name' => $details['name'],
-            'email' => $details['email']
-        ]);
-
-        $query2 = $this->db->prepare("UPDATE `applications`
-        SET `why` = :why,
-            `experience` = :experience,
-            `diversitech` = :diversitech,
-            `circumstance_id` = :circumstance_id,
-            `funding_id` = :funding_id,
-            `cohort_id` = :cohort_id,
-            `dob` = :dob,
-            `phone` = :phone,
-            `address` = :address,
-            `heard_about_id` = :heard_about_id,
-            `age_confirmation` = :age_confirmation,
-            `newsletter` = :newsletter,
-            `eligible` = :eligible,
-            `terms` = :terms
-            WHERE `applicant_id` = :id");
-
-        $query2->execute([
-            'id' => $details['id'],
-            'why' => $details['why'],
-            'experience' => $details['experience'],
-            'diversitech' => $details['diversitech'],
-            'circumstance_id' => $details['circumstance_id'],
-            'funding_id' => $details['funding_id'],
-            'cohort_id' => $details['cohort_id'],
-            'dob' => $details['dob'],
-            'phone' => $details['phone'],
-            'address' => $details['address'],
-            'heard_about_id' => $details['heard_about_id'],
-            'age_confirmation' => $details['age_confirmation'],
-            'newsletter' => $details['newsletter'],
-            'eligible' => $details['eligible'],
-            'terms' => $details['terms']
-        ]);
-    }
 
     public function addApplicant($data)
     {
@@ -197,6 +154,56 @@ class ApplicantsModel
                              :terms);');
         return $addApplicationQuery->execute([
             'applicant_id' => $applicantId,
+            'why' => $details['why'],
+            'experience' => $details['experience'],
+            'diversitech' => $details['diversitech'],
+            'circumstance_id' => $details['circumstance_id'],
+            'funding_id' => $details['funding_id'],
+            'cohort_id' => $details['cohort_id'],
+            'dob' => $details['dob'],
+            'phone' => $details['phone'],
+            'address' => $details['address'],
+            'heard_about_id' => $details['heard_about_id'],
+            'age_confirmation' => $details['age_confirmation'],
+            'newsletter' => $details['newsletter'],
+            'eligible' => $details['eligible'],
+            'terms' => $details['terms']
+        ]);
+    }
+
+    public function editApplicant($details)
+    {
+        $queryEditApplicant = $this->db->prepare("UPDATE `applicants` 
+            SET `name` = :name,
+                `email` = :email 
+            WHERE `id` = :id;");
+        $queryEditApplicant->execute([
+            'id' => $details['id'],
+            'name' => $details['name'],
+            'email' => $details['email']
+        ]);
+    }
+
+    public function editApplication($details)
+    {
+        $queryEditApplication = $this->db->prepare("UPDATE `applications`
+        SET `why` = :why,
+            `experience` = :experience,
+            `diversitech` = :diversitech,
+            `circumstance_id` = :circumstance_id,
+            `funding_id` = :funding_id,
+            `cohort_id` = :cohort_id,
+            `dob` = :dob,
+            `phone` = :phone,
+            `address` = :address,
+            `heard_about_id` = :heard_about_id,
+            `age_confirmation` = :age_confirmation,
+            `newsletter` = :newsletter,
+            `eligible` = :eligible,
+            `terms` = :terms
+            WHERE `applicant_id` = :id");
+        return $queryEditApplication->execute([
+            'id' => $details['id'],
             'why' => $details['why'],
             'experience' => $details['experience'],
             'diversitech' => $details['diversitech'],
