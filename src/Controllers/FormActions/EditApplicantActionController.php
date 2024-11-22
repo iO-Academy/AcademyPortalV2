@@ -32,12 +32,12 @@ class EditApplicantActionController extends Controller
         }
 
         $input = $request->getParsedBody();
-        $input['id'] = $args['id']; // THIS NEEDS TO BE SET IN THE VALIDATOR
+        //$input['id'] = $args['id'];  THIS NEEDS TO BE SET IN THE VALIDATOR
         $hasApplication = false;
 
         try {
             $changedApplicant = ApplicantValidator::validateEdit($input);
-            $changedApplicant['id'] = $args['id']; // WORK AROUND THAT NEEDS TO BE FIXED THROUGH VALIDATOR
+           // $changedApplicant['id'] = $args['id'];  WORK AROUND THAT NEEDS TO BE FIXED THROUGH VALIDATOR
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
         }
