@@ -44,6 +44,14 @@ class EditApplicationPageController extends Controller
         $id = $args['id'];
         $applicant = $this->model->getById($id);
 
-        return $this->view->render($response, 'editApplicant.phtml', ['applicant' => $applicant, 'cohorts' => $cohorts, 'hearAboutUs' => $hearAboutUs, 'circumstances' => $circumstances, 'fundingOptions' => $fundingOptions]);
+        $query = $request->getQueryParams();
+
+        return $this->view->render($response, 'editApplicant.phtml',
+            ['applicant' => $applicant,
+                'cohorts' => $cohorts,
+                'hearAboutUs' => $hearAboutUs,
+                'circumstances' => $circumstances,
+                'fundingOptions' => $fundingOptions,
+                'error' => $query['error'] ?? null]);
     }
 }
