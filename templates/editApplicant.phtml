@@ -21,6 +21,11 @@ $application = $applicant->getApplication();
 <?php require 'partials/layout/header.phtml'; ?>
 <?php require 'partials/layout/nav.phtml'; ?>
 <main>
+    <?php
+    if ($error) {
+        echo "<div class='error-text invalid-login'>$error</div>";
+    }
+    ?>
     <div class="editContainer">
         <form method="post" action="/admin/applicants/edit/<?= $applicant->getId() ?>">
             <h2>Personal Information</h2>
