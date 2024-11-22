@@ -81,9 +81,9 @@ class ApplicationModel
             `newsletter` = :newsletter,
             `eligible` = :eligible,
             `terms` = :terms
-            WHERE `applicant_id` = :id");
+            WHERE `applicant_id` = :applicant_id");
         $query->execute([
-            'id' => $details['id'],
+            'applicant_id' => $details['id'],
             'why' => $details['why'],
             'experience' => $details['experience'],
             'diversitech' => $details['diversitech'],
