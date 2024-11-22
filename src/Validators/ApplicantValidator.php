@@ -26,7 +26,7 @@ class ApplicantValidator
         }
 
         StringValidator::validateLength($newApplicant['name'], 100, 1, 'Name');
-        StringValidator::validateLength($newApplicant['email'], 255, 1, 'Name');
+        StringValidator::validateLength($newApplicant['email'], 255, 1, 'Email');
         $newApplicant['email'] = new EmailAddress($applicant['email']);
 
         return $newApplicant;

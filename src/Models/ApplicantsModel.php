@@ -62,6 +62,7 @@ class ApplicantsModel
                                             `applications`.`newsletter`,
                                             `applications`.`eligible`,
                                             `applications`.`terms`,
+                                            `applications`.`circumstance_id`,
                                             `circumstances`.`option` AS 'circumstance',
                                             `funding_options`.`option` AS 'funding',
                                             `cohorts`.`date` AS 'cohort',
@@ -97,6 +98,16 @@ class ApplicantsModel
         return ApplicantHydrator::hydrateSingle($data, $applicationEntity);
     }
 
+    public function editApplicant($details)
+    {
+        $query1 = $this->db->prepare("UPDATE `applicants` SET `name` = :name, `email` = :email WHERE `id` = :id;");
+        $query1->execute([
+            'id' => $details['id'],
+            'name' => $details['name'],
+            'email' => $details['email']
+        ]);
+    }
+
     public function addApplicant($data)
     {
         $addApplicantQuery = $this->db->prepare('INSERT INTO `applicants` 
@@ -107,59 +118,6 @@ class ApplicantsModel
         ]);
         $lastInsertId = $this->db->lastInsertId();
         return $lastInsertId;
-    }
-
-    public function addApplication($details, $applicantId)
-    {
-        $addApplicationQuery = $this->db->prepare('
-            INSERT INTO `applications` 
-                        (`applicant_id`,
-                        `why`,
-                        `experience`,
-                        `diversitech`,
-                        `circumstance_id`,
-                        `funding_id`,
-                        `cohort_id`,
-                        `dob`,
-                        `phone`,
-                        `address`,
-                        `heard_about_id`,
-                        `age_confirmation`,
-                        `newsletter`,
-                        `eligible`, `terms`) 
-                        VALUES 
-                            (:applicant_id,
-                             :why,
-                             :experience,
-                             :diversitech,
-                             :circumstance_id,
-                             :funding_id,
-                             :cohort_id,
-                             :dob,
-                             :phone,
-                             :address,
-                             :heard_about_id,
-                             :age_confirmation,
-                             :newsletter,
-                             :eligible,
-                             :terms);');
-        return $addApplicationQuery->execute([
-            'applicant_id' => $applicantId,
-            'why' => $details['why'],
-            'experience' => $details['experience'],
-            'diversitech' => $details['diversitech'],
-            'circumstance_id' => $details['circumstance_id'],
-            'funding_id' => $details['funding_id'],
-            'cohort_id' => $details['cohort_id'],
-            'dob' => $details['dob'],
-            'phone' => $details['phone'],
-            'address' => $details['address'],
-            'heard_about_id' => $details['heard_about_id'],
-            'age_confirmation' => $details['age_confirmation'],
-            'newsletter' => $details['newsletter'],
-            'eligible' => $details['eligible'],
-            'terms' => $details['terms']
-        ]);
     }
 
     public function getAllCircumstanceOptions()

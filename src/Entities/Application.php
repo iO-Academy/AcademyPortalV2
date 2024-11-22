@@ -52,7 +52,7 @@ class Application
         bool $ageConfirmation,
         bool $newsletter,
         bool $eligible,
-        bool $terms
+        bool $terms,
     ) {
         $this->id = $id;
         $this->why = $why;
