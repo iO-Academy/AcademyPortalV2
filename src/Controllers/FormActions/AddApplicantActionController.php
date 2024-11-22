@@ -5,6 +5,7 @@ namespace Portal\Controllers\FormActions;
 use Exception;
 use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
+use Portal\Models\ApplicationModel;
 use Portal\Models\CohortsModel;
 use Portal\Services\AuthService;
 use Portal\Validators\ApplicantValidator;
@@ -17,15 +18,17 @@ class AddApplicantActionController extends Controller
     private $applicantsModel;
     private $cohortsModel;
     private $authService;
+    private $applicationModel;
 
-    public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel)
+    public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel, ApplicationModel $applicationModel)
     {
         $this->applicantsModel = $applicantsModel;
         $this->cohortsModel = $cohortsModel;
         $this->authService = $authService;
+        $this->applicationModel = $applicationModel;
     }
 
-    public function __invoke(Request $request, Response $response, $args): Response
+    public function __invoke(Request $request, Response $response, $args = []): Response
     {
         if (!$this->authService->isLoggedIn()) {
             return $this->redirect($response, '/');
@@ -50,7 +53,7 @@ class AddApplicantActionController extends Controller
         try {
             $applicantId = $this->applicantsModel->addApplicant($newApplicant);
             if ($hasApplication && $applicantId) {
-                $this->applicantsModel->addApplication($newApplication, $applicantId);
+                $this->applicationModel->addApplication($newApplication, $applicantId);
             }
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());

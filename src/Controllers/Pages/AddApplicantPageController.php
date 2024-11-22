@@ -30,7 +30,7 @@ class AddApplicantPageController extends Controller
         $this->cohortsModel = $cohortsModel;
     }
 
-    public function __invoke(Request $request, Response $response, $args): Response
+    public function __invoke(Request $request, Response $response, $args = []): Response
     {
         if (!$this->authService->isLoggedIn()) {
             return $this->redirect($response, '/');

@@ -35,11 +35,11 @@ class EditApplicationPageController extends Controller
 
     }
 
-    public function __invoke($request, $response, $args): Response
+    public function __invoke($request, $response, $args = []): Response
     {
         $circumstances = $this->applicantsModel->getAllCircumstanceOptions();
         $fundingOptions = $this->applicantsModel->getAllFundingOptions();
-        $cohorts = $this->cohortsModel->getAll();
+        $cohorts = $this->cohortsModel->getDate();
         $hearAboutUs = $this->applicantsModel->getAllHearAboutUsOptions();
         $id = $args['id'];
         $applicant = $this->model->getById($id);
