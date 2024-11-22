@@ -22,15 +22,19 @@ class EditApplicantActionController extends Controller
     private $authService;
     private $applicationModel;
 
-    public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel, ApplicationModel $applicationModel)
-    {
+    public function __construct(
+        ApplicantsModel $applicantsModel,
+        AuthService $authService,
+        CohortsModel $cohortsModel,
+        ApplicationModel $applicationModel
+    ) {
         $this->applicantsModel = $applicantsModel;
         $this->authService = $authService;
         $this->applicationModel = $applicationModel;
         $this->cohortsModel= $cohortsModel;
     }
 
-    public function __invoke(Request $request, Response $response, $args = []): Response
+    public function __invoke(Request $request, Response $response, $args = [] ): Response
     {
         if (!$this->authService->isLoggedIn())
         {
@@ -43,7 +47,7 @@ class EditApplicantActionController extends Controller
 
         try {
             $editedApplicant = ApplicantValidator::validate($input);
-            if (!isset( $input['id'] )) {
+            if (!isset($input['id'])) {
                 throw new InvalidArgumentException("id not found.");
             }
             NumericValidator::checkNumeric($input['id'], 'id',);

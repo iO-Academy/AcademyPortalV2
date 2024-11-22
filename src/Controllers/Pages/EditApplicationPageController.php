@@ -22,12 +22,11 @@ class EditApplicationPageController extends Controller
 
     public function __construct(
         ApplicantsModel $model,
-        PhpRenderer     $view,
-        AuthService     $authService,
+        PhpRenderer $view,
+        AuthService $authService,
         ApplicantsModel $applicantsModel,
-        CohortsModel    $cohortsModel
-    )
-    {
+        CohortsModel $cohortsModel
+    ) {
         $this->model = $model;
         $this->view = $view;
         $this->authService = $authService;
@@ -46,8 +45,9 @@ class EditApplicationPageController extends Controller
 
         $query = $request->getQueryParams();
 
-        return $this->view->render
-        ($response, 'editApplicant.phtml',
+        return $this->view->render(
+            $response,
+            'editApplicant.phtml',
             ['applicant' => $applicant,
                 'cohorts' => $cohorts,
                 'hearAboutUs' => $hearAboutUs,
