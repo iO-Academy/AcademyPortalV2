@@ -3,6 +3,7 @@
 namespace Portal\Controllers\FormActions;
 
 use Exception;
+use InvalidArgumentException;
 use Portal\Controllers\Controller;
 use Portal\Models\ApplicantsModel;
 use Portal\Models\ApplicationModel;
@@ -10,10 +11,11 @@ use Portal\Models\CohortsModel;
 use Portal\Services\AuthService;
 use Portal\Validators\ApplicantValidator;
 use Portal\Validators\ApplicationValidator;
+use Portal\Validators\NumericValidator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AddApplicantActionController extends Controller
+class EditApplicantActionController extends Controller
 {
     private $applicantsModel;
     private $cohortsModel;
@@ -27,9 +29,9 @@ class AddApplicantActionController extends Controller
         ApplicationModel $applicationModel
     ) {
         $this->applicantsModel = $applicantsModel;
-        $this->cohortsModel = $cohortsModel;
         $this->authService = $authService;
         $this->applicationModel = $applicationModel;
+        $this->cohortsModel = $cohortsModel;
     }
 
     public function __invoke(Request $request, Response $response, $args = []): Response
@@ -39,28 +41,36 @@ class AddApplicantActionController extends Controller
         }
 
         $input = $request->getParsedBody();
+        $input['id'] = $args['id'];
         $hasApplication = false;
 
         try {
-            $newApplicant = ApplicantValidator::validate($input);
+            $editedApplicant = ApplicantValidator::validate($input);
+            if (!isset($input['id'])) {
+                throw new InvalidArgumentException("id not found.");
+            }
+            NumericValidator::checkNumeric($input['id'], 'id',);
+            $editedApplicant['id'] = $args['id'];
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
+        $this->applicantsModel->editApplicant($input);
+        $this->applicationModel->editApplication($input);
         try {
-            $newApplication = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
+            $editedApplicant = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
             $hasApplication = true;
         } catch (Exception $e) {
             $hasApplication = false;
         }
 
         try {
-            $applicantId = $this->applicantsModel->addApplicant($newApplicant);
-            if ($hasApplication && $applicantId) {
-                $this->applicationModel->addApplication($newApplication, $applicantId);
+            $this->applicantsModel->editApplicant($editedApplicant);
+            if ($hasApplication) {
+                $this->applicantsModel->editApplication($editedApplicant);
             }
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicant/add', $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
         return $response->withHeader('Location', '/admin/applicants')->withStatus(301);

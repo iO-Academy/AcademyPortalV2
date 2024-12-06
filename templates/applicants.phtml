@@ -34,6 +34,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Application Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,7 @@
                     <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a></td>
                     <td><?php echo $applicant->getEmail(); ?></td>
                     <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
+                    <td><a href="/admin/applicant/edit/<?= $applicant->getId() ?>" class="btn">EDIT</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

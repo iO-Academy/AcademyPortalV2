@@ -12,6 +12,7 @@ class Applicant
     private string $application_date;
     private ?Application $application;
 
+
     public function __construct(
         int $id,
         string $name,

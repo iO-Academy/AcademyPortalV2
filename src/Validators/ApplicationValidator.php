@@ -12,7 +12,7 @@ class ApplicationValidator
     public static function validate(
         array $application,
         ApplicantsModel $applicantsModel,
-        CohortsModel $cohortsModel
+        CohortsModel $cohortsModel,
     ): array {
         $newApplication = [];
 

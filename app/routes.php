@@ -9,7 +9,6 @@ return function (App $app) {
 
     $app->get('/', \Portal\Controllers\Pages\LoginPageController::class);
     $app->post('/login', \Portal\Controllers\FormActions\LoginActionController::class);
-
     $app->get('/admin', \Portal\Controllers\Pages\AdminPageController::class);
     $app->get('/admin/applicants', \Portal\Controllers\Pages\ApplicantsPageController::class);
     $app->get('/admin/applicants/{id}', \Portal\Controllers\Pages\SingleApplicantPageController::class);
@@ -19,4 +18,6 @@ return function (App $app) {
     $app->get('/admin/cohorts', \Portal\Controllers\Pages\CohortsPageController::class);
     $app->get('/admin/applicant/add', \Portal\Controllers\Pages\AddApplicantPageController::class);
     $app->post('/admin/applicant/add', \Portal\Controllers\FormActions\AddApplicantActionController::class);
+    $app->get('/admin/applicant/edit/{id}', \Portal\Controllers\Pages\EditApplicationPageController::class);
+    $app->post('/admin/applicant/edit/{id}', \Portal\Controllers\FormActions\EditApplicantActionController::class);
 };
