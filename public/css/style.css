@@ -206,10 +206,13 @@ table thead {
 }
 
 .btn {
+    display: inline-block;
     background-color: var(--io-green);
-    padding: 8px;
+    color: var(--black);
+    padding: 6px 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
+    margin: 3px;
     font-size: 15px;
 }
 
@@ -218,7 +221,7 @@ table thead {
 }
 
 .btn:hover {
-    background-color: var(--io-green);
+    background-color: var(--light-grey);
 }
 
 .single-applicant .applicant-header {
@@ -303,21 +306,4 @@ table thead {
 
 td:has(> .edit-button) {
     position: relative;
-}
-
-.edit-button {
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 6px;
-    border: 1px solid var(--light-grey);
-    border-radius: 10px;
-    font-size: 14px;
-    position: absolute;
-    background-color: var(--io-green);
-    color: black;
-    transition: all 0.1s linear;
-    box-shadow: 0 0 0 0 rgb(0,0,0);
-}
-.edit-button:hover {
-    background-color: var(--light-grey);
 }

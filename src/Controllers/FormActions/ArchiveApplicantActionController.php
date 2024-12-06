@@ -11,8 +11,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 class ArchiveApplicantActionController extends Controller
 {
     private $model;
-        private $authService;
-
     private $authService;
 
     public function __construct(ApplicantsModel $model, AuthService $authService)
@@ -21,7 +19,7 @@ class ArchiveApplicantActionController extends Controller
         $this->authService = $authService;
     }
 
-    public function __invoke(Request $request, Response $response, $args): Response
+    public function __invoke(Request $request, Response $response, $args = []): Response
     {
         if (!$this->authService->isLoggedIn()) {
             return $this->redirect($response, '/');

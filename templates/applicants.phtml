@@ -44,7 +44,7 @@
                     <td><?php echo $applicant->getEmail(); ?></td>
                     <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
                     <td>
-                        <a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="btn">EDIT</a>
+                        <a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="btn">Edit</a>
                         <form action="/admin/applicants/archive/<?= $applicant->getId()?>" method="post">
                             <input type="submit" class="btn" value="Archive">
                         </form>
