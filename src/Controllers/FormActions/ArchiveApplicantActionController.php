@@ -13,6 +13,8 @@ class ArchiveApplicantActionController extends Controller
     private $model;
         private $authService;
 
+    private $authService;
+
     public function __construct(ApplicantsModel $model, AuthService $authService)
     {
         $this->model = $model;
