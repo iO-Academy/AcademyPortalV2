@@ -32,26 +32,28 @@ class EditApplicationPageController extends Controller
         $this->authService = $authService;
         $this->applicantsModel = $applicantsModel;
         $this->cohortsModel = $cohortsModel;
-
     }
 
     public function __invoke($request, $response, $args = []): Response
     {
         $circumstances = $this->applicantsModel->getAllCircumstanceOptions();
         $fundingOptions = $this->applicantsModel->getAllFundingOptions();
-        $cohorts = $this->cohortsModel->getDate();
+        $cohorts = $this->cohortsModel->getAll();
         $hearAboutUs = $this->applicantsModel->getAllHearAboutUsOptions();
         $id = $args['id'];
         $applicant = $this->model->getById($id);
 
         $query = $request->getQueryParams();
 
-        return $this->view->render($response, 'editApplicant.phtml',
+        return $this->view->render(
+            $response,
+            'editApplicant.phtml',
             ['applicant' => $applicant,
                 'cohorts' => $cohorts,
                 'hearAboutUs' => $hearAboutUs,
                 'circumstances' => $circumstances,
                 'fundingOptions' => $fundingOptions,
-                'error' => $query['error'] ?? null]);
+                'error' => $query['error'] ?? null]
+        );
     }
 }

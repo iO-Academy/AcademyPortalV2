@@ -72,8 +72,8 @@ class ApplicationValidator
             $newApplication['cohort_id'],
             "Cohort ID"
         );
+        StringValidator::validateLength($newApplication['phone'], 15, 0, 'phone');
         $newApplication['phone'] = PhoneValidator::validatePhone($newApplication['phone']);
-        StringValidator::validateLength($newApplication['phone'], 15, 0, 'Why');
         StringValidator::validateLength(
             $newApplication['address'],
             200,

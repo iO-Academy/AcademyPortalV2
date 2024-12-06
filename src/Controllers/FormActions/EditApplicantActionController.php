@@ -22,13 +22,16 @@ class EditApplicantActionController extends Controller
     private $authService;
     private $applicationModel;
 
-    public function __construct(ApplicantsModel $model, AuthService $authService, ApplicationModel $applicationModel)
-    public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel)
-    {
+    public function __construct(
+        ApplicantsModel $applicantsModel,
+        AuthService $authService,
+        CohortsModel $cohortsModel,
+        ApplicationModel $applicationModel
+    ) {
         $this->applicantsModel = $applicantsModel;
         $this->authService = $authService;
         $this->applicationModel = $applicationModel;
-        $this->cohortsModel= $cohortsModel;
+        $this->cohortsModel = $cohortsModel;
     }
 
     public function __invoke(Request $request, Response $response, $args = []): Response
@@ -43,17 +46,17 @@ class EditApplicantActionController extends Controller
 
         try {
             $editedApplicant = ApplicantValidator::validate($input);
-            if (!isset( $input['id'] )) {
+            if (!isset($input['id'])) {
                 throw new InvalidArgumentException("id not found.");
             }
             NumericValidator::checkNumeric($input['id'], 'id',);
             $editedApplicant['id'] = $args['id'];
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
-        $this->model->editApplicant($details);
-        $this->applicationModel->editApplication($details);
+        $this->applicantsModel->editApplicant($input);
+        $this->applicationModel->editApplication($input);
         try {
             $editedApplicant = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
             $hasApplication = true;
@@ -67,7 +70,7 @@ class EditApplicantActionController extends Controller
                 $this->applicantsModel->editApplication($editedApplicant);
             }
         } catch (Exception $e) {
-            return $this->redirectWithError($response, '/admin/applicants/edit/'.$input['id'], $e->getMessage());
+            return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
         return $response->withHeader('Location', '/admin/applicants')->withStatus(301);

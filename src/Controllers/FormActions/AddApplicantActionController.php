@@ -20,8 +20,12 @@ class AddApplicantActionController extends Controller
     private $authService;
     private $applicationModel;
 
-    public function __construct(ApplicantsModel $applicantsModel, AuthService $authService, CohortsModel $cohortsModel, ApplicationModel $applicationModel)
-    {
+    public function __construct(
+        ApplicantsModel $applicantsModel,
+        AuthService $authService,
+        CohortsModel $cohortsModel,
+        ApplicationModel $applicationModel
+    ) {
         $this->applicantsModel = $applicantsModel;
         $this->cohortsModel = $cohortsModel;
         $this->authService = $authService;

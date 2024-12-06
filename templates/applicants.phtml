@@ -43,10 +43,12 @@
                     <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a></td>
                     <td><?php echo $applicant->getEmail(); ?></td>
                     <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
-                    <td><a href="/admin/applicant/edit/<?= $applicant->getId() ?>" class="edit-button">EDIT</a></td>
-                    <td><a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="edit-button">EDIT</a>
-                    <form action="/admin/applicants/archive/<?= $applicant->getId()?>" method="post">
-                        <input type="submit" class="archive-button" value="Archive"></form></td>
+                    <td>
+                        <a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="btn">EDIT</a>
+                        <form action="/admin/applicants/archive/<?= $applicant->getId()?>" method="post">
+                            <input type="submit" class="btn" value="Archive">
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
