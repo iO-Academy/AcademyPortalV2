@@ -55,8 +55,6 @@ class EditApplicantActionController extends Controller
             return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
-        $this->applicantsModel->editApplicant($input);
-        $this->applicationModel->editApplication($input);
         try {
             $editedApplicant = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
             $hasApplication = true;
@@ -67,7 +65,7 @@ class EditApplicantActionController extends Controller
         try {
             $this->applicantsModel->editApplicant($editedApplicant);
             if ($hasApplication) {
-                $this->applicantsModel->editApplication($editedApplicant);
+                $this->applicationModel->editApplication($editedApplicant);
             }
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
