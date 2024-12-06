@@ -15,7 +15,8 @@ class ApplicantHydratorTest extends TestCase
             'id' => 1,
             'name' => 'Test',
             'email' => 'test@test.com',
-            'application_date' => '2024-01-01'
+            'application_date' => '2024-01-01',
+            'archived' => 0
         ];
 
         $case = ApplicantHydrator::hydrateSingle($data);
