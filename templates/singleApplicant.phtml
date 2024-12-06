@@ -6,7 +6,7 @@
 $application = $applicant->getApplication();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <?php
     require 'partials/layout/head.phtml';
@@ -41,8 +41,8 @@ $application = $applicant->getApplication();
             <?php if ($application): ?>
                 <p><span>Cohort:</span> <?= $application->getCohort() ?></p>
                 <p><span>Background info:</span> <?= $application->getCircumstance() ?></p>
-                <p><span>Application reason:</span><br /> <?= $application->getWhy() ?></p>
-                <p><span>Code experience:</span><br /> <?= $application->getExperience() ?></p>
+                <p><span>Application reason:</span><br/> <?= $application->getWhy() ?></p>
+                <p><span>Code experience:</span><br/> <?= $application->getExperience() ?></p>
                 <p><span>Heard about us:</span> <?= $application->getHearAbout() ?></p>
                 <p><span>Diversitech:</span> <?= $application->getDiversitech() ? 'Yes' : 'No' ?></p>
                 <p><span>Over 18:</span> <?= $application->getAgeConfirmation() ? 'Yes' : 'No' ?></p>
