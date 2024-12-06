@@ -10,11 +10,10 @@ use Portal\Services\ValidationService;
 class ApplicationValidator
 {
     public static function validate(
-        array           $application,
+        array $application,
         ApplicantsModel $applicantsModel,
-        CohortsModel    $cohortsModel,
-    ): array
-    {
+        CohortsModel $cohortsModel,
+    ): array {
         $newApplication = [];
 
         $requiredFields = [
