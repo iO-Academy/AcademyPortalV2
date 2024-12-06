@@ -45,27 +45,33 @@ class EditApplicantActionController extends Controller
         $hasApplication = false;
 
         try {
-            $editedApplicant = ApplicantValidator::validate($input);
+            $validatedApplicant = ApplicantValidator::validate($input);
             if (!isset($input['id'])) {
                 throw new InvalidArgumentException("id not found.");
             }
             NumericValidator::checkNumeric($input['id'], 'id',);
-            $editedApplicant['id'] = $args['id'];
+            $validatedApplicant['id'] = $args['id'];
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());
         }
 
         try {
-            $editedApplicant = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
+            $validatedApplication = ApplicationValidator::validate($input, $this->applicantsModel, $this->cohortsModel);
+            if (!isset($input['applicant_id'])) {
+                $validatedApplication['applicant_id'] = $args['id'];
+            } else {
+                NumericValidator::checkNumeric($input['applicant_id'], 'id',);
+                $validatedApplication['applicant_id'] = $args['applicant_id'];
+            }
             $hasApplication = true;
         } catch (Exception $e) {
             $hasApplication = false;
         }
 
         try {
-            $this->applicantsModel->editApplicant($editedApplicant);
+            $this->applicantsModel->editApplicant($validatedApplicant);
             if ($hasApplication) {
-                $this->applicationModel->editApplication($editedApplicant);
+                $this->applicationModel->editApplication($validatedApplication);
             }
         } catch (Exception $e) {
             return $this->redirectWithError($response, '/admin/applicants/edit/' . $input['id'], $e->getMessage());

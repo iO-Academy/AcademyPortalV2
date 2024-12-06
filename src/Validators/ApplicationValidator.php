@@ -10,10 +10,11 @@ use Portal\Services\ValidationService;
 class ApplicationValidator
 {
     public static function validate(
-        array $application,
+        array           $application,
         ApplicantsModel $applicantsModel,
-        CohortsModel $cohortsModel,
-    ): array {
+        CohortsModel    $cohortsModel,
+    ): array
+    {
         $newApplication = [];
 
         $requiredFields = [
@@ -29,87 +30,82 @@ class ApplicationValidator
                 $newApplication[$field] = $application[$field];
             }
         }
+
+        if (isset($application['applicant_id'])) {
+            $newApplication['applicant_id'] = $application['applicant_id'];
+        } else {
+            $newApplication['applicant_id'] = null;
+        }
+        NumericValidator::checkNumeric($newApplication['applicant_id'], 'newsletter');
+
         StringValidator::validateLength($newApplication['why'], 65535, 0, 'Why');
+
         StringValidator::validateLength(
             $newApplication['experience'],
             65535,
             0,
             'Experience'
         );
+
         if (isset($application['diversitech'])) {
             $newApplication['diversitech'] = $application['diversitech'];
-            NumericValidator::checkNumeric(
-                $newApplication['diversitech'],
-                'Diversitech'
-            );
         } else {
             $newApplication['diversitech'] = 0;
         }
+        NumericValidator::checkNumeric($newApplication['diversitech'], 'Diversitech');
+
         ValidationService::checkCircumstanceOptionExists(
             $newApplication['circumstance_id'],
             $applicantsModel,
             "Circumstance ID"
         );
-        NumericValidator::checkNumeric(
-            $newApplication['circumstance_id'],
-            "Circumstance ID"
-        );
+
+        NumericValidator::checkNumeric($newApplication['circumstance_id'], "Circumstance ID");
+
         ValidationService::checkFundingOptionExists(
             $newApplication['funding_id'],
             $applicantsModel,
             "Funding ID"
         );
-        NumericValidator::checkNumeric(
-            $newApplication['funding_id'],
-            "Funding ID"
-        );
+        NumericValidator::checkNumeric($newApplication['funding_id'], "Funding ID");
+
         ValidationService::checkCohortOptionExists(
             $newApplication['cohort_id'],
             $cohortsModel,
             "Cohort ID"
         );
-        NumericValidator::checkNumeric(
-            $newApplication['cohort_id'],
-            "Cohort ID"
-        );
+        NumericValidator::checkNumeric($newApplication['cohort_id'], "Cohort ID");
+
         StringValidator::validateLength($newApplication['phone'], 15, 0, 'phone');
         $newApplication['phone'] = PhoneValidator::validatePhone($newApplication['phone']);
+
         StringValidator::validateLength(
             $newApplication['address'],
             200,
             0,
             'Address'
         );
+
         ValidationService::checkHeardAboutOptionExists(
             $newApplication['heard_about_id'],
             $applicantsModel,
             "Heard About ID"
         );
-        NumericValidator::checkNumeric(
-            $newApplication['heard_about_id'],
-            "Hear About ID"
-        );
-        NumericValidator::checkNumeric(
-            $newApplication['age_confirmation'],
-            "Age confirmation"
-        );
+
+        NumericValidator::checkNumeric($newApplication['heard_about_id'], "Hear About ID");
+
+        NumericValidator::checkNumeric($newApplication['age_confirmation'], "Age confirmation");
+
         if (isset($application['newsletter'])) {
             $newApplication['newsletter'] = $application['newsletter'];
-            NumericValidator::checkNumeric(
-                $newApplication['newsletter'],
-                'newsletter'
-            );
         } else {
             $newApplication['newsletter'] = 0;
         }
-        NumericValidator::checkNumeric(
-            $newApplication['eligible'],
-            "Eligible"
-        );
-        NumericValidator::checkNumeric(
-            $newApplication['terms'],
-            "Terms"
-        );
+        NumericValidator::checkNumeric($newApplication['newsletter'], 'newsletter');
+
+        NumericValidator::checkNumeric($newApplication['eligible'], "Eligible");
+
+        NumericValidator::checkNumeric($newApplication['terms'], "Terms");
 
         return $newApplication;
     }

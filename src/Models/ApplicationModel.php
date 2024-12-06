@@ -12,6 +12,7 @@ class ApplicationModel
     {
         $this->db = $db;
     }
+
     public function addApplication($details, $applicantId)
     {
         $addApplicationQuery = $this->db->prepare('
@@ -84,7 +85,7 @@ class ApplicationModel
             `terms` = :terms
             WHERE `applicant_id` = :applicant_id");
         $query->execute([
-            'applicant_id' => $details['id'],
+            'applicant_id' => $details['applicant_id'],
             'why' => $details['why'],
             'experience' => $details['experience'],
             'diversitech' => $details['diversitech'],
