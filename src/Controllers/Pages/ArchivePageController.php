@@ -22,7 +22,7 @@ class ArchivePageController extends Controller
         $this->authService = $authService;
     }
 
-    public function __invoke(Request $request, Response $response, $args): Response
+    public function __invoke(Request $request, Response $response, $args = []): Response
     {
         if (!$this->authService->isLoggedIn()) {
             return $this->redirect($response, '/');
@@ -33,7 +33,7 @@ class ArchivePageController extends Controller
         $page = $data['page'] ?? 1;
 
         $applicants = $this->applicantsModel->getAllArchived($page);
-        $applicantsTotalCount = $this->applicantsModel->getCount();
+        $applicantsTotalCount = $this->applicantsModel->getArchivedCount();
 
         return $this->renderer->render($response, 'archivedApplicants.phtml', [
             'applicants' => $applicants,

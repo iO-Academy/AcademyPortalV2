@@ -62,7 +62,7 @@
         <div class="pagination">
             <a href="?page=<?= $previousPage; ?>" class="prev <?php if ($previousPage === 0) echo 'disabled' ?>">Previous</a>
             <?php
-            for ($i = 1; $i < $pageCount; $i++) {
+            for ($i = 1; $i <= $pageCount; $i++) {
                 if ($i == $currentPage) {
                     echo "<a href='?page=$i' class='active'>$i</a>";
                 } else {
@@ -71,7 +71,7 @@
             }
             ?>
             <a href="?page=<?= $nextPage; ?>"
-               class="next <?php if ($nextPage >= $pageCount) echo 'disabled' ?>">Next</a>
+               class="next <?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
         </div>
     </div>
 </main>

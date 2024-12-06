@@ -8,7 +8,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <?php
     require 'partials/layout/head.phtml';
@@ -24,7 +24,6 @@
             <h1>Archived Applicants</h1>
             <a href="/admin/applicants">Return to Applicants</a>
         </div>
-
         <?php if (count($applicants) === 0): ?>
             No archived applicants found
         <?php else: ?>
@@ -40,10 +39,12 @@
                 <tbody>
                 <?php foreach ($applicants as $applicant): ?>
                     <tr>
-                        <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a></td>
+                        <td>
+                            <a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a>
+                        </td>
                         <td><?php echo $applicant->getEmail(); ?></td>
                         <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
-                        <td><a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="edit-button">EDIT</a>
+                        <td></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -61,7 +62,8 @@
                 }
             }
             ?>
-            <a href="?page=<?= $nextPage; ?>" class="next <?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
+            <a href="?page=<?= $nextPage; ?>"
+               class="next <?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
         </div>
     </div>
 </main>
