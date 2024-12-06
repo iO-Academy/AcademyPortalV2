@@ -13,7 +13,7 @@
     <?php
     require 'partials/layout/head.phtml';
     ?>
-    <title>Applicants</title>
+    <title>Archived Applicants</title>
 </head>
 <body>
 <?php require 'partials/layout/header.phtml'; ?>
@@ -21,15 +21,11 @@
 <main>
     <div class="container">
         <div class="applicant-header-container">
-            <h1>Applicants</h1>
-            <div>
-                <a href="/admin/archive" class="btn">Archived applicants</a>
-                <a href="applicants/add" class="btn">Add applicant</a>
-            </div>
+            <h1>Archived Applicants</h1>
+            <a href="/admin/applicants">Return to Applicants</a>
         </div>
-
         <?php if (count($applicants) === 0): ?>
-            No applicants found
+            No archived applicants found
         <?php else: ?>
             <table>
                 <thead>
@@ -43,16 +39,12 @@
                 <tbody>
                 <?php foreach ($applicants as $applicant): ?>
                     <tr>
-                        <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a>
+                        <td>
+                            <a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a>
                         </td>
                         <td><?php echo $applicant->getEmail(); ?></td>
                         <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
-                        <td>
-                            <a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="btn">Edit</a>
-                            <form action="/admin/applicants/archive/<?= $applicant->getId() ?>" method="post">
-                                <input type="submit" class="btn" value="Archive">
-                            </form>
-                        </td>
+                        <td></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>

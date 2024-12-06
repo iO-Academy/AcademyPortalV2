@@ -1,16 +1,17 @@
 <?php
 /**
  * @var $applicant \Portal\Entities\Applicant
- * @var $previousPage int
- * @var $nextPage int
- * @var $pageCount int
- * @var $currentPage int
+ * @var $error string
+ * @var $circumstances array
+ * @var $fundingOptions array
+ * @var $cohorts array
+ * @var $hearAboutUs array
  */
 
 $application = $applicant->getApplication();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <?php
     require 'partials/layout/head.phtml';
@@ -26,7 +27,7 @@ $application = $applicant->getApplication();
         echo "<div class='error-text invalid-login'>$error</div>";
     }
     ?>
-    <form method="post" action="/admin/applicant/edit/<?= $applicant->getId() ?>" class="container">
+    <form method="post" action="/admin/applicants/edit/<?= $applicant->getId() ?>" class="container">
         <h1>Edit an Applicant</h1>
         <h2>Applicant</h2>
         <div class="form-group">
@@ -136,7 +137,7 @@ $application = $applicant->getApplication();
                     <Label for="eligible">I am eligible to live and work in the UK</Label>
                 </div>
                 <div class="form-group flex">
-                    <input id="terms width-20" name="terms" type="checkbox"
+                    <input id="terms" name="terms" type="checkbox"
                            value='1' <?php if ($application->getTerms()) echo "checked" ?>>
                     <Label for="terms">I accept the terms and conditions</Label>
                 </div>
@@ -146,7 +147,7 @@ $application = $applicant->getApplication();
             </div>
     </form>
     <?php else: ?>
-        <p>No application data found</p>
+    <p>No application data found</p>
     <?php endif; ?>
 </main>
 </body>

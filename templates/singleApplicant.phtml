@@ -6,7 +6,7 @@
 $application = $applicant->getApplication();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <?php
     require 'partials/layout/head.phtml';
@@ -24,6 +24,11 @@ $application = $applicant->getApplication();
         </div>
 
         <section class="details">
+            <?php
+            if($applicant->getArchived()){
+                echo "<p class='archived'>Archived</p>";
+            }
+            ?>
             <h2>Personal Information</h2>
             <p><span>Name:</span> <?= $applicant->getName() ?></p>
             <p><span>Email:</span> <?= $applicant->getEmail() ?></p>
@@ -41,8 +46,8 @@ $application = $applicant->getApplication();
             <?php if ($application): ?>
                 <p><span>Cohort:</span> <?= $application->getCohort() ?></p>
                 <p><span>Background info:</span> <?= $application->getCircumstance() ?></p>
-                <p><span>Application reason:</span><br /> <?= $application->getWhy() ?></p>
-                <p><span>Code experience:</span><br /> <?= $application->getExperience() ?></p>
+                <p><span>Application reason:</span><br/> <?= $application->getWhy() ?></p>
+                <p><span>Code experience:</span><br/> <?= $application->getExperience() ?></p>
                 <p><span>Heard about us:</span> <?= $application->getHearAbout() ?></p>
                 <p><span>Diversitech:</span> <?= $application->getDiversitech() ? 'Yes' : 'No' ?></p>
                 <p><span>Over 18:</span> <?= $application->getAgeConfirmation() ? 'Yes' : 'No' ?></p>
