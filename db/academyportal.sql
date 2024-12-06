@@ -167,7 +167,7 @@ VALUES
     (1,'Changing careers'),
     (2,'Returning to work'),
     (3,'Recent university graduate'),
-    (4,'Schol leaver');
+    (4,'School leaver');
 
 /*!40000 ALTER TABLE `circumstances` ENABLE KEYS */;
 UNLOCK TABLES;
