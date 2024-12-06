@@ -10,30 +10,23 @@ class Applicant
     private string $name;
     private EmailAddress $email;
     private string $application_date;
-
     private int $archived;
     private ?Application $application;
 
-
     public function __construct(
-        int          $id,
-        string       $name,
+        int $id,
+        string $name,
         EmailAddress $email,
-        string       $application_date,
-        int          $archived,
-
+        string $application_date,
+        int $archived,
         ?Application $application = null
-
-    )
-    {
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->application_date = $application_date;
         $this->archived = $archived;
         $this->application = $application;
-
-
     }
 
     public function getId(): int
@@ -70,6 +63,4 @@ class Applicant
     {
         return $this->application;
     }
-
-
 }

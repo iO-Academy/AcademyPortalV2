@@ -16,6 +16,14 @@ class PhoneValidatorTest extends testcase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testPlusSignsForSpaces()
+    {
+        $input = ' 01234+222+333 ';
+        $expected = '01234222333';
+        $actual = PhoneValidator::validatePhone($input);
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testPhoneLengthTooLong()
     {
         $testno = '012342223333';

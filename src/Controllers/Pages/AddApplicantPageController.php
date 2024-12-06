@@ -30,7 +30,7 @@ class AddApplicantPageController extends Controller
         $this->cohortsModel = $cohortsModel;
     }
 
-    public function __invoke(Request $request, Response $response, $args): Response
+    public function __invoke(Request $request, Response $response, $args = []): Response
     {
         if (!$this->authService->isLoggedIn()) {
             return $this->redirect($response, '/');
@@ -45,7 +45,8 @@ class AddApplicantPageController extends Controller
             'circumstances' => $circumstanceOptions,
             'funding' => $fundingOptions,
             'cohorts' => $cohorts,
-            'hearAboutUs' => $hearAboutUsOptions
+            'hearAboutUs' => $hearAboutUsOptions,
+            'error' => $query['error'] ?? null
         ]);
     }
 }

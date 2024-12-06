@@ -8,7 +8,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <?php
     require 'partials/layout/head.phtml';
@@ -24,42 +24,45 @@
             <h1>Applicants</h1>
             <div>
                 <a href="/admin/archive" class="btn">Archived applicants</a>
-                <a href="applicant/add" class="btn">Add applicant</a>
+                <a href="applicants/add" class="btn">Add applicant</a>
             </div>
         </div>
 
         <?php if (count($applicants) === 0): ?>
             No applicants found
         <?php else: ?>
-        <table>
-            <thead>
+            <table>
+                <thead>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Application Date</th>
                     <th>Actions</th>
                 </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($applicants as $applicant): ?>
-                <tr>
-                    <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a></td>
-                    <td><?php echo $applicant->getEmail(); ?></td>
-                    <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
-                    <td><a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="edit-button">Edit</a>
-                    <form action="/admin/applicants/archive/<?= $applicant->getId()?>" method="post">
-                        <input type="submit" class="archive-button" value="Archive"></form></td>
-<!--                        <a href="/admin/applicants/archive/--><?php //= $applicant->getId() ?><!--" class="archive-button">ARCHIVE</a></td>-->
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <?php foreach ($applicants as $applicant): ?>
+                    <tr>
+                        <td><a href="/admin/applicants/<?= $applicant->getId() ?>"><?= $applicant->getName(); ?></a>
+                        </td>
+                        <td><?php echo $applicant->getEmail(); ?></td>
+                        <td><?php echo $applicant->getFormattedApplicationDate(); ?></td>
+                        <td>
+                            <a href="/admin/applicants/edit/<?= $applicant->getId() ?>" class="btn">Edit</a>
+                            <form action="/admin/applicants/archive/<?= $applicant->getId() ?>" method="post">
+                                <input type="submit" class="btn" value="Archive">
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
         <?php endif; ?>
 
         <div class="pagination">
             <a href="?page=<?= $previousPage; ?>" class="prev <?php if ($previousPage === 0) echo 'disabled' ?>">Previous</a>
             <?php
-            for ($i = 1; $i <= $pageCount; $i++) {
+            for ($i = 1; $i < $pageCount; $i++) {
                 if ($i == $currentPage) {
                     echo "<a href='?page=$i' class='active'>$i</a>";
                 } else {
@@ -67,7 +70,8 @@
                 }
             }
             ?>
-            <a href="?page=<?= $nextPage; ?>" class="next <?php if ($nextPage > $pageCount) echo 'disabled' ?>">Next</a>
+            <a href="?page=<?= $nextPage; ?>"
+               class="next <?php if ($nextPage >= $pageCount) echo 'disabled' ?>">Next</a>
         </div>
     </div>
 </main>

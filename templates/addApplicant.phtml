@@ -1,5 +1,14 @@
+<?php
+/**
+ * @var $error string
+ * @var $circumstances array
+ * @var $funding array
+ * @var $cohorts array
+ * @var $hearAboutUs array
+ */
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <?php
     require 'partials/layout/head.phtml';
@@ -10,7 +19,12 @@
 <?php require 'partials/layout/header.phtml'; ?>
 <?php require 'partials/layout/nav.phtml'; ?>
 <main>
-    <form method="post" action="/admin/applicant/add" class="container">
+    <?php
+    if ($error) {
+        echo "<div class='error-text invalid-login'>$error</div>";
+    }
+    ?>
+    <form method="post" action="/admin/applicants/add" class="container">
         <h1>Add an Applicant</h1>
         <h2>Applicant</h2>
         <div class="form-group">
@@ -99,7 +113,7 @@
                 <Label for="eligible">I am eligible to live and work in the UK</Label>
             </div>
             <div class="form-group flex">
-                <input id="terms width-20" name="terms" type="checkbox" value='1'>
+                <input id="terms" name="terms" type="checkbox" value='1'>
                 <Label for="terms">I accept the terms and conditions</Label>
             </div>
 
